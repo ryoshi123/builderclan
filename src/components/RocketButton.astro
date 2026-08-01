@@ -18,9 +18,12 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 <style>
 	.rocket {
 		position: fixed;
-		bottom: var(--space-floating-control-edge);
-		left: var(--space-floating-control-edge);
+		bottom: var(--space-floating-control-block-edge);
+		left: var(--space-floating-control-inline-edge);
 		z-index: var(--game-layer);
+		min-width: var(--control-min-tap-size);
+		min-height: var(--control-min-tap-size);
+		padding: var(--space-page-reset);
 		font-size: var(--font-size-rocket-control);
 		cursor: pointer;
 		background: none;

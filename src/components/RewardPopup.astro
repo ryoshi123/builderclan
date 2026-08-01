@@ -77,6 +77,11 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 	}
 
 	.reward-popup__close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: var(--animated-control-min-tap-size);
+		min-height: var(--animated-control-min-tap-size);
 		margin-top: var(--space-section-gutter);
 		padding: var(--space-popup-control-block) var(--space-popup-control-inline);
 		color: var(--color-popup-action-accent);

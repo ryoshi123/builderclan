@@ -73,13 +73,13 @@ html.has-client-script [data-reveal='fade-up'] {
 }
 
 html.has-client-script [data-reveal='slide-up'] {
-	visibility: hidden;
+	opacity: var(--opacity-entry-start);
 	transform: translate3d(
 		var(--space-page-reset),
 		var(--scroll-reveal-slide-offset),
 		var(--space-page-reset)
 	);
-	transition-property: transform;
+	transition-property: opacity, transform;
 }
 
 html.has-client-script [data-reveal='zoom-in-up'] {
@@ -97,6 +97,10 @@ html.has-client-script [data-reveal][data-revealed='true'] {
 	pointer-events: auto;
 	transform: translateZ(var(--space-page-reset));
 	opacity: var(--opacity-entry-end);
+}
+
+html.has-client-script [data-reveal][data-reveal-instant='true'] {
+	transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -113,7 +113,11 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	}
 
 	.hero__button {
-		display: inline-block;
+		display: var(--hero-button-display);
+		align-items: center;
+		justify-content: center;
+		width: var(--hero-button-width);
+		min-height: var(--control-min-tap-size);
 		margin-top: var(--space-card-inset);
 		padding: var(--space-standard-button-block)
 			var(--space-standard-button-inline);
@@ -132,9 +136,12 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	.hero__button--primary {
 		color: var(--color-page-background);
 		background: var(--color-brand-primary);
+		border: var(--hero-button-border-width) solid var(--color-clear-surface);
 	}
 
 	.hero__button--inverse {
+		margin-top: var(--space-hero-secondary-button-top);
+		margin-inline-start: var(--space-hero-secondary-button-inline);
 		color: var(--color-brand-primary);
 		background: var(--color-clear-surface);
 		border: var(--hero-button-border-width) solid var(--color-brand-primary);

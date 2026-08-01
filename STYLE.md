@@ -174,23 +174,28 @@ The original units are deliberately preserved. The project does not set a root f
 | Compact section block padding | `3rem` |
 | Desktop section block padding | `4rem` |
 | Spacious section block padding | `5rem` |
-| Join section block padding | `6rem` |
+| Current section block padding | `2rem` through `768px`; `3rem` from `769px` |
+| Hero button gap | `0.75rem` |
 | Navigation brand gap | `8px` |
 | Game frame inset | `10px` |
 | FAQ control block padding | `12px` |
 | Game mobile score block padding | `15px` |
 | Game desktop score block padding | `20px` |
+| Floating rocket block edge | `20px` |
+| Floating rocket inline edge | `0` through `768px`; `20px` from `769px` |
 | Game score inline padding | `27px` |
 | FAQ control inline padding | `28px` |
 | Fixed header offset | `50px` |
+| Minimum tap target | `44px` |
+| Minimum animated tap target | `49px`, which stays above `44px` while the `0.9` entry scale is running |
 | Automatic centring | `auto` |
 | Hero scroll offset | `150px` |
 | Other section jump offset | `150px` — points to Hero scroll offset |
 
 ## Screen sizes
 
-- At `768px` and below, navigation switches to the hamburger layout, the hero glow moves, and Mission becomes a centred column with a `2rem` text bottom margin.
-- At `768px` and above, hero, Team, and Community section padding changes. Both the above and below rules apply at exactly `768px`.
+- At `768px` and below, navigation switches to the hamburger layout, the hero buttons stack, the hero glow moves, Mission becomes a centred column, and section block padding is `2rem`.
+- At `769px` and above, the wide navigation and hero button row return, and section block padding becomes `3rem`. Compact and wide rules no longer overlap.
 - At `800px` and below, the hidden game becomes larger relative to the viewport, its text becomes `1rem`, and its score-row block padding becomes `15px`.
 - The declared `700px` rule is omitted because it targets an unused class and causes no visible change.
 - Exact viewport widths for flex wrapping and auto-fit grids are `unknown` because the files do not fix them.
@@ -202,3 +207,4 @@ The original units are deliberately preserved. The project does not set a root f
 - The Hero background is `#151515` at `0%`, `#242424` at `40%`, and `#0f0f0f` at `80%`, running towards the top right.
 - Every non-Hero section target uses a `150px` jump offset.
 - The Hall of Fame row shows a lime arrow over a dark edge fade while more cards remain, hides it at the end, and snaps each card to the row's padded start edge.
+- Scroll reveals move `1rem` over `0.4s`, begin at the viewport edge, and use no transition for content already passed or visible when the page opens.

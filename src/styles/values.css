@@ -128,7 +128,6 @@
 	--space-compact-section-block: 3rem;
 	--space-desktop-section-block: 4rem;
 	--space-spacious-section-block: 5rem;
-	--space-join-section-block: 6rem;
 	--space-navigation-brand-gap: 8px;
 	--space-game-frame-inset: 10px;
 	--space-faq-control-block: 12px;
@@ -140,22 +139,28 @@
 	--space-centered: auto;
 	--space-hero-scroll-offset: 150px;
 	--space-section-scroll-offset: var(--space-hero-scroll-offset);
-	--space-about-section-block: var(--space-spacious-section-block);
-	--space-mission-block: var(--space-section-gutter);
-	--space-mission-bottom: var(--space-content-gap);
+	--space-section-block-current: var(--space-content-gap);
+	--space-about-section-block: var(--space-section-block-current);
+	--space-mission-block: var(--space-section-block-current);
+	--space-mission-bottom: var(--space-section-edge-reset);
+	--space-vision-block: var(--space-section-block-current);
 	--space-vision-inline: var(--space-section-gutter);
-	--space-team-section-top: var(--space-content-gap);
+	--space-team-section-top: var(--space-section-block-current);
+	--space-team-section-bottom: var(--space-section-block-current);
 	--space-team-card-block: var(--space-section-gutter);
 	--space-team-card-inline: var(--space-content-gap);
-	--space-hall-section-top: var(--space-spacious-section-block);
-	--space-hall-section-bottom: var(--space-compact-section-block);
-	--space-community-section-top: var(--space-compact-section-block);
-	--space-faq-section-top: var(--space-card-inset);
-	--space-faq-section-bottom: var(--space-desktop-section-block);
+	--space-hall-section-top: var(--space-section-block-current);
+	--space-hall-section-bottom: var(--space-section-block-current);
+	--space-community-section-top: var(--space-section-block-current);
+	--space-community-section-bottom: var(--space-section-block-current);
+	--space-faq-section-top: var(--space-section-block-current);
+	--space-faq-section-bottom: var(--space-section-block-current);
+	--space-join-section-block: var(--space-section-block-current);
 	--space-join-control-top: var(--space-card-inset);
 	--space-footer-block: var(--space-section-gutter);
-	--space-floating-control-edge: var(--space-game-desktop-score-block);
-	--space-faq-button-top: var(--space-fixed-header-offset);
+	--space-floating-control-block-edge: var(--space-game-desktop-score-block);
+	--space-floating-control-inline-edge: var(--space-page-reset);
+	--space-faq-button-top: var(--space-card-inset);
 	--space-popup-control-block: var(--space-card-title-gap);
 	--space-game-close-block: var(--space-compact-control-gap);
 	--space-game-close-inline: var(--space-section-intro-offset);
@@ -166,7 +171,7 @@
 	--space-navigation-link-offset: var(--space-card-inset);
 	--space-navigation-overlay-inline: var(--space-content-gap);
 	--space-navigation-overlay-gap: var(--space-content-gap);
-	--space-hero-compact-top: var(--space-section-gutter);
+	--space-hero-compact-top: var(--space-content-gap);
 	--space-hero-compact-inline: var(--space-card-inset);
 	--space-hero-compact-bottom: var(--space-section-gutter);
 	--space-hero-wide-top: var(--space-content-gap);
@@ -175,10 +180,14 @@
 	--space-hero-copy-top: var(--space-section-gutter);
 	--space-hero-logo-top: var(--space-content-gap);
 	--space-hero-logo-inset: var(--space-compact-control-gap);
+	--space-hero-button-gap: var(--space-section-intro-offset);
+	--space-hero-secondary-button-top: var(--space-section-intro-offset);
+	--space-hero-secondary-button-inline: var(--space-page-reset);
 
 	/* Fixed layout sizes and visible layout breakpoints. */
 	--page-min-height: 100vh;
 	--breakpoint-site-layout: 768px;
+	--breakpoint-site-wide-layout: 769px;
 	--breakpoint-game-layout: 800px;
 	--content-width: 92%;
 	--content-max-width: 1100px;
@@ -187,6 +196,8 @@
 	--section-heading-border-width: 2px;
 	--focus-ring-width: 2px;
 	--focus-ring-offset: 2px;
+	--control-min-tap-size: 44px;
+	--animated-control-min-tap-size: 49px;
 	--faq-heading-border-width: 3px;
 	--faq-card-border-width: 1px;
 	--game-close-border-width: var(--faq-card-border-width);
@@ -253,10 +264,11 @@
 	--popup-layer: 10000;
 	--game-layer: 9999;
 	--navigation-swipe-threshold: 60px;
-	--scroll-reveal-root-margin: 0px 0px -120px 0px;
-	--scroll-reveal-fade-offset: 100px;
-	--scroll-reveal-slide-offset: 100%;
-	--scroll-reveal-zoom-start-scale: 0.6;
+	--scroll-reveal-root-margin: 0px 0px 16px 0px;
+	--scroll-reveal-threshold: 0;
+	--scroll-reveal-fade-offset: var(--space-section-gutter);
+	--scroll-reveal-slide-offset: var(--space-section-gutter);
+	--scroll-reveal-zoom-start-scale: 0.98;
 	--member-row-continuation-layer: 1;
 	--hero-background-start-position: 0%;
 	--hero-background-middle-position: 40%;
@@ -299,6 +311,8 @@
 	--hero-logo-card-radius: 16px;
 	--hero-button-radius: 12px;
 	--hero-button-border-width: 2px;
+	--hero-button-display: flex;
+	--hero-button-width: fit-content;
 	--hero-glow-blur: 50px;
 	--hero-glow-layer: 0;
 	--hero-glow-start-scale: 1;
@@ -371,7 +385,7 @@
 	--duration-join-gradient-shift: 8s;
 	--duration-join-pulse: 2.5s;
 	--duration-snake-entry: 0.5s;
-	--duration-scroll-entry: 1000ms;
+	--duration-scroll-entry: var(--duration-team-card-transform);
 	--duration-rocket-flight: 2s;
 	--duration-game-tick: 100ms;
 	--easing-rocket-flight: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -472,15 +486,19 @@
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 	:root {
+		--space-section-block-current: var(--space-compact-section-block);
 		--hero-padding-top: var(--space-hero-wide-top);
 		--hero-padding-inline: var(--space-hero-wide-inline);
 		--hero-padding-bottom: var(--space-hero-wide-bottom);
-		--space-team-section-top: var(--space-desktop-section-block);
 		--space-team-card-block: var(--space-card-inset);
 		--space-team-card-inline: var(--space-card-inset);
-		--space-community-section-top: var(--space-spacious-section-block);
+		--space-hero-secondary-button-top: var(--space-card-inset);
+		--space-hero-secondary-button-inline: var(--space-hero-button-gap);
+		--hero-button-display: inline-flex;
+		--hero-button-width: auto;
+		--space-floating-control-inline-edge: var(--space-game-desktop-score-block);
 	}
 }
 

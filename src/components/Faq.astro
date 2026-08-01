@@ -66,11 +66,13 @@ import { faqs } from '../data/faqs';
 	}
 
 	.faq__heading {
+		margin-bottom: var(--space-content-gap);
 		text-align: center;
 	}
 
 	.faq__heading h2 {
 		display: inline-block;
+		margin: var(--space-page-reset);
 		font-size: var(--font-size-section-heading);
 		font-weight: var(--font-weight-section-heading);
 		border-bottom: var(--faq-heading-border-width) solid
@@ -120,8 +122,11 @@ import { faqs } from '../data/faqs';
 	}
 
 	.faq__button {
-		display: block;
-		margin: var(--space-faq-button-top) var(--space-centered)
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--control-min-tap-size);
+		margin: var(--space-faq-button-top) var(--space-page-reset)
 			var(--space-page-reset);
 		padding: var(--space-faq-control-block) var(--space-faq-control-inline);
 		color: var(--color-page-background);
@@ -138,6 +143,10 @@ import { faqs } from '../data/faqs';
 			box-shadow var(--duration-button-press) ease,
 			background-color var(--duration-button-press) ease,
 			color var(--duration-button-press) ease;
+	}
+
+	.faq__button-wrapper {
+		text-align: center;
 	}
 
 	@media (hover: hover) and (pointer: fine) {

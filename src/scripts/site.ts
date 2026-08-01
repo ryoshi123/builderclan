@@ -248,14 +248,54 @@ const reducedMotion = window.matchMedia(
 	'(prefers-reduced-motion: reduce)',
 ).matches;
 
-if (reducedMotion || !('IntersectionObserver' in window)) {
+const revealImmediately = (element: HTMLElement) => {
+	element.dataset.revealInstant = 'true';
+	element.dataset.revealed = 'true';
+};
+
+const getLayoutTop = (element: HTMLElement) => {
+	let top = element.offsetTop;
+	let parent = element.offsetParent;
+
+	while (parent instanceof HTMLElement) {
+		top += parent.offsetTop;
+		parent = parent.offsetParent;
+	}
+
+	return top;
+};
+
+const setupReveals = () => {
+	if (reducedMotion || !('IntersectionObserver' in window)) {
+		revealElements.forEach(revealImmediately);
+		return;
+	}
+
+	const initialViewportBottom = window.scrollY + window.innerHeight;
+	const pendingReveals: HTMLElement[] = [];
+
 	revealElements.forEach((element) => {
-		element.dataset.revealed = 'true';
+		if (getLayoutTop(element) < initialViewportBottom) {
+			revealImmediately(element);
+			return;
+		}
+
+		pendingReveals.push(element);
 	});
-} else {
+
 	const rootMargin = getComputedStyle(document.documentElement)
 		.getPropertyValue('--scroll-reveal-root-margin')
 		.trim();
+	const threshold = Number.parseFloat(
+		getComputedStyle(document.documentElement).getPropertyValue(
+			'--scroll-reveal-threshold',
+		),
+	);
+	const observerOptions: IntersectionObserverInit = {};
+
+	if (rootMargin) observerOptions.rootMargin = rootMargin;
+	if (Number.isFinite(threshold)) observerOptions.threshold = threshold;
+
 	const revealObserver = new IntersectionObserver(
 		(entries, observer) => {
 			entries.forEach((entry) => {
@@ -264,8 +304,10 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
 				observer.unobserve(entry.target);
 			});
 		},
-		rootMargin ? { rootMargin } : undefined,
+		observerOptions,
 	);
 
-	revealElements.forEach((element) => revealObserver.observe(element));
-}
+	pendingReveals.forEach((element) => revealObserver.observe(element));
+};
+
+requestAnimationFrame(setupReveals);
