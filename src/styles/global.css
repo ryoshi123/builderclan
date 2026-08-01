@@ -1,0 +1,9 @@
+@import './fonts.css';
+@import './values.css';
+
+body {
+	display: grid;
+	place-items: center;
+	min-height: var(--page-min-height);
+	margin: var(--space-none);
+}
