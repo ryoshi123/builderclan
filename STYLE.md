@@ -4,9 +4,9 @@
 
 ## Colours
 
-There are exactly **62** maintained colour values, represented by **70** role names. Four drawing-only fills were removed from this file. The remaining values are split into 41 flat page colours and 21 transparent surfaces, shadows, and glows.
+There are exactly **44** maintained colour values, represented by **69** role names. Four drawing-only fills and one zero-use colour were removed. The remaining values are split into 23 flat page colours and 21 transparent surfaces, shadows, and glows.
 
-Four pairs were merged using CIEDE2000. The cutoff was strictly below `1.0`: differences at or above `1.0` were not merged. Both role names remain when two jobs now share one value.
+The page uses four maintained lime values, three neutral dark surface values, and two separate blue game surfaces. Every existing role name remains available as an alias. Transparent effects stay separate because their opacity and effect strength are part of their job.
 
 ### Flat page colours
 
@@ -16,49 +16,48 @@ Four pairs were merged using CIEDE2000. The cutoff was strictly below `1.0`: dif
 | Popup title | `#caff33` — points to Main brand |
 | Keyboard focus ring | `#caff33` — points to Main brand |
 | Secondary brand action | `#a6d71f` |
-| FAQ action background | `#9fce1d` |
+| FAQ action background | `#a6d71f` — points to Secondary brand action |
 | FAQ action hover | `#b6e533` |
-| Join gradient middle | `#81a718` |
-| Join gradient end | `#acda2c` |
-| Join hover glow | `#93ba27` |
-| Team icon gradient start | `#b5ed1b` |
+| Join gradient middle | `#a6d71f` — points to Secondary brand action |
+| Join gradient end | `#b6e533` — points to FAQ action hover |
+| Join hover glow | `#b6e533` — points to FAQ action hover |
+| Team icon gradient start | `#b6e533` — points to FAQ action hover |
 | Team icon gradient end | `#3d5105` |
-| Rocket idle | `#76a100` |
-| Rocket hover | `#a0da00` |
-| Popup title glow | `#aee31d` |
+| Rocket idle | `#a6d71f` — points to Secondary brand action |
+| Rocket hover | `#b6e533` — points to FAQ action hover |
+| Popup title glow | `#b6e533` — points to FAQ action hover |
 | Popup edge glow | `#35ff3c` |
 | Text on dark backgrounds | `#ffffff` |
 | Hero title gradient end | `#e1e1e1` |
 | FAQ body text | `#e1e1e1` — points to Hero title gradient end |
-| Inverted section text | `#e5e7eb` |
+| Inverted section text | `#e6e6e6` — points to Section body text |
 | Section body text | `#e6e6e6` |
 | Game status text | `#b8c6dc` |
 | Footer text | `#858585` |
-| Popup background | `#0a0a0a` |
+| Popup background | `#0f0f0f` — points to Hero background end |
 | Hero background end | `#0f0f0f` |
 | Default page text | `#111827` |
-| Card gradient start | `#151515` |
-| Hero background start | `#151515` — points to Card gradient start |
+| Card gradient start | `#0f0f0f` — points to Hero background end |
+| Hero background start | `#0f0f0f` — points to Card gradient start |
 | Page background | `#1a1a1a` |
 | Join action text | `#1a1a1a` — points to Page background |
-| Content surface gradient start | `#1e1e1e` |
-| Footer background | `#1e1e1e` — points to Content surface gradient start |
-| Join background base | `#1e1f29` |
-| Hall card background | `#201e20` |
+| Content surface gradient start | `#1a1a1a` — points to Page background |
+| Footer background | `#1a1a1a` — points to Content surface gradient start |
+| Join background base | `#1a1a1a` — points to Page background |
+| Hall card background | `#2a2a2a` — points to Content surface gradient end |
 | Game board background | `#212837` |
-| Card gradient end | `#242424` |
-| Hero background middle | `#242424` — points to Card gradient end |
-| FAQ card background | `#252529` |
+| Card gradient end | `#2a2a2a` — points to Content surface gradient end |
+| Hero background middle | `#2a2a2a` — points to Card gradient end |
+| FAQ card background | `#2a2a2a` — points to Content surface gradient end |
 | FAQ card secondary glow | `#25254c` |
 | Game frame background | `#293447` |
 | Content surface gradient end | `#2a2a2a` |
 | Page gradient middle | `#2a2a2a` — points to Content surface gradient end |
-| Join background alternate | `#312e2e` |
+| Join background alternate | `#2a2a2a` — points to Content surface gradient end |
 | FAQ card primary glow | `#38384e` |
 | Popup action accent | `#00fff0` |
 | Snake head | `#60cbff` |
 | Popup secondary glow | `#ff62f5` |
-| Hall social hover | `#ff0000` |
 | Hall member name | `#ff3030` |
 | Snake food | `#ff003d` |
 
@@ -88,18 +87,31 @@ Four pairs were merged using CIEDE2000. The cutoff was strictly below `1.0`: dif
 | Hall warning glow | `rgba(255, 66, 36, 0.603)` |
 | Game frame shadow | `rgba(52, 87, 220, 0.2)` |
 
-### Imperceptible merges
+### Current palette consolidation
 
-Usage counts are effective colour occurrences in the old page's HTML and CSS. Unused and overridden rules are not counted.
+Usage counts are effective authored colour occurrences before consolidation. Differences use CIEDE2000.
 
-| Colour A | Uses | Colour B | Uses | CIEDE2000 difference | Surviving colour |
+| Removed value | Uses | Surviving value | Existing uses | Difference | Job |
 |---|---:|---|---:|---:|---|
-| `#e1e1e1` | 1 | `#e0e0e0` | 1 | `0.222719` | `#e1e1e1` — the counts tie, so the hero-title colour wins over FAQ body text |
-| `#caff33` | 23 | `#c9ff35` | 2 | `0.234057` | `#caff33` — used in more places |
-| `#1e1e1e` | 3 | `#1f1f1f` | 1 | `0.314148` | `#1e1e1e` — used in more places |
-| `#292929` | 1 | `#2a2a2a` | 3 | `0.316747` | `#2a2a2a` — used in more places |
+| `#9fce1d` | 1 | `#a6d71f` | 2 | `2.199017` | Darker lime action |
+| `#81a718` | 1 | `#a6d71f` | 2 | `12.881273` | Darker lime gradient stop |
+| `#76a100` | 1 | `#a6d71f` | 2 | `14.864608` | Darker lime idle state |
+| `#acda2c` | 1 | `#b6e533` | 1 | `2.551859` | Lighter lime gradient stop |
+| `#93ba27` | 1 | `#b6e533` | 1 | `10.680308` | Lighter lime hover glow |
+| `#b5ed1b` | 1 | `#b6e533` | 1 | `2.225872` | Lighter lime gradient stop |
+| `#a0da00` | 1 | `#b6e533` | 1 | `3.455460` | Lighter lime hover state |
+| `#aee31d` | 1 | `#b6e533` | 1 | `1.289747` | Lighter lime title glow |
+| `#0a0a0a` | 1 | `#0f0f0f` | 1 | `0.928790` | Recessed neutral surface |
+| `#151515` | 2 | `#0f0f0f` | 1 | `1.478121` | Recessed neutral gradient surface |
+| `#1e1e1e` | 3 | `#1a1a1a` | 5 | `1.256274` | Page-level neutral surface |
+| `#1e1f29` | 2 | `#1a1a1a` | 5 | `6.803183` | Page-level neutral gradient surface |
+| `#201e20` | 1 | `#2a2a2a` | 3 | `4.256785` | Raised neutral card surface |
+| `#242424` | 2 | `#2a2a2a` | 3 | `1.895354` | Raised neutral gradient surface |
+| `#252529` | 2 | `#2a2a2a` | 3 | `3.215515` | Raised neutral card surface |
+| `#312e2e` | 1 | `#2a2a2a` | 3 | `2.471782` | Raised neutral gradient surface |
+| `#e5e7eb` | 1 | `#e6e6e6` | 4 | `2.081886` | General light body text |
 
-No merge reached or crossed the `1.0` visibility cutoff. The closest unmerged pair is `#a6d71f` and `#acda2c` at `1.015694`.
+The unused Hall social-hover value `#ff0000` was removed rather than merged.
 
 ## Text
 
