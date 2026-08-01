@@ -1,0 +1,200 @@
+---
+const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builderLogoAISAT.svg`;
+---
+
+<section class="hero" id="hero" data-reveal="fade-up">
+	<div class="hero__content">
+		<div class="hero__text">
+			<h1 class="hero__title">
+				<span class="hero__title-brand">BuilderClan</span> AISAT
+			</h1>
+			<p class="hero__subtitle">
+				Join the BuilderClan AISAT community, where creativity meets action.
+				Whether you’re a coder, designer, or innovator, this is your space to
+				collaborate, learn, and create projects that make an impact. Let’s build
+				the future together!
+			</p>
+			<a href="#join" class="hero__button hero__button--primary">Get Started</a>
+			<a href="#about" class="hero__button hero__button--inverse">Learn More</a>
+		</div>
+
+		<div class="hero__logo-card">
+			<img
+				src={logoSource}
+				alt="BuilderClan AISAT logo"
+				class="hero__logo"
+			/>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--page-min-height);
+		padding: var(--hero-padding-top) var(--hero-padding-inline)
+			var(--hero-padding-bottom);
+		overflow: hidden;
+		color: var(--color-text-on-dark);
+		scroll-margin-top: var(--space-hero-scroll-offset);
+		background: var(--background-hero-section);
+	}
+
+	.hero::before {
+		position: absolute;
+		inset: var(--space-page-reset);
+		z-index: var(--hero-glow-layer);
+		content: '';
+		background: var(--hero-glow-background);
+		filter: blur(var(--hero-glow-blur));
+		mix-blend-mode: overlay;
+		animation: hero-glow-pulse var(--hero-glow-duration) infinite ease-in-out;
+	}
+
+	.hero__content {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		width: var(--hero-content-width);
+		max-width: var(--hero-content-max-width);
+		margin: var(--space-page-reset) var(--space-centered);
+	}
+
+	.hero__text {
+		flex: var(--hero-column-flex);
+		max-width: var(--hero-text-max-width);
+		text-align: left;
+	}
+
+	.hero__title {
+		margin: var(--space-page-reset);
+		font-size: var(--font-size-hero-title);
+		font-weight: var(--font-weight-hero-title);
+		background: linear-gradient(
+			to left,
+			var(--color-text-on-dark),
+			var(--color-hero-title-gradient-end)
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: var(--color-clear-surface);
+		/* The original author appears to have intended a title glow, but its
+			colour marker is missing, so the browser discards it. */
+		text-shadow: none;
+	}
+
+	.hero__title-brand {
+		background: linear-gradient(
+			to right,
+			var(--color-brand-primary),
+			var(--color-brand-action-secondary)
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: var(--color-clear-surface);
+		text-shadow: var(--shadow-hero-brand-text);
+	}
+
+	.hero__subtitle {
+		max-width: var(--hero-copy-max-width);
+		margin: var(--space-hero-copy-top) var(--space-centered)
+			var(--space-page-reset);
+		opacity: var(--hero-copy-opacity);
+		font-family: var(--font-family-hero-subtitle);
+		font-size: var(--font-size-feature-copy);
+		font-weight: var(--font-weight-hero-subtitle);
+		/* The original repeats this setting; one declaration has the same effect. */
+		font-optical-sizing: auto;
+		font-variation-settings: var(--font-variation-hero-subtitle-rounding);
+	}
+
+	.hero__button {
+		display: inline-block;
+		margin-top: var(--space-card-inset);
+		padding: var(--space-standard-button-block)
+			var(--space-standard-button-inline);
+		font-weight: var(--font-weight-page-default);
+		text-decoration: none;
+		border-radius: var(--hero-button-radius);
+		box-shadow: var(--shadow-button-default);
+		transform: translateZ(var(--space-page-reset));
+		transition:
+			transform var(--duration-button-press) ease,
+			box-shadow var(--duration-button-press) ease,
+			background-color var(--duration-button-press) ease,
+			color var(--duration-button-press) ease;
+	}
+
+	.hero__button--primary {
+		color: var(--color-page-background);
+		background: var(--color-brand-primary);
+	}
+
+	.hero__button--inverse {
+		color: var(--color-brand-primary);
+		background: var(--color-clear-surface);
+		border: var(--hero-button-border-width) solid var(--color-brand-primary);
+		box-shadow: var(--shadow-button-inverse);
+	}
+
+	.hero__logo-card {
+		display: flex;
+		flex: var(--hero-column-flex);
+		align-items: center;
+		justify-content: center;
+		max-width: var(--hero-logo-card-max-width);
+		aspect-ratio: var(--hero-logo-card-aspect-ratio);
+		margin-top: var(--space-hero-logo-top);
+		padding: var(--space-hero-logo-inset);
+		background: var(--color-hero-logo-panel);
+		border-radius: var(--hero-logo-card-radius);
+		box-shadow: var(--shadow-hero-logo-card);
+		transition:
+			transform var(--duration-button-standard) ease,
+			box-shadow var(--duration-button-standard) ease;
+	}
+
+	.hero__logo {
+		width: var(--hero-logo-size);
+		height: var(--hero-logo-size);
+		max-width: var(--hero-logo-size);
+		object-fit: contain;
+		animation: hero-logo-entry var(--duration-hero-logo-entry) ease forwards;
+	}
+
+	@keyframes hero-logo-entry {
+		from {
+			transform: scale(var(--hero-logo-entry-start-scale));
+			opacity: var(--hero-logo-entry-start-opacity);
+		}
+
+		to {
+			transform: scale(var(--hero-logo-entry-end-scale));
+			opacity: var(--hero-logo-entry-end-opacity);
+		}
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.hero__button--primary:hover {
+			background: var(--color-brand-action-secondary);
+			transform: scale(var(--hero-interactive-hover-scale));
+		}
+
+		.hero__button--inverse:hover {
+			color: var(--color-page-background);
+			background: var(--color-brand-primary);
+			box-shadow: var(--shadow-button-inverse);
+			transform: scale(var(--hero-interactive-hover-scale));
+		}
+
+		.hero__logo-card:hover {
+			box-shadow: var(--shadow-hero-logo-card-hover);
+			transform: translateY(var(--hero-logo-hover-offset))
+				scale(var(--hero-interactive-hover-scale));
+		}
+	}
+</style>

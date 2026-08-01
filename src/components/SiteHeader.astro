@@ -1,0 +1,219 @@
+---
+import { navigationLinks } from '../data/navigation';
+
+const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoShort.svg`;
+---
+
+<header class="site-header">
+	<div class="site-header__inner">
+		<div class="site-header__brand">
+			<img
+				src={logoSource}
+				alt="BuilderClan Logo"
+				class="site-header__mark"
+			/>
+			<a href="#hero" class="site-header__brand-link">
+				<span class="site-header__brand-first">Builder</span><span
+					class="site-header__brand-second">Clan</span
+				>
+			</a>
+		</div>
+
+		<nav class="site-header__links" aria-label="Primary navigation">
+			{
+				navigationLinks.map(({ label, href, external }) => (
+					<a
+						href={href}
+						target={external ? '_blank' : undefined}
+						rel={external ? 'noopener noreferrer' : undefined}
+					>
+						{label}
+					</a>
+				))
+			}
+		</nav>
+
+		<button
+			type="button"
+			class="site-header__toggle"
+			data-navigation-toggle
+			data-open-label="Close navigation menu"
+			aria-label="Open navigation menu"
+			aria-controls="mobile-navigation"
+			aria-expanded="false"
+		>
+			☰
+		</button>
+
+		<nav
+			class="site-header__overlay"
+			id="mobile-navigation"
+			data-navigation-overlay
+			aria-label="Mobile navigation"
+			aria-hidden="true"
+			inert
+			data-open="false"
+		>
+			{
+				navigationLinks.map(({ label, href, external }) => (
+					<a
+						href={href}
+						target={external ? '_blank' : undefined}
+						rel={external ? 'noopener noreferrer' : undefined}
+					>
+						{label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header,
+	.site-header * {
+		box-sizing: border-box;
+	}
+
+	.site-header {
+		position: fixed;
+		top: var(--space-page-reset);
+		left: var(--space-page-reset);
+		z-index: var(--navigation-layer);
+		display: flex;
+		justify-content: center;
+		width: var(--navigation-width);
+		padding: var(--space-navigation-bar-block) var(--space-navigation-bar-inline);
+		font-family: var(--font-family-page);
+		font-weight: var(--font-weight-page-default);
+		font-style: normal;
+		line-height: var(--line-height-page);
+		background: var(--color-clear-surface);
+		backdrop-filter: blur(var(--navigation-backdrop-blur));
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: min(
+			var(--navigation-content-max-width),
+			var(--navigation-content-width)
+		);
+	}
+
+	.site-header__brand {
+		display: flex;
+		align-items: center;
+		gap: var(--space-navigation-brand-gap);
+		font-size: var(--font-size-navigation-brand);
+		font-weight: var(--font-weight-section-heading);
+	}
+
+	.site-header__mark {
+		width: var(--space-centered);
+		height: var(--navigation-logo-height);
+	}
+
+	.site-header__mark:hover {
+		animation: site-header-logo-pop var(--duration-navigation-logo-pop) ease forwards;
+	}
+
+	@keyframes site-header-logo-pop {
+		from {
+			transform: scale(var(--navigation-logo-start-scale));
+			opacity: var(--navigation-logo-start-opacity);
+		}
+
+		to {
+			transform: scale(var(--navigation-logo-end-scale));
+			opacity: var(--navigation-logo-end-opacity);
+		}
+	}
+
+	.site-header__brand-link {
+		font-size: var(--font-size-navigation-brand);
+		font-weight: var(--font-weight-section-heading);
+		text-decoration: none;
+	}
+
+	.site-header__brand-first {
+		color: var(--color-text-on-dark);
+	}
+
+	.site-header__brand-second {
+		color: var(--color-brand-primary);
+	}
+
+	.site-header__brand-link:hover .site-header__brand-first {
+		color: var(--color-brand-primary);
+		transition: color var(--duration-navigation-overlay-slide) ease;
+	}
+
+	.site-header__brand-link:hover .site-header__brand-second {
+		color: var(--color-text-on-dark);
+	}
+
+	.site-header__links {
+		display: var(--navigation-links-display);
+		align-items: center;
+		gap: var(--space-navigation-link-gap);
+	}
+
+	.site-header__links a {
+		position: relative;
+		display: flex;
+		margin-left: var(--space-navigation-link-offset);
+		color: var(--color-text-on-dark);
+		font-weight: var(--font-weight-section-heading);
+		text-decoration: none;
+		transition: color var(--duration-navigation-overlay-slide) ease;
+	}
+
+	.site-header__links a:hover {
+		color: var(--color-brand-primary);
+	}
+
+	.site-header__toggle {
+		display: var(--navigation-toggle-display);
+		font-size: var(--navigation-toggle-current-size);
+		color: var(--color-brand-primary);
+		cursor: pointer;
+		background: none;
+		border: none;
+	}
+
+	.site-header__overlay {
+		position: fixed;
+		top: var(--navigation-overlay-top);
+		left: var(--navigation-overlay-closed-position);
+		z-index: var(--navigation-layer);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		width: var(--navigation-width);
+		height: var(--navigation-overlay-height);
+		padding-left: var(--space-navigation-overlay-inline);
+		gap: var(--space-navigation-overlay-gap);
+		opacity: var(--navigation-overlay-opacity);
+		background: var(--color-mobile-navigation-backdrop);
+		transition: left var(--duration-navigation-overlay-slide) ease;
+	}
+
+	.site-header__overlay[data-open='true'] {
+		left: var(--navigation-overlay-open-position);
+	}
+
+	.site-header__overlay a {
+		color: var(--color-brand-primary);
+		font-size: var(--font-size-subsection-heading);
+		font-weight: var(--font-weight-section-heading);
+		text-decoration: none;
+		transition: color var(--duration-navigation-overlay-slide) ease;
+	}
+
+	.site-header__overlay a:hover {
+		color: var(--color-text-on-dark);
+	}
+</style>

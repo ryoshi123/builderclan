@@ -1,0 +1,155 @@
+---
+import { faqs } from '../data/faqs';
+---
+
+<section class="faq section-jump-target" id="faq" data-reveal="slide-up">
+	<div class="faq__heading">
+		<h2>FAQ</h2>
+	</div>
+
+	<div class="content-container faq__grid" id="faq-list">
+		{
+			faqs.map((faq) => (
+				<article
+					class:list={[
+						'faq__card',
+						{ 'faq__card--hidden': !faq.visible },
+					]}
+					data-faq-extra={!faq.visible ? '' : undefined}
+				>
+					<h3>{faq.question}</h3>
+					{
+						'email' in faq ? (
+							<p>
+								{faq.answerBefore}{' '}
+								<a
+									class="faq__email"
+									href="#join"
+									data-email-link
+									data-email-local={faq.email.localReversed}
+									data-email-domain={faq.email.domainReversed}
+								>
+									Email the BuilderClan team
+								</a>{' '}
+								{faq.answerAfter}
+							</p>
+						) : (
+							<p>{faq.answer}</p>
+						)
+					}
+				</article>
+			))
+		}
+	</div>
+
+	<div class="faq__button-wrapper">
+		<button
+			type="button"
+			class="faq__button"
+			id="showMoreBtn"
+			data-faq-toggle
+			data-expanded-label="Show Less"
+			aria-controls="faq-list"
+			aria-expanded="false"
+		>
+			Show More
+		</button>
+	</div>
+</section>
+
+<style>
+	.faq {
+		width: var(--section-full-width);
+		margin: var(--space-page-reset);
+		padding: var(--space-faq-section-top) var(--space-section-gutter)
+			var(--space-faq-section-bottom);
+	}
+
+	.faq__heading {
+		text-align: center;
+	}
+
+	.faq__heading h2 {
+		display: inline-block;
+		font-size: var(--font-size-section-heading);
+		font-weight: var(--font-weight-section-heading);
+		border-bottom: var(--faq-heading-border-width) solid
+			var(--color-brand-primary);
+	}
+
+	.faq__grid {
+		display: grid;
+		grid-template-columns: var(--faq-grid-columns);
+		margin: var(--space-page-reset) var(--space-centered);
+		gap: var(--space-section-gutter);
+	}
+
+	.faq__card {
+		padding: var(--space-card-inset) var(--space-content-gap);
+		color: var(--color-text-on-dark);
+		background: var(--color-faq-card-background);
+		border: var(--faq-card-border-width) solid var(--color-faq-border);
+		border-radius: var(--radius-card-standard);
+		box-shadow: var(--shadow-faq-card);
+		backdrop-filter: blur(var(--blur-faq-card));
+		transition:
+			transform var(--duration-faq-card-return) ease,
+			box-shadow var(--duration-faq-card-return) ease;
+	}
+
+	.faq__card--hidden {
+		display: none;
+	}
+
+	.faq__card h3 {
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-card-title-gap);
+		color: var(--color-brand-primary);
+		font-size: var(--font-size-feature-copy);
+		font-weight: var(--font-weight-page-default);
+	}
+
+	.faq__card p {
+		margin: var(--space-page-reset);
+		color: var(--color-faq-body-text);
+		line-height: var(--line-height-faq-copy);
+	}
+
+	.faq__email {
+		color: inherit;
+	}
+
+	.faq__button {
+		display: block;
+		margin: var(--space-faq-button-top) var(--space-centered)
+			var(--space-page-reset);
+		padding: var(--space-faq-control-block) var(--space-faq-control-inline);
+		color: var(--color-page-background);
+		font-size: var(--font-size-action-label);
+		font-weight: var(--font-weight-page-default);
+		cursor: pointer;
+		background: var(--color-faq-action-background);
+		border: none;
+		border-radius: var(--radius-action-standard);
+		box-shadow: var(--shadow-button-default);
+		transform: translateZ(var(--space-page-reset));
+		transition:
+			transform var(--duration-button-press) ease,
+			box-shadow var(--duration-button-press) ease,
+			background-color var(--duration-button-press) ease,
+			color var(--duration-button-press) ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.faq__card:hover {
+			box-shadow: var(--shadow-faq-card-hover);
+			transform: scale(var(--scale-interactive-hover));
+			transition: all var(--duration-button-standard) ease;
+		}
+
+		.faq__button:hover {
+			background: var(--color-faq-action-hover);
+			transform: scale(var(--scale-interactive-hover));
+		}
+	}
+</style>

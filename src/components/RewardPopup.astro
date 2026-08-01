@@ -1,0 +1,99 @@
+---
+const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-egg.svg`;
+---
+
+<div
+	class="reward-popup"
+	id="easterEggPopup"
+	data-reward-popup
+	data-open="false"
+	role="dialog"
+	aria-modal="true"
+	aria-hidden="true"
+	aria-labelledby="reward-popup-title"
+	hidden
+>
+	<div class="reward-popup__content" data-reward-content>
+		<img
+			src={eggImage}
+			alt="Green Easter egg illustration decorated with stars"
+			class="reward-popup__egg"
+		/>
+		<h2 id="reward-popup-title">🚀 Deep Space Explorer Unlocked!</h2>
+		<h3>Keep exploring to find more secrets...</h3>
+		<p>btw there is 1 hidden game check browser console for more fun</p>
+		<p>--Team HellWeek</p>
+		<button
+			type="button"
+			class="reward-popup__close"
+			id="closePopup"
+			data-reward-close
+		>
+			Close
+		</button>
+	</div>
+</div>
+
+<style>
+	.reward-popup {
+		position: fixed;
+		top: var(--space-page-reset);
+		left: var(--space-page-reset);
+		z-index: var(--popup-layer);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: var(--popup-viewport-width);
+		height: var(--popup-viewport-height);
+		background: var(--color-popup-backdrop);
+	}
+
+	.reward-popup[data-open='true'] {
+		display: flex;
+	}
+
+	.reward-popup__content {
+		position: relative;
+		z-index: var(--popup-content-layer);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: var(--popup-content-max-width);
+		padding: var(--space-popup-inset);
+		color: var(--color-popup-title);
+		font-size: var(--font-size-popup-copy);
+		text-shadow: var(--shadow-popup-text);
+		background: var(--color-popup-background);
+		border-radius: var(--radius-card-standard);
+		box-shadow: var(--shadow-popup-card);
+		animation: surface-entry var(--duration-popup-entry) ease-in-out;
+	}
+
+	.reward-popup__egg {
+		width: var(--popup-egg-size);
+		margin-bottom: var(--space-section-gutter);
+		animation: popup-egg-bounce var(--duration-popup-egg-bounce) infinite
+			alternate;
+	}
+
+	.reward-popup__close {
+		margin-top: var(--space-section-gutter);
+		padding: var(--space-popup-control-block) var(--space-popup-control-inline);
+		color: var(--color-popup-action-accent);
+		font-weight: var(--font-weight-popup-action);
+		text-shadow: var(--shadow-popup-action-text);
+		cursor: pointer;
+		background: var(--color-clear-surface);
+		border: var(--popup-action-border-width) solid
+			var(--color-popup-action-accent);
+		border-radius: var(--radius-action-standard);
+		box-shadow: var(--shadow-popup-action);
+		transition: all var(--duration-button-standard) ease;
+	}
+
+	.reward-popup__close:hover {
+		background: var(--color-popup-action-hover-fill);
+		box-shadow: var(--shadow-popup-action-hover);
+		transform: scale(var(--scale-popup-action-hover));
+	}
+</style>

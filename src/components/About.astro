@@ -1,0 +1,35 @@
+<section class="about section-jump-target" id="about" data-reveal="fade-up">
+	<div class="content-container about__content">
+		<h2 class="section-heading">About</h2>
+		<p class="section-copy">
+			We are a community driven by curiosity and collaboration. From hackathons
+			to workshops, BuilderClan@AISAT thrives on sharing knowledge, sparking
+			innovation, and building things that matter.
+		</p>
+	</div>
+</section>
+
+<style>
+	.about {
+		width: var(--section-full-width);
+		margin: var(--space-page-reset);
+		padding: var(--space-about-section-block) var(--space-section-gutter);
+		color: var(--color-text-on-dark);
+		background: var(--background-content-surface);
+		box-shadow: var(--shadow-section-inset);
+		transition:
+			transform var(--duration-section-hover) ease,
+			box-shadow var(--duration-section-hover) ease;
+	}
+
+	.about__content {
+		text-align: center;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.about:hover {
+			box-shadow: var(--shadow-section-brand-hover);
+			transform: translateY(var(--offset-section-hover));
+		}
+	}
+</style>

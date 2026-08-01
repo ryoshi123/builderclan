@@ -1,0 +1,77 @@
+---
+import { teamTypes } from '../data/teamTypes';
+---
+
+<section
+	class="team-types section-jump-target"
+	id="team"
+	data-reveal="slide-up"
+>
+	<h3>Meet The Team</h3>
+	<div class="team-types__grid">
+		{
+			teamTypes.map(({ icon, title, description }) => (
+				<article class="team-types__card">
+					<div class="team-types__icon" aria-hidden="true">
+						{icon}
+					</div>
+					<h4>{title}</h4>
+					<p>{description}</p>
+				</article>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.team-types {
+		padding: var(--space-team-section-top) var(--space-section-gutter)
+			var(--space-section-edge-reset);
+		text-align: center;
+		backdrop-filter: blur(var(--blur-soft-section));
+	}
+
+	.team-types > h3 {
+		margin-bottom: var(--space-content-gap);
+		color: var(--color-brand-primary);
+		font-size: var(--font-size-subsection-heading);
+		font-weight: var(--font-weight-section-heading);
+	}
+
+	.team-types__grid {
+		display: grid;
+		grid-template-columns: var(--team-grid-columns);
+		gap: var(--space-content-gap);
+	}
+
+	.team-types__card {
+		padding: var(--space-team-card-block) var(--space-team-card-inline);
+		color: var(--color-section-body-text);
+		font-weight: var(--font-weight-paragraph);
+		background: var(--background-team-card);
+		border-radius: var(--radius-team-card);
+		transition:
+			transform var(--duration-team-card-transform) ease,
+			box-shadow var(--duration-team-card-shadow) ease;
+	}
+
+	.team-types__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--team-icon-size);
+		height: var(--team-icon-size);
+		margin: var(--space-page-reset) var(--space-centered)
+			var(--space-section-gutter);
+		font-size: var(--font-size-subsection-heading);
+		background: var(--background-team-icon);
+		border-radius: var(--radius-round);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.team-types__card:hover {
+			box-shadow: var(--shadow-image-brand-hover);
+			transform: scale(var(--scale-interactive-hover));
+		}
+	}
+</style>

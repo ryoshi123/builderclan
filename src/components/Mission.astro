@@ -1,0 +1,90 @@
+---
+const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about.jpeg`;
+---
+
+<section class="mission" data-reveal="slide-up">
+	<div class="mission__content">
+		<div class="mission__text">
+			<h3>Our Mission</h3>
+			<p>
+				Our mission is to empower students and creators by providing a platform
+				to collaborate, share knowledge, and build real-world solutions. Whether
+				you’re into coding, design, or innovation, BuilderClan is your space to
+				make ideas come alive.
+			</p>
+		</div>
+
+		<div class="mission__image">
+			<img
+				src={missionImage}
+				alt="Students working at desktop computers in a classroom while an instructor stands at the front"
+			/>
+		</div>
+	</div>
+</section>
+
+<style>
+	.mission {
+		padding: var(--space-mission-block) var(--space-section-gutter);
+		border-radius: var(--radius-square);
+		backdrop-filter: blur(var(--blur-mission-surface));
+	}
+
+	.mission__content {
+		display: flex;
+		flex-direction: var(--layout-mission-direction);
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		max-width: var(--mission-content-max-width);
+		margin: var(--space-page-reset) var(--space-centered);
+		padding: var(--space-section-edge-reset) var(--space-section-edge-reset)
+			var(--space-mission-bottom);
+		gap: var(--space-content-gap);
+	}
+
+	.mission__text {
+		flex: var(--layout-fill-share);
+		min-width: var(--mission-column-min-width);
+		margin-bottom: var(--space-mission-text-bottom);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-subsection-heading);
+		font-weight: var(--font-weight-paragraph);
+		text-align: var(--layout-mission-text-align);
+	}
+
+	.mission__text h3 {
+		color: var(--color-brand-primary);
+		line-height: var(--line-height-feature-copy);
+	}
+
+	.mission__text p {
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-section-body);
+		font-weight: var(--font-weight-paragraph);
+		line-height: var(--line-height-feature-copy);
+	}
+
+	.mission__image {
+		display: flex;
+		flex: var(--layout-fill-share);
+		justify-content: center;
+		min-width: var(--mission-column-min-width);
+		padding: var(--space-mission-image-offset) var(--space-section-edge-reset)
+			var(--space-section-edge-reset);
+	}
+
+	.mission__image img {
+		max-width: var(--mission-image-max-width);
+		height: var(--space-centered);
+		border-radius: var(--radius-mission-image);
+		transition: transform var(--duration-button-standard) ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.mission__image img:hover {
+			box-shadow: var(--shadow-image-brand-hover);
+			transform: scale(var(--scale-interactive-hover));
+		}
+	}
+</style>

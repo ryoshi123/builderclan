@@ -1,0 +1,73 @@
+<section class="join section-jump-target" id="join" data-reveal="zoom-in-up">
+	<div class="content-container">
+		<h2 class="section-heading join__heading">
+			Join The <span>Clan</span>
+		</h2>
+		<p class="section-copy join__copy">
+			Be part of our journey. Let's innovate and build together.
+		</p>
+		<a
+			href="https://discord.gg/VgcAEQAFSe"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="join__button"
+		>
+			Join Discord
+		</a>
+	</div>
+</section>
+
+<style>
+	.join {
+		position: relative;
+		width: var(--section-full-width);
+		padding: var(--space-join-section-block) var(--space-section-gutter);
+		overflow: hidden;
+		color: var(--color-text-on-dark);
+		text-align: center;
+		background: var(--background-join-section);
+		background-size: var(--surface-animation-size);
+		box-shadow: var(--shadow-section-inset);
+		animation: shared-gradient-shift var(--duration-join-background-shift) ease
+			infinite;
+		transition:
+			transform var(--duration-section-hover) ease,
+			box-shadow var(--duration-section-hover) ease;
+	}
+
+	.join__heading {
+		color: var(--color-text-on-dark);
+	}
+
+	.join__heading span {
+		color: var(--color-brand-primary);
+	}
+
+	.join__copy {
+		color: var(--color-inverted-section-text);
+	}
+
+	.join__button {
+		display: inline-block;
+		margin-top: var(--space-join-control-top);
+		padding: var(--space-join-control-block) var(--space-join-control-inline);
+		color: var(--color-join-action-text);
+		font-size: var(--font-size-action-label);
+		font-weight: var(--font-weight-page-default);
+		text-decoration: none;
+		background: var(--background-join-action);
+		background-size: var(--surface-animation-size);
+		border-radius: var(--radius-join-pill);
+		box-shadow: var(--shadow-join-action);
+		animation:
+			shared-gradient-shift var(--duration-join-gradient-shift) ease infinite,
+			join-action-pulse var(--duration-join-pulse) ease-in-out infinite;
+		transition: transform var(--duration-button-hover) ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.join__button:hover {
+			box-shadow: var(--shadow-join-action-hover);
+		}
+	}
+</style>

@@ -1,0 +1,57 @@
+---
+const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocket.svg`;
+---
+
+<button
+	type="button"
+	class="rocket"
+	data-rocket
+	aria-label="Reveal the hidden reward"
+>
+	<span
+		class="rocket__icon"
+		aria-hidden="true"
+		style={`--rocket-icon-source: url("${rocketSource}")`}
+	></span>
+</button>
+
+<style>
+	.rocket {
+		position: fixed;
+		bottom: var(--space-floating-control-edge);
+		left: var(--space-floating-control-edge);
+		z-index: var(--game-layer);
+		font-size: var(--font-size-rocket-control);
+		cursor: pointer;
+		background: none;
+		border: none;
+	}
+
+	.rocket__icon {
+		display: inline-block;
+		width: var(--rocket-icon-size);
+		height: var(--rocket-icon-size);
+		color: var(--color-rocket-idle);
+		font-size: var(--font-size-rocket-control);
+		line-height: var(--line-height-icon);
+		vertical-align: var(--rocket-icon-baseline-offset);
+		background-color: currentColor;
+		mask: var(--rocket-icon-source) center / contain no-repeat;
+		-webkit-mask: var(--rocket-icon-source) center / contain no-repeat;
+		transition:
+			transform var(--duration-rocket-hover) ease,
+			color var(--duration-rocket-hover) ease;
+	}
+
+	.rocket:hover .rocket__icon {
+		color: var(--color-rocket-hover);
+		font-size: var(--font-size-rocket-control-hover);
+		transform: scale(var(--scale-rocket-hover));
+	}
+
+	.rocket--launching {
+		will-change: transform, opacity;
+		animation: rocket-flight var(--duration-rocket-flight)
+			var(--easing-rocket-flight);
+	}
+</style>

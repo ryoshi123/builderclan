@@ -1,0 +1,46 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer" data-reveal="fade-up">
+	<p>&copy; {currentYear} BuilderClan AISAT. All rights reserved.</p>
+	<button
+		type="button"
+		class="site-footer__hell-week"
+		id="hell"
+		data-game-unlock
+	>
+		Team Hell Week
+	</button>
+</footer>
+
+<style>
+	.site-footer {
+		padding: var(--space-footer-block) var(--space-section-edge-reset);
+		color: var(--color-footer-text);
+		text-align: center;
+		background: var(--color-footer-background);
+	}
+
+	.site-footer p,
+	.site-footer__hell-week {
+		margin: var(--space-page-reset);
+	}
+
+	.site-footer__hell-week {
+		display: block;
+		width: var(--section-full-width);
+		padding: var(--space-page-reset);
+		color: inherit;
+		font: inherit;
+		line-height: inherit;
+		text-align: center;
+		appearance: none;
+		background: none;
+		border: none;
+	}
+
+	.site-footer__hell-week:hover {
+		color: var(--color-brand-primary);
+	}
+</style>

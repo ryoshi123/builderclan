@@ -1,16 +1,87 @@
 ---
+import About from '../components/About.astro';
+import Community from '../components/Community.astro';
+import Faq from '../components/Faq.astro';
+import GamePanel from '../components/GamePanel.astro';
+import HallOfFame from '../components/HallOfFame.astro';
+import Hero from '../components/Hero.astro';
+import Join from '../components/Join.astro';
+import Mission from '../components/Mission.astro';
+import RewardPopup from '../components/RewardPopup.astro';
+import RocketButton from '../components/RocketButton.astro';
+import SectionSurface from '../components/SectionSurface.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import TeamTypes from '../components/TeamTypes.astro';
+import Vision from '../components/Vision.astro';
 import '../styles/global.css';
 
+const pageTitle = 'BuilderClan AISAT | Creativity Meets Action';
+const pageDescription =
+	'Join the BuilderClan AISAT community, where creativity meets action.';
+const publicUrl = new URL(import.meta.env.BASE_URL, Astro.site!);
+const shareImage = new URL(
+	`${import.meta.env.BASE_URL}assets/images/builderclan/about.jpeg`,
+	Astro.site!,
+);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Port in progress</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href={`${import.meta.env.BASE_URL}assets/images/builderclan/builderLogoAISAT.svg`}
+		/>
+		<link rel="canonical" href={publicUrl} />
+		<meta name="description" content={pageDescription} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="BuilderClan AISAT" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
+		<meta property="og:url" content={publicUrl} />
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="275" />
+		<meta property="og:image:height" content="183" />
+		<meta
+			property="og:image:alt"
+			content="Students working at desktop computers in a classroom while an instructor stands at the front"
+		/>
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={pageDescription} />
+		<meta name="twitter:image" content={shareImage} />
+		<meta
+			name="twitter:image:alt"
+			content="Students working at desktop computers in a classroom while an instructor stands at the front"
+		/>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<main>Port in progress</main>
+		<SiteHeader />
+		<main>
+			<Hero />
+			<About />
+			<SectionSurface>
+				<Mission />
+				<Vision />
+				<TeamTypes />
+				<HallOfFame />
+			</SectionSurface>
+			<SectionSurface inset>
+				<Community />
+				<Faq />
+			</SectionSurface>
+			<Join />
+		</main>
+		<SiteFooter />
+		<RocketButton />
+		<RewardPopup />
+		<GamePanel />
+		<script src="../scripts/site.ts"></script>
 	</body>
 </html>

@@ -1,4 +1,507 @@
 :root {
+	/* Flat page design colours. Drawing-file fills are intentionally excluded. */
+	--color-brand-primary: #caff33;
+	--color-brand-action-secondary: #a6d71f;
+	--color-faq-action-background: #9fce1d;
+	--color-faq-action-hover: #b6e533;
+	--color-join-gradient-middle: #81a718;
+	--color-join-gradient-end: #acda2c;
+	--color-join-hover-glow: #93ba27;
+	--color-team-icon-gradient-start: #b5ed1b;
+	--color-team-icon-gradient-end: #3d5105;
+	--color-rocket-idle: #76a100;
+	--color-rocket-hover: #a0da00;
+	--color-focus-ring: var(--color-brand-primary);
+	--color-popup-title: var(--color-brand-primary);
+	--color-popup-title-glow: #aee31d;
+	--color-popup-edge-glow: #35ff3c;
+	--color-text-on-dark: #ffffff;
+	--color-hero-title-gradient-end: #e1e1e1;
+	--color-faq-body-text: var(--color-hero-title-gradient-end);
+	--color-inverted-section-text: #e5e7eb;
+	--color-section-body-text: #e6e6e6;
+	--color-game-status-text: #b8c6dc;
+	--color-footer-text: #858585;
+	--color-popup-background: #0a0a0a;
+	--color-hero-background-end: #0f0f0f;
+	--color-page-text-default: #111827;
+	--color-card-gradient-start: #151515;
+	--color-hero-background-start: var(--color-card-gradient-start);
+	--color-page-background: #1a1a1a;
+	--color-join-action-text: var(--color-page-background);
+	--color-content-surface-gradient-start: #1e1e1e;
+	--color-join-background-base: #1e1f29;
+	--color-footer-background: var(--color-content-surface-gradient-start);
+	--color-hall-card-background: #201e20;
+	--color-game-board-background: #212837;
+	--color-card-gradient-end: #242424;
+	--color-hero-background-middle: var(--color-card-gradient-end);
+	--color-faq-card-background: #252529;
+	--color-faq-card-secondary-glow: #25254c;
+	--color-page-gradient-middle: var(--color-content-surface-gradient-end);
+	--color-game-frame-background: #293447;
+	--color-content-surface-gradient-end: #2a2a2a;
+	--color-join-background-alternate: #312e2e;
+	--color-faq-card-primary-glow: #38384e;
+	--color-popup-action-accent: #00fff0;
+	--color-snake-head: #60cbff;
+	--color-popup-secondary-glow: #ff62f5;
+	--color-hall-social-hover: #ff0000;
+	--color-hall-member-name: #ff3030;
+	--color-snake-food: #ff003d;
+
+	/* Transparent surfaces, shadows, and glows. */
+	--color-hero-subtitle-shadow: #bbff00fb;
+	--color-clear-surface: transparent;
+	--color-subtle-shadow-tail: rgba(0, 0, 0, .04);
+	--color-subtle-shadow-lead: rgba(0, 0, 0, .06);
+	--color-medium-shadow: rgba(0, 0, 0, .12);
+	--color-hero-logo-panel: rgba(0, 0, 0, 0.05);
+	--color-card-shadow-and-hero-vignette: rgba(0, 0, 0, 0.2);
+	--color-inset-section-shadow: rgba(0, 0, 0, 0.25);
+	--color-elevated-shadow: rgba(0, 0, 0, 0.35);
+	--color-popup-backdrop: rgba(0, 0, 0, 0.7);
+	--color-mobile-navigation-backdrop: rgba(0, 0, 0, 0.95);
+	--color-popup-action-hover-fill: rgba(0, 255, 240, 0.1);
+	--color-popup-action-glow: rgba(0, 255, 240, 0.7);
+	--color-hero-brand-glow: rgba(202, 255, 51, 0.2);
+	--color-interactive-card-brand-glow: rgba(202, 255, 51, 0.25);
+	--color-hall-highlight-glow: rgba(253, 249, 35, 0.712);
+	--color-hero-highlight-glow: rgba(255, 241, 51, 0.2);
+	--color-faq-border: rgba(255, 255, 255, 0.1);
+	--color-hero-light-glow: rgba(255, 255, 255, 0.15);
+	--color-hall-warning-glow: rgba(255, 66, 36, 0.603);
+	--color-game-frame-shadow: rgba(52, 87, 220, 0.2);
+
+	/* Font families and the Doto variable-font setting. */
+	--font-family-page: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-family-hero-subtitle: "Doto", sans-serif;
+	--font-family-game: "Montserrat", sans-serif;
+	--font-variation-hero-subtitle-rounding: "ROND" 0;
+
+	/* Text sizes. Browser-default heading sizes are unknown and have no token. */
+	--font-size-action-label: 1rem;
+	--font-size-section-body: 1.1rem;
+	--font-size-feature-copy: 1.2rem;
+	--font-size-navigation-brand: 1.25rem;
+	--font-size-social-icon: 1.4rem;
+	--font-size-navigation-toggle: 1.8rem;
+	--font-size-subsection-heading: 2rem;
+	--font-size-vision-heading: 2.2rem;
+	--font-size-rocket-control: 2.5rem;
+	--font-size-rocket-control-hover: 3rem;
+	--font-size-section-heading: 3rem;
+	--font-size-hero-title: clamp(2.5rem, 6vw, 4rem);
+	--font-size-popup-copy: small;
+
+	/* Font weights. */
+	--font-weight-paragraph: normal;
+	--font-weight-game-detail: 500;
+	--font-weight-page-default: 600;
+	--font-weight-section-heading: 700;
+	--font-weight-hero-subtitle: bold;
+	--font-weight-popup-action: var(--font-weight-hero-subtitle);
+	--font-weight-hero-title: 800;
+
+	/* Line heights. */
+	--line-height-page: 1.6;
+	--line-height-faq-copy: 1.5;
+	--line-height-feature-copy: 1.8;
+	--line-height-icon: 1;
+
+	/* Spacing. The original units and distinct zero spellings are preserved. */
+	--space-page-reset: 0;
+	--space-section-edge-reset: 0rem;
+	--space-mission-image-offset: 0.1rem;
+	--space-compact-control-gap: 0.5rem;
+	--space-card-title-gap: 0.6rem;
+	--space-section-intro-offset: 0.75rem;
+	--space-join-control-block: 0.8rem;
+	--space-standard-button-block: 0.9rem;
+	--space-section-gutter: 1rem;
+	--space-popup-inset: 1.1rem;
+	--space-popup-control-inline: 1.2rem;
+	--space-card-inset: 1.5rem;
+	--space-join-control-inline: 1.6rem;
+	--space-standard-button-inline: 1.75rem;
+	--space-content-gap: 2rem;
+	--space-compact-section-block: 3rem;
+	--space-desktop-section-block: 4rem;
+	--space-spacious-section-block: 5rem;
+	--space-join-section-block: 6rem;
+	--space-navigation-brand-gap: 8px;
+	--space-game-frame-inset: 10px;
+	--space-faq-control-block: 12px;
+	--space-game-mobile-score-block: 15px;
+	--space-game-desktop-score-block: 20px;
+	--space-game-score-inline: 27px;
+	--space-faq-control-inline: 28px;
+	--space-fixed-header-offset: 50px;
+	--space-centered: auto;
+	--space-hero-scroll-offset: 150px;
+	--space-section-scroll-offset: var(--space-hero-scroll-offset);
+	--space-about-section-block: var(--space-spacious-section-block);
+	--space-mission-block: var(--space-section-gutter);
+	--space-mission-bottom: var(--space-content-gap);
+	--space-vision-inline: var(--space-section-gutter);
+	--space-team-section-top: var(--space-content-gap);
+	--space-team-card-block: var(--space-section-gutter);
+	--space-team-card-inline: var(--space-content-gap);
+	--space-hall-section-top: var(--space-spacious-section-block);
+	--space-hall-section-bottom: var(--space-compact-section-block);
+	--space-community-section-top: var(--space-compact-section-block);
+	--space-faq-section-top: var(--space-card-inset);
+	--space-faq-section-bottom: var(--space-desktop-section-block);
+	--space-join-control-top: var(--space-card-inset);
+	--space-footer-block: var(--space-section-gutter);
+	--space-floating-control-edge: var(--space-game-desktop-score-block);
+	--space-faq-button-top: var(--space-fixed-header-offset);
+	--space-popup-control-block: var(--space-card-title-gap);
+	--space-game-close-block: var(--space-compact-control-gap);
+	--space-game-close-inline: var(--space-section-intro-offset);
+	--space-mission-text-bottom: var(--space-page-reset);
+	--space-navigation-bar-block: var(--space-section-gutter);
+	--space-navigation-bar-inline: var(--space-card-inset);
+	--space-navigation-link-gap: var(--space-card-inset);
+	--space-navigation-link-offset: var(--space-card-inset);
+	--space-navigation-overlay-inline: var(--space-content-gap);
+	--space-navigation-overlay-gap: var(--space-content-gap);
+	--space-hero-compact-top: var(--space-section-gutter);
+	--space-hero-compact-inline: var(--space-card-inset);
+	--space-hero-compact-bottom: var(--space-section-gutter);
+	--space-hero-wide-top: var(--space-content-gap);
+	--space-hero-wide-inline: var(--space-desktop-section-block);
+	--space-hero-wide-bottom: var(--space-spacious-section-block);
+	--space-hero-copy-top: var(--space-section-gutter);
+	--space-hero-logo-top: var(--space-content-gap);
+	--space-hero-logo-inset: var(--space-compact-control-gap);
+
+	/* Fixed layout sizes and visible layout breakpoints. */
 	--page-min-height: 100vh;
-	--space-none: 0;
+	--breakpoint-site-layout: 768px;
+	--breakpoint-game-layout: 800px;
+	--content-width: 92%;
+	--content-max-width: 1100px;
+	--section-full-width: 100%;
+	--section-copy-max-width: 48rem;
+	--section-heading-border-width: 2px;
+	--focus-ring-width: 2px;
+	--focus-ring-offset: 2px;
+	--faq-heading-border-width: 3px;
+	--faq-card-border-width: 1px;
+	--game-close-border-width: var(--faq-card-border-width);
+	--popup-action-border-width: 2px;
+	--mission-content-max-width: 1200px;
+	--mission-column-min-width: 280px;
+	--mission-image-max-width: 100%;
+	--vision-copy-max-width: 800px;
+	--team-grid-columns: repeat(auto-fit, minmax(250px, 1fr));
+	--faq-grid-columns: repeat(auto-fit, minmax(280px, 1fr));
+	--member-photo-size: 150px;
+	--social-icon-size: 24px;
+	--member-row-continuation-cue-width: var(--space-desktop-section-block);
+	--rocket-icon-size: 1em;
+	--rocket-icon-baseline-offset: -0.125em;
+	--popup-viewport-width: 100vw;
+	--popup-viewport-height: 100vh;
+	--popup-content-max-width: 400px;
+	--team-icon-size: 80px;
+	--popup-egg-size: var(--team-icon-size);
+	--game-wrapper-width: 65vmin;
+	--game-wrapper-height: 70vmin;
+	--game-board-size: 100%;
+	--game-board-cell-count: 30;
+	--game-board-grid: repeat(var(--game-board-cell-count), 1fr) / repeat(var(--game-board-cell-count), 1fr);
+	--game-frame-position: 50%;
+	--game-center-translation: -50%, -50%;
+	--game-detail-font-size: var(--font-size-feature-copy);
+	--game-detail-padding-block: var(--space-game-desktop-score-block);
+	--game-detail-padding-inline: var(--space-game-score-inline);
+	--radius-square: 0;
+	--radius-round: 50%;
+	--radius-card-standard: 1rem;
+	--radius-mission-image: 20px;
+	--radius-team-card: 25px;
+	--radius-hall-card: 16px;
+	--radius-action-standard: 8px;
+	--radius-join-pill: 9999px;
+	--radius-game-frame: 5px;
+	--blur-mission-surface: 6px;
+	--blur-soft-section: 4px;
+	--blur-hall-card: 2px;
+	--blur-faq-card: 10px;
+	--offset-section-hover: -6px;
+	--offset-hall-card-hover: -10px;
+	--offset-popup-egg-bounce: -15px;
+	--layout-fill-share: 1;
+	--layout-mission-direction: row;
+	--layout-mission-text-align: left;
+	--opacity-member-detail: 0.8;
+	--scale-interactive-hover: 1.05;
+	--scale-social-hover: 1.1;
+	--scale-popup-action-hover: 1.08;
+	--scale-rocket-hover: 0.9;
+	--scale-entry-start: 0.9;
+	--scale-entry-end: 1;
+	--opacity-entry-start: 0;
+	--opacity-entry-end: 1;
+	--surface-animation-size: 400% 400%;
+	--surface-animation-start-position: 0% 50%;
+	--surface-animation-middle-position: 100% 50%;
+	--surface-animation-end-position: 0% 50%;
+	--popup-content-layer: 2;
+	--popup-layer: 10000;
+	--game-layer: 9999;
+	--navigation-swipe-threshold: 60px;
+	--scroll-reveal-root-margin: 0px 0px -120px 0px;
+	--scroll-reveal-fade-offset: 100px;
+	--scroll-reveal-slide-offset: 100%;
+	--scroll-reveal-zoom-start-scale: 0.6;
+	--member-row-continuation-layer: 1;
+	--hero-background-start-position: 0%;
+	--hero-background-middle-position: 40%;
+	--hero-background-end-position: 80%;
+	--rocket-flight-horizontal-distance: 100vw;
+	--rocket-flight-vertical-distance: -100vh;
+	--rocket-flight-rotation: 45deg;
+	--rocket-flight-start-opacity: 1;
+	--rocket-flight-end-opacity: 0;
+
+	/* Navigation geometry and responsive state. */
+	--navigation-width: 100%;
+	--navigation-content-width: 92%;
+	--navigation-content-max-width: 1100px;
+	--navigation-logo-height: 24px;
+	--navigation-backdrop-blur: 3px;
+	--navigation-overlay-top: 75px;
+	--navigation-overlay-height: 100vh;
+	--navigation-overlay-closed-position: -100%;
+	--navigation-overlay-open-position: 0;
+	--navigation-layer: 9999;
+	--navigation-overlay-opacity: 0.7;
+	--navigation-logo-start-scale: 0.8;
+	--navigation-logo-end-scale: 1;
+	--navigation-logo-start-opacity: 0.5;
+	--navigation-logo-end-opacity: 1;
+	--navigation-links-display: flex;
+	--navigation-toggle-display: none;
+	--navigation-toggle-current-size: var(--font-size-navigation-toggle);
+
+	/* Hero geometry and responsive state. */
+	--hero-content-width: 100%;
+	--hero-content-max-width: 1200px;
+	--hero-text-max-width: 600px;
+	--hero-column-flex: 1 1 300px;
+	--hero-copy-max-width: 40rem;
+	--hero-logo-card-max-width: 450px;
+	--hero-logo-card-aspect-ratio: 1 / 1;
+	--hero-logo-size: 100%;
+	--hero-logo-card-radius: 16px;
+	--hero-button-radius: 12px;
+	--hero-button-border-width: 2px;
+	--hero-glow-blur: 50px;
+	--hero-glow-layer: 0;
+	--hero-glow-start-scale: 1;
+	--hero-glow-middle-scale: 1.1;
+	--hero-glow-start-opacity: 0.8;
+	--hero-glow-middle-opacity: 1;
+	--hero-logo-entry-start-scale: 0.8;
+	--hero-logo-entry-end-scale: 1;
+	--hero-logo-entry-start-opacity: 0;
+	--hero-logo-entry-end-opacity: 1;
+	--hero-logo-hover-offset: -10px;
+	--hero-interactive-hover-scale: 1.05;
+	--hero-copy-opacity: 1;
+	--hero-padding-top: var(--space-hero-compact-top);
+	--hero-padding-inline: var(--space-hero-compact-inline);
+	--hero-padding-bottom: var(--space-hero-compact-bottom);
+	--hero-glow-duration: var(--duration-hero-glow-wide);
+	--hero-glow-background:
+		radial-gradient(circle at 79% 45%, var(--color-hero-highlight-glow), var(--color-clear-surface) 40%),
+		radial-gradient(circle at 50% 50%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
+		radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
+
+	/* Complete effects keep every shadow measurement out of section styles. */
+	--shadow-button-default: 0 1px 2px var(--color-subtle-shadow-lead), 0 4px 8px var(--color-subtle-shadow-tail);
+	--shadow-button-inverse: 0 8px 20px var(--color-medium-shadow);
+	--shadow-hero-brand-text: 0 1px 1px var(--color-hero-subtitle-shadow);
+	--shadow-hero-logo-card: 0 8px 20px var(--color-inset-section-shadow);
+	--shadow-hero-logo-card-hover: 0 16px 16px var(--color-elevated-shadow), 0 0 10px var(--color-brand-primary);
+	--background-content-surface: linear-gradient(135deg, var(--color-content-surface-gradient-start) 0%, var(--color-content-surface-gradient-end) 100%);
+	--background-hero-section: linear-gradient(to top right, var(--color-hero-background-start) var(--hero-background-start-position), var(--color-hero-background-middle) var(--hero-background-middle-position), var(--color-hero-background-end) var(--hero-background-end-position));
+	--background-team-card: linear-gradient(to top right, var(--color-card-gradient-start), var(--color-card-gradient-end));
+	--background-team-icon: linear-gradient(135deg, var(--color-team-icon-gradient-start), var(--color-team-icon-gradient-end));
+	--background-member-row-continuation-cue: linear-gradient(to right, var(--color-clear-surface), var(--color-content-surface-gradient-end));
+	--background-join-section: linear-gradient(-45deg, var(--color-join-background-base), var(--color-join-background-alternate), var(--color-faq-card-background), var(--color-join-background-base));
+	--background-join-action: linear-gradient(270deg, var(--color-brand-primary), var(--color-join-gradient-middle), var(--color-join-gradient-end));
+	--shadow-section-inset: inset 0 0 80px var(--color-inset-section-shadow);
+	--shadow-section-brand-hover: 0 1px 10px var(--color-interactive-card-brand-glow);
+	--shadow-image-brand-hover: 0 1px 15px var(--color-interactive-card-brand-glow);
+	--shadow-hall-card: var(--shadow-button-inverse);
+	--shadow-hall-card-hover: 0 1px 15px var(--color-hall-warning-glow), 0 0 10px var(--color-hall-highlight-glow);
+	--shadow-faq-card: 0 4px 15px var(--color-card-shadow-and-hero-vignette);
+	--shadow-faq-card-hover: 0 0 20px var(--color-faq-card-primary-glow), 0 0 15px var(--color-faq-card-secondary-glow);
+	--shadow-join-action: 0 0 20px var(--color-brand-primary);
+	--shadow-join-action-hover: 0 0 30px var(--color-join-hover-glow);
+	--shadow-popup-text: 0 0 1px var(--color-popup-title), 0 0 20px var(--color-popup-title-glow);
+	--shadow-popup-card: 0 0 3px var(--color-popup-edge-glow);
+	--shadow-popup-action-text: 0 0 6px var(--color-popup-action-accent), 0 0 12px var(--color-popup-secondary-glow);
+	--shadow-popup-action: 0 0 12px var(--color-popup-action-glow);
+	--shadow-popup-action-hover: 0 0 20px var(--color-popup-action-accent), 0 0 30px var(--color-popup-secondary-glow);
+	--shadow-game-frame: 0 20px 40px var(--color-game-frame-shadow);
+
+	/* Animation and transition settings. */
+	--motion-page-scroll: smooth;
+	--duration-button-press: 0.18s;
+	--duration-button-hover: 0.2s;
+	--duration-button-standard: 0.3s;
+	--duration-team-card-transform: 0.4s;
+	--duration-team-card-shadow: var(--duration-button-standard);
+	--duration-rocket-hover: var(--duration-button-standard);
+	--duration-faq-card-return: 0.25s;
+	--duration-section-hover: 0.3s;
+	--duration-join-background-shift: 15s;
+	--duration-navigation-logo-pop: 1s;
+	--duration-navigation-overlay-slide: 0.3s;
+	--duration-hero-glow-wide: 9s;
+	--duration-hero-glow-compact: 10s;
+	--duration-hero-logo-entry: 2s;
+	--duration-popup-entry: 0.5s;
+	--duration-popup-egg-bounce: 1.2s;
+	--duration-join-gradient-shift: 8s;
+	--duration-join-pulse: 2.5s;
+	--duration-snake-entry: 0.5s;
+	--duration-scroll-entry: 1000ms;
+	--duration-rocket-flight: 2s;
+	--duration-game-tick: 100ms;
+	--easing-rocket-flight: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@keyframes hero-glow-pulse {
+	0%,
+	100% {
+		transform: scale(var(--hero-glow-start-scale));
+		opacity: var(--hero-glow-start-opacity);
+	}
+
+	50% {
+		transform: scale(var(--hero-glow-middle-scale));
+		opacity: var(--hero-glow-middle-opacity);
+	}
+}
+
+@keyframes shared-gradient-shift {
+	0% {
+		background-position: var(--surface-animation-start-position);
+	}
+
+	50% {
+		background-position: var(--surface-animation-middle-position);
+	}
+
+	100% {
+		background-position: var(--surface-animation-end-position);
+	}
+}
+
+@keyframes join-action-pulse {
+	0%,
+	100% {
+		transform: scale(var(--scale-entry-end));
+	}
+
+	50% {
+		transform: scale(var(--scale-popup-action-hover));
+	}
+}
+
+@keyframes popup-egg-bounce {
+	from {
+		transform: translateY(var(--space-page-reset));
+	}
+
+	to {
+		transform: translateY(var(--offset-popup-egg-bounce));
+	}
+}
+
+@keyframes surface-entry {
+	from {
+		transform: scale(var(--scale-entry-start));
+		opacity: var(--opacity-entry-start);
+	}
+
+	to {
+		transform: scale(var(--scale-entry-end));
+		opacity: var(--opacity-entry-end);
+	}
+}
+
+@keyframes rocket-flight {
+	from {
+		transform: translate(var(--space-page-reset), var(--space-page-reset))
+			rotate(var(--space-page-reset));
+		opacity: var(--rocket-flight-start-opacity);
+	}
+
+	to {
+		transform: translate(
+				var(--rocket-flight-horizontal-distance),
+				var(--rocket-flight-vertical-distance)
+			)
+			rotate(var(--rocket-flight-rotation));
+		opacity: var(--rocket-flight-end-opacity);
+	}
+}
+
+/* Media conditions cannot consume custom properties, so the audited breakpoint
+	stays here with the shared responsive values instead of in a section style. */
+@media (max-width: 768px) {
+	:root {
+		--navigation-links-display: none;
+		--navigation-toggle-display: block;
+		--navigation-toggle-current-size: var(--font-size-subsection-heading);
+		--hero-glow-duration: var(--duration-hero-glow-compact);
+		--hero-glow-background:
+			radial-gradient(circle at 60% 85%, var(--color-hero-brand-glow), var(--color-clear-surface) 40%),
+			radial-gradient(circle at 60% 30%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
+			radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
+		--layout-mission-direction: column;
+		--layout-mission-text-align: center;
+		--space-mission-text-bottom: var(--space-content-gap);
+	}
+}
+
+@media (min-width: 768px) {
+	:root {
+		--hero-padding-top: var(--space-hero-wide-top);
+		--hero-padding-inline: var(--space-hero-wide-inline);
+		--hero-padding-bottom: var(--space-hero-wide-bottom);
+		--space-team-section-top: var(--space-desktop-section-block);
+		--space-team-card-block: var(--space-card-inset);
+		--space-team-card-inline: var(--space-card-inset);
+		--space-community-section-top: var(--space-spacious-section-block);
+	}
+}
+
+@media (max-width: 800px) {
+	:root {
+		--game-wrapper-width: 90vmin;
+		--game-wrapper-height: 115vmin;
+		--game-detail-font-size: var(--font-size-action-label);
+		--game-detail-padding-block: var(--space-game-mobile-score-block);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
 }
