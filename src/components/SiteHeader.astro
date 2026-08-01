@@ -44,29 +44,29 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		>
 			☰
 		</button>
-
-		<nav
-			class="site-header__overlay"
-			id="mobile-navigation"
-			data-navigation-overlay
-			aria-label="Mobile navigation"
-			aria-hidden="true"
-			inert
-			data-open="false"
-		>
-			{
-				navigationLinks.map(({ label, href, external }) => (
-					<a
-						href={href}
-						target={external ? '_blank' : undefined}
-						rel={external ? 'noopener noreferrer' : undefined}
-					>
-						{label}
-					</a>
-				))
-			}
-		</nav>
 	</div>
+
+	<nav
+		class="site-header__overlay"
+		id="mobile-navigation"
+		data-navigation-overlay
+		aria-label="Mobile navigation"
+		aria-hidden="true"
+		inert
+		data-open="false"
+	>
+		{
+			navigationLinks.map(({ label, href, external }) => (
+				<a
+					href={href}
+					target={external ? '_blank' : undefined}
+					rel={external ? 'noopener noreferrer' : undefined}
+				>
+					{label}
+				</a>
+			))
+		}
+	</nav>
 </header>
 
 <style>
@@ -80,19 +80,20 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		top: var(--space-page-reset);
 		left: var(--space-page-reset);
 		z-index: var(--navigation-layer);
-		display: flex;
-		justify-content: center;
 		width: var(--navigation-width);
-		padding: var(--space-navigation-bar-block) var(--space-navigation-bar-inline);
+		padding: var(--space-navigation-pill-top-gap) var(--space-page-reset)
+			var(--space-page-reset);
+		pointer-events: none;
 		font-family: var(--font-family-page);
 		font-weight: var(--font-weight-page-default);
 		font-style: normal;
 		line-height: var(--line-height-page);
 		background: var(--color-clear-surface);
-		backdrop-filter: blur(var(--navigation-backdrop-blur));
 	}
 
 	.site-header__inner {
+		position: relative;
+		z-index: var(--navigation-pill-layer);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -100,6 +101,14 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 			var(--navigation-content-max-width),
 			var(--navigation-content-width)
 		);
+		margin: var(--space-page-reset) var(--space-centered);
+		padding: var(--space-navigation-pill-block)
+			var(--space-navigation-pill-inline);
+		pointer-events: auto;
+		background: var(--color-navigation-pill-surface);
+		border-radius: var(--navigation-pill-radius);
+		box-shadow: var(--shadow-navigation-pill);
+		backdrop-filter: blur(var(--navigation-backdrop-blur));
 	}
 
 	.site-header__brand {
@@ -187,7 +196,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		position: fixed;
 		top: var(--navigation-overlay-top);
 		left: var(--navigation-overlay-closed-position);
-		z-index: var(--navigation-layer);
+		z-index: var(--navigation-overlay-layer);
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -197,6 +206,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		padding-left: var(--space-navigation-overlay-inline);
 		gap: var(--space-navigation-overlay-gap);
 		opacity: var(--navigation-overlay-opacity);
+		pointer-events: auto;
 		background: var(--color-mobile-navigation-backdrop);
 		transition: left var(--duration-navigation-overlay-slide) ease;
 	}

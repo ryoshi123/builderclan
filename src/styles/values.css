@@ -59,6 +59,7 @@
 	--color-card-shadow-and-hero-vignette: rgba(0, 0, 0, 0.2);
 	--color-inset-section-shadow: rgba(0, 0, 0, 0.25);
 	--color-elevated-shadow: rgba(0, 0, 0, 0.35);
+	--color-navigation-pill-surface: var(--color-elevated-shadow);
 	--color-popup-backdrop: rgba(0, 0, 0, 0.7);
 	--color-mobile-navigation-backdrop: rgba(0, 0, 0, 0.95);
 	--color-popup-action-hover-fill: rgba(0, 255, 240, 0.1);
@@ -164,8 +165,9 @@
 	--space-game-close-block: var(--space-compact-control-gap);
 	--space-game-close-inline: var(--space-section-intro-offset);
 	--space-mission-text-bottom: var(--space-page-reset);
-	--space-navigation-bar-block: var(--space-section-gutter);
-	--space-navigation-bar-inline: var(--space-card-inset);
+	--space-navigation-pill-top-gap: var(--space-section-gutter);
+	--space-navigation-pill-block: var(--space-compact-control-gap);
+	--space-navigation-pill-inline: var(--space-card-inset);
 	--space-navigation-link-gap: var(--space-card-inset);
 	--space-navigation-link-offset: var(--space-card-inset);
 	--space-navigation-overlay-inline: var(--space-content-gap);
@@ -284,12 +286,15 @@
 	--navigation-content-max-width: 1100px;
 	--navigation-logo-height: 24px;
 	--navigation-backdrop-blur: 3px;
-	--navigation-overlay-top: 75px;
+	--navigation-overlay-top: var(--space-page-reset);
 	--navigation-overlay-height: 100vh;
 	--navigation-overlay-closed-position: -100%;
 	--navigation-overlay-open-position: 0;
-	--navigation-layer: 9999;
+	--navigation-layer: 10001;
+	--navigation-overlay-layer: 1;
+	--navigation-pill-layer: 2;
 	--navigation-overlay-opacity: 0.7;
+	--navigation-pill-radius: var(--radius-join-pill);
 	--navigation-logo-start-scale: 0.8;
 	--navigation-logo-end-scale: 1;
 	--navigation-logo-start-opacity: 0.5;
@@ -337,6 +342,7 @@
 	/* Complete effects keep every shadow measurement out of section styles. */
 	--shadow-button-default: 0 1px 2px var(--color-subtle-shadow-lead), 0 4px 8px var(--color-subtle-shadow-tail);
 	--shadow-button-inverse: 0 8px 20px var(--color-medium-shadow);
+	--shadow-navigation-pill: 0 8px 24px var(--color-elevated-shadow);
 	--shadow-hero-brand-text: 0 1px 1px var(--color-hero-subtitle-shadow);
 	--shadow-hero-logo-card: 0 8px 20px var(--color-inset-section-shadow);
 	--shadow-hero-logo-card-hover: 0 16px 16px var(--color-elevated-shadow), 0 0 10px var(--color-brand-primary);
