@@ -21,8 +21,8 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 				aria-label="Hall of Fame members; scroll horizontally for more"
 			>
 				{
-					members.map((member, index) => (
-						<article class="hall-of-fame__card" data-reveal="slide-up" data-reveal-item={String(index + 1)}>
+					members.map((member) => (
+						<article class="hall-of-fame__card">
 							<img
 								src={`${import.meta.env.BASE_URL}${member.photo}`}
 								alt={member.name}
@@ -113,6 +113,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		padding: var(--parent-member-row-block-padding)
 			var(--parent-member-row-inline-padding);
 		overflow-x: var(--parent-member-row-overflow);
+		overflow-y: var(--parent-member-row-block-overflow);
 		gap: var(--parent-member-row-gap);
 		scroll-padding-inline: var(--parent-member-row-inline-padding);
 		scrollbar-width: none;

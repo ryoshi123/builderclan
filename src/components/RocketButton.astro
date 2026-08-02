@@ -19,7 +19,7 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 	.rocket {
 		position: fixed;
 		left: var(--parent-rocket-inline-edge);
-		bottom: var(--parent-floating-edge);
+		bottom: var(--rocket-avoided-block-edge, var(--parent-floating-edge));
 		z-index: var(--parent-floating-layer);
 		display: flex;
 		align-items: center;
@@ -52,6 +52,13 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 	.rocket--launching {
 		will-change: transform, opacity;
 		animation: rocket-flight var(--duration-rocket-flight)
-			var(--easing-rocket-flight);
+			var(--easing-rocket-flight) var(--rocket-flight-fill-mode);
+	}
+
+	.rocket--resetting {
+		visibility: hidden;
+		transform: none;
+		opacity: var(--rocket-flight-end-opacity);
+		transition: none;
 	}
 </style>

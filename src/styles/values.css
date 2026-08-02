@@ -288,7 +288,6 @@
 	--popup-content-layer: 2;
 	--popup-layer: 10000;
 	--game-layer: 9999;
-	--navigation-swipe-threshold: 60px;
 	--scroll-reveal-root-margin: 0px 0px 16px 0px;
 	--scroll-reveal-threshold: 0;
 	--scroll-reveal-fade-offset: var(--space-section-gutter);
@@ -303,6 +302,7 @@
 	--rocket-flight-rotation: 45deg;
 	--rocket-flight-start-opacity: 1;
 	--rocket-flight-end-opacity: 0;
+	--rocket-flight-fill-mode: forwards;
 
 	/* Navigation geometry and responsive state. */
 	--navigation-width: 100%;
@@ -581,6 +581,7 @@
 	--parent-member-row-inline-padding: var(--space-parent-6);
 	--parent-member-row-gap: var(--space-parent-card-gap);
 	--parent-member-row-overflow: auto;
+	--parent-member-row-block-overflow: hidden;
 	--parent-member-row-snap-type: x mandatory;
 	--parent-member-row-touch-action: pan-y;
 	--parent-member-row-overscroll: contain;
@@ -612,9 +613,9 @@
 	--parent-content-z: 10;
 	--parent-floating-layer: 10;
 	--parent-floating-edge: 2.5rem;
-	--parent-rocket-inline-edge: calc(
-		var(--space-page-reset) - var(--space-parent-1)
-	);
+	--parent-rocket-inline-edge: var(--parent-floating-edge);
+	--parent-rocket-content-clearance: var(--space-parent-2);
+	--parent-rocket-avoidance-step: var(--space-parent-1);
 	--parent-floating-inset: 0.625rem;
 	--parent-menu-scale-closed: 0.98;
 	--parent-menu-scale-open: 1;
@@ -670,6 +671,7 @@
 	--duration-parent-standard: 0.3s;
 	--duration-parent-card-entry: 0.5s;
 	--duration-parent-section-entry: 0.6s;
+	--duration-parent-rocket-avoidance-watch: var(--duration-parent-section-entry);
 	--duration-parent-hero-entry: 0.7s;
 	--duration-parent-logo-entry: 0.8s;
 	--duration-parent-stagger: 0.12s;
@@ -792,7 +794,7 @@
 	:root {
 		--parent-hero-min-height: auto;
 		--parent-hero-visual-min-height: auto;
-		--space-parent-hero-bottom: var(--space-parent-8);
+		--space-parent-hero-bottom: var(--space-parent-6);
 		--space-parent-hero-content-gap: var(--space-parent-6);
 		--space-parent-hero-visual-block: var(--space-parent-4);
 		--navigation-links-display: none;
@@ -905,6 +907,7 @@
 		--parent-member-row-inline-padding: var(--space-page-reset);
 		--parent-member-row-gap: var(--space-parent-3);
 		--parent-member-row-overflow: visible;
+		--parent-member-row-block-overflow: visible;
 		--parent-member-row-snap-type: none;
 		--parent-member-row-touch-action: auto;
 		--parent-member-row-overscroll: auto;

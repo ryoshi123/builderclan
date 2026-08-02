@@ -1,5 +1,30 @@
 document.documentElement.classList.add('has-client-script');
 
+const getLocationTarget = () => {
+	if (window.location.hash.length <= 1) return null;
+
+	try {
+		return document.getElementById(
+			decodeURIComponent(window.location.hash.slice(1)),
+		);
+	} catch {
+		return null;
+	}
+};
+const restoreExpectedLoadPosition = () => {
+	history.scrollRestoration = 'manual';
+	const target = getLocationTarget();
+	if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+	else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+};
+
+restoreExpectedLoadPosition();
+window.addEventListener('load', restoreExpectedLoadPosition, { once: true });
+window.addEventListener('pageshow', restoreExpectedLoadPosition);
+window.addEventListener('hashchange', () => {
+	history.scrollRestoration = 'manual';
+});
+
 const reverseText = (value: string) => [...value].reverse().join('');
 
 document.querySelectorAll<HTMLAnchorElement>('[data-email-link]').forEach((link) => {
@@ -243,68 +268,6 @@ if (memberScrollRow && memberScrollShell) {
 	updateMemberScrollCue();
 }
 
-type TouchPoint = { x: number; y: number };
-let pageTouchStart: TouchPoint | null = null;
-
-const isMemberRowTouch = (event: TouchEvent) =>
-	event.target instanceof Element &&
-	Boolean(event.target.closest('[data-member-scroll-row]'));
-
-document.addEventListener(
-	'touchstart',
-	(event) => {
-		if (
-			document.querySelector('[data-game-panel][data-open="true"]') ||
-			isMemberRowTouch(event)
-		) {
-			pageTouchStart = null;
-			return;
-		}
-
-		const touch = event.changedTouches[0];
-		pageTouchStart = touch ? { x: touch.screenX, y: touch.screenY } : null;
-	},
-	{ passive: true },
-);
-
-document.addEventListener(
-	'touchend',
-	(event) => {
-		if (
-			!pageTouchStart ||
-			document.querySelector('[data-game-panel][data-open="true"]') ||
-			isMemberRowTouch(event)
-		) {
-			pageTouchStart = null;
-			return;
-		}
-
-		const touch = event.changedTouches[0];
-		if (!touch) {
-			pageTouchStart = null;
-			return;
-		}
-
-		const deltaX = touch.screenX - pageTouchStart.x;
-		const deltaY = touch.screenY - pageTouchStart.y;
-		const threshold = Number.parseFloat(
-			getComputedStyle(document.documentElement).getPropertyValue(
-				'--navigation-swipe-threshold',
-			),
-		);
-		pageTouchStart = null;
-
-		if (Math.abs(deltaX) <= Math.abs(deltaY)) return;
-		if (deltaX > threshold) setNavigationOpen(true);
-		if (deltaX < -threshold) setNavigationOpen(false);
-	},
-	{ passive: true },
-);
-
-document.addEventListener('touchcancel', () => {
-	pageTouchStart = null;
-});
-
 const rocket = document.querySelector<HTMLButtonElement>('[data-rocket]');
 const rewardPopup = document.querySelector<HTMLElement>('[data-reward-popup]');
 const rewardClose = document.querySelector<HTMLButtonElement>(
@@ -331,8 +294,130 @@ const openReward = () => {
 };
 
 if (rocket) {
+	const rootStyles = getComputedStyle(document.documentElement);
+	const rocketClearance = Number.parseFloat(
+		rootStyles.getPropertyValue('--parent-rocket-content-clearance'),
+	);
+	const rocketAvoidanceStep = Number.parseFloat(
+		rootStyles.getPropertyValue('--parent-rocket-avoidance-step'),
+	);
+	const parseDuration = (value: string) => {
+		const duration = Number.parseFloat(value);
+		return value.trim().endsWith('ms') ? duration : duration * 1000;
+	};
+	const rocketAvoidanceWatchDuration = parseDuration(
+		rootStyles.getPropertyValue('--duration-parent-rocket-avoidance-watch'),
+	);
+	let rocketAvoidanceFrame = 0;
+	let watchRocketUntil = 0;
+
+	const elementIsVisible = (element: Element) => {
+		const closedDisclosure = element.closest('details:not([open])');
+		if (
+			(closedDisclosure && !element.closest('summary')) ||
+			element.closest(
+				'[hidden], [aria-hidden="true"], [data-rocket], [data-reward-popup], [data-game-panel]',
+			)
+		) {
+			return false;
+		}
+
+		let current: Element | null = element;
+		while (current) {
+			const style = getComputedStyle(current);
+			if (
+				style.display === 'none' ||
+				style.visibility === 'hidden' ||
+				Number.parseFloat(style.opacity) <= 0
+			) {
+				return false;
+			}
+			current = current.parentElement;
+		}
+		return true;
+	};
+	const visibleContentRects = () => {
+		const rects: DOMRect[] = [];
+		const textWalker = document.createTreeWalker(
+			document.body,
+			NodeFilter.SHOW_TEXT,
+			{
+				acceptNode(node) {
+					const parent = node.parentElement;
+					if (!node.textContent?.trim() || !parent || !elementIsVisible(parent)) {
+						return NodeFilter.FILTER_REJECT;
+					}
+					return NodeFilter.FILTER_ACCEPT;
+				},
+			},
+		);
+
+		while (textWalker.nextNode()) {
+			const range = document.createRange();
+			range.selectNodeContents(textWalker.currentNode);
+			rects.push(...range.getClientRects());
+		}
+
+		document.querySelectorAll<HTMLImageElement>('img').forEach((image) => {
+			if (elementIsVisible(image)) rects.push(image.getBoundingClientRect());
+		});
+		return rects;
+	};
+	const updateRocketPosition = () => {
+		rocketAvoidanceFrame = 0;
+		if (rocket.classList.contains('rocket--launching')) return;
+
+		rocket.style.removeProperty('--rocket-avoided-block-edge');
+		const rocketRect = rocket.getBoundingClientRect();
+		const baseBottom = Number.parseFloat(getComputedStyle(rocket).bottom);
+		const headerBottom = siteHeader?.getBoundingClientRect().bottom ?? 0;
+		const highestBottom = Math.max(
+			baseBottom,
+			window.innerHeight - headerBottom - rocketClearance - rocketRect.height,
+		);
+		const obstacles = visibleContentRects().filter(
+			(rect) =>
+				rect.bottom > headerBottom &&
+				rect.top < window.innerHeight &&
+				rect.right + rocketClearance > rocketRect.left &&
+				rect.left - rocketClearance < rocketRect.right,
+		);
+		let chosenBottom = baseBottom;
+
+		for (
+			let candidateBottom = baseBottom;
+			candidateBottom <= highestBottom;
+			candidateBottom += rocketAvoidanceStep
+		) {
+			const candidateTop =
+				window.innerHeight - candidateBottom - rocketRect.height;
+			const candidateBottomEdge = candidateTop + rocketRect.height;
+			const overlaps = obstacles.some(
+				(rect) =>
+					rect.bottom + rocketClearance > candidateTop &&
+					rect.top - rocketClearance < candidateBottomEdge,
+			);
+			if (!overlaps) {
+				chosenBottom = candidateBottom;
+				break;
+			}
+		}
+
+		rocket.style.setProperty('--rocket-avoided-block-edge', `${chosenBottom}px`);
+		if (performance.now() < watchRocketUntil) {
+			rocketAvoidanceFrame = window.requestAnimationFrame(updateRocketPosition);
+		}
+	};
+	const scheduleRocketPosition = () => {
+		watchRocketUntil = performance.now() + rocketAvoidanceWatchDuration;
+		if (!rocketAvoidanceFrame) {
+			rocketAvoidanceFrame = window.requestAnimationFrame(updateRocketPosition);
+		}
+	};
+
 	rocket.addEventListener('click', () => {
 		launchCount += 1;
+		rocket.classList.remove('rocket--resetting');
 		rocket.classList.remove('rocket--launching');
 		void rocket.offsetWidth;
 		rocket.classList.add('rocket--launching');
@@ -346,8 +431,24 @@ if (rocket) {
 	});
 
 	rocket.addEventListener('animationend', () => {
+		rocket.classList.add('rocket--resetting');
 		rocket.classList.remove('rocket--launching');
+		void rocket.offsetWidth;
+		window.requestAnimationFrame(() => {
+			rocket.classList.remove('rocket--resetting');
+			scheduleRocketPosition();
+		});
 	});
+	rocket.addEventListener('animationcancel', scheduleRocketPosition);
+	document.addEventListener('scroll', scheduleRocketPosition, {
+		capture: true,
+		passive: true,
+	});
+	window.addEventListener('resize', scheduleRocketPosition, { passive: true });
+	window.addEventListener('load', scheduleRocketPosition, { once: true });
+	window.addEventListener('pageshow', scheduleRocketPosition);
+	document.addEventListener('toggle', scheduleRocketPosition, true);
+	scheduleRocketPosition();
 }
 
 rewardClose?.addEventListener('click', closeReward);
