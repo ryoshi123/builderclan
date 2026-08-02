@@ -8,82 +8,79 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 <section
 	class="hall-of-fame section-jump-target"
 	id="hall-of-fame"
-	data-reveal="slide-up"
+	data-reveal="fade-up"
 >
-	<h3 class="hall-of-fame__heading">Hell Week 14B1 Hall of Fame</h3>
-	<div class="hall-of-fame__row-shell" data-member-scroll-shell>
-		<div
-			class="hall-of-fame__row"
-			data-member-scroll-row
-			aria-label="Hall of Fame members; scroll horizontally for more"
-		>
-			{
-				members.map((member) => (
-					<article class="hall-of-fame__card">
-						<img
-							src={`${import.meta.env.BASE_URL}${member.photo}`}
-							alt={member.name}
-							class="hall-of-fame__photo"
-						/>
-						<h4 class="hall-of-fame__name">{member.name}</h4>
-						<p class="hall-of-fame__detail">{member.department}</p>
-						<p class="hall-of-fame__detail">{member.project}</p>
+	<div class="content-container">
+		<header class="hall-of-fame__header">
+			<h3>Hell Week 14B1 Hall of Fame</h3>
+		</header>
+		<div class="hall-of-fame__row-shell" data-member-scroll-shell>
+			<div
+				class="hall-of-fame__row"
+				data-member-scroll-row
+				aria-label="Hall of Fame members; scroll horizontally for more"
+			>
+				{
+					members.map((member, index) => (
+						<article class="hall-of-fame__card" data-reveal="slide-up" data-reveal-item={String(index + 1)}>
+							<img
+								src={`${import.meta.env.BASE_URL}${member.photo}`}
+								alt={member.name}
+								class="hall-of-fame__photo"
+							/>
+							<h4 class="hall-of-fame__name">{member.name}</h4>
+							<p class="hall-of-fame__detail">{member.department}</p>
+							<p class="hall-of-fame__detail">{member.project}</p>
 
-						<div class="hall-of-fame__socials">
-							<a
-								href={member.github}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									src={githubIcon}
-									alt={`${member.name} on GitHub`}
-									class="hall-of-fame__social-icon"
-								/>
-							</a>
-							<a
-								href={member.linkedin}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img
-									src={linkedinIcon}
-									alt={`${member.name} on LinkedIn`}
-									class="hall-of-fame__social-icon"
-								/>
-							</a>
-						</div>
-					</article>
-				))
-			}
+							<div class="hall-of-fame__socials">
+								<a href={member.github} target="_blank" rel="noopener noreferrer">
+									<img
+										src={githubIcon}
+										alt={`${member.name} on GitHub`}
+										class="hall-of-fame__social-icon"
+									/>
+								</a>
+								<a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+									<img
+										src={linkedinIcon}
+										alt={`${member.name} on LinkedIn`}
+										class="hall-of-fame__social-icon"
+									/>
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
 	.hall-of-fame {
-		width: min(var(--content-max-width), var(--content-width));
-		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-hall-section-top) var(--space-page-reset)
-			var(--space-hall-section-bottom);
+		padding: var(--space-parent-section-block) var(--space-page-reset);
 		color: var(--color-text-on-dark);
-		text-align: left;
+		background: var(--color-page-background);
 	}
 
-	.hall-of-fame__heading {
-		display: inline-block;
-		margin: var(--space-page-reset) var(--space-centered);
-		padding-bottom: var(--space-compact-control-gap);
+	.hall-of-fame__header {
+		max-width: var(--parent-copy-max-width);
+		margin: var(--space-page-reset) var(--space-centered)
+			var(--space-parent-12);
+		text-align: center;
+	}
+
+	.hall-of-fame__header h3 {
+		margin: var(--space-page-reset);
 		color: var(--color-brand-primary);
-		font-size: var(--font-size-subsection-heading);
-		font-weight: var(--font-weight-section-heading);
-		border-bottom: var(--section-heading-border-width) solid
-			var(--color-text-on-dark);
+		font-size: var(--font-size-parent-section-heading);
+		font-weight: var(--font-weight-parent-extrabold);
+		line-height: var(--line-height-parent-tight);
+		letter-spacing: var(--letter-spacing-parent-tight);
 	}
 
 	.hall-of-fame__row-shell {
 		position: relative;
-		margin-top: var(--space-section-gutter);
 	}
 
 	.hall-of-fame__row-shell::after {
@@ -96,12 +93,12 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		justify-content: center;
 		width: var(--member-row-continuation-cue-width);
 		color: var(--color-brand-primary);
-		font-size: var(--font-size-subsection-heading);
+		font-size: var(--font-size-parent-2xl);
 		pointer-events: none;
 		content: '→';
 		opacity: var(--opacity-entry-start);
 		background: var(--background-member-row-continuation-cue);
-		transition: opacity var(--duration-button-hover) ease;
+		transition: opacity var(--duration-parent-control) ease;
 	}
 
 	.hall-of-fame__row-shell[data-scrollable='true'][data-scroll-end='false']::after {
@@ -110,75 +107,95 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__row {
 		display: flex;
-		margin-top: var(--space-page-reset);
-		padding: var(--space-hall-row-block) var(--space-hall-row-inline);
+		padding: var(--space-parent-2) var(--space-parent-6);
 		overflow-x: auto;
-		gap: var(--space-card-inset);
-		scroll-padding-inline: var(--space-card-inset);
+		gap: var(--space-parent-card-gap);
+		scroll-padding-inline: var(--space-parent-6);
 		scrollbar-width: none;
 		scroll-snap-type: x mandatory;
 		touch-action: pan-x;
 		-webkit-overflow-scrolling: touch;
-		-ms-overflow-style: none;
+	}
+
+	.hall-of-fame__row::-webkit-scrollbar {
+		display: none;
 	}
 
 	.hall-of-fame__card {
-		padding: var(--space-card-inset);
+		width: var(--parent-member-card-width);
+		flex: 0 0 var(--parent-member-card-width);
+		padding: var(--space-parent-card-inset);
 		text-align: center;
-		background: var(--color-hall-card-background);
-		border-radius: var(--radius-hall-card);
-		box-shadow: var(--shadow-hall-card);
-		backdrop-filter: blur(var(--blur-hall-card));
+		background: var(--color-parent-card-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-card);
+		box-shadow: var(--shadow-parent-card);
 		scroll-snap-align: start;
 		scroll-snap-stop: always;
-		transition:
-			transform var(--duration-button-standard) ease,
-			box-shadow var(--duration-button-standard) ease;
-		/* The author appears to have intended a moving background, but the old
-			card is a flat colour, so its background-position animation shows nothing. */
+		transition: all var(--duration-parent-standard) ease;
 	}
 
 	.hall-of-fame__photo {
-		width: var(--member-photo-size);
-		height: var(--member-photo-size);
-		margin-bottom: var(--space-section-gutter);
+		width: var(--parent-member-photo-size);
+		height: var(--parent-member-photo-size);
+		margin-bottom: var(--space-parent-4);
 		object-fit: cover;
+		border: var(--parent-border-width) solid var(--color-parent-border);
 		border-radius: var(--radius-round);
 	}
 
 	.hall-of-fame__name {
-		color: var(--color-hall-member-name);
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-parent-2);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-parent-card-title);
+		font-weight: var(--font-weight-parent-bold);
+		line-height: var(--line-height-parent-snug);
 	}
 
 	.hall-of-fame__detail {
-		margin-bottom: var(--space-compact-control-gap);
-		opacity: var(--opacity-member-detail);
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-parent-1);
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-parent-card-copy);
+		font-weight: var(--font-weight-parent-regular);
+		line-height: var(--line-height-parent-relaxed);
 	}
 
 	.hall-of-fame__socials {
 		display: flex;
 		justify-content: center;
-		margin-top: var(--space-section-gutter);
-		gap: var(--space-section-gutter);
+		margin-top: var(--space-parent-4);
+		gap: var(--space-parent-3);
 	}
 
 	.hall-of-fame__socials a {
-		margin: var(--space-page-reset) var(--space-compact-control-gap);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--parent-control-min-height);
+		height: var(--parent-control-min-height);
+		background: var(--color-parent-card-hover);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--radius-round);
+		transition: all var(--duration-parent-control) var(--easing-parent-out);
 	}
 
 	.hall-of-fame__social-icon {
-		width: var(--social-icon-size);
-		height: var(--social-icon-size);
+		width: var(--parent-icon-size);
+		height: var(--parent-icon-size);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.hall-of-fame__card:hover {
-			box-shadow: var(--shadow-hall-card-hover);
-			transform: translateY(var(--offset-hall-card-hover));
+			border-color: var(--color-parent-brand-border-soft);
+			transform: translateY(var(--parent-card-hover-offset));
 		}
 
-		.hall-of-fame__socials a:hover img {
-			transform: scale(var(--scale-social-hover));
+		.hall-of-fame__socials a:hover {
+			border-color: var(--color-brand-primary);
+			transform: translateY(var(--parent-cta-hover-offset))
+				scale(var(--parent-logo-hover-scale));
 		}
 	}
 </style>

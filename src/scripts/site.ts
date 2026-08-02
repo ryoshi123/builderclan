@@ -75,6 +75,63 @@ if (navigationToggle && navigationOverlay) {
 	});
 }
 
+const siteHeader = document.querySelector<HTMLElement>('[data-site-header]');
+const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(
+	'[data-navigation-link]',
+);
+
+if (siteHeader) {
+	const headerScrollThreshold = Number.parseFloat(
+		getComputedStyle(document.documentElement).getPropertyValue(
+			'--parent-header-scroll-threshold',
+		),
+	);
+	const updateHeaderSurface = () => {
+		siteHeader.dataset.scrolled = String(window.scrollY > headerScrollThreshold);
+	};
+
+	window.addEventListener('scroll', updateHeaderSurface, { passive: true });
+	updateHeaderSurface();
+}
+
+if ('IntersectionObserver' in window && navigationLinks.length > 0) {
+	const internalLinks = [...navigationLinks].filter((link) =>
+		link.getAttribute('href')?.startsWith('#'),
+	);
+	const targetIds = [...new Set(
+		internalLinks
+			.map((link) => link.getAttribute('href')?.slice(1))
+			.filter((id): id is string => Boolean(id)),
+	)];
+	const setActiveNavigation = (id: string) => {
+		internalLinks.forEach((link) => {
+			link.dataset.active = String(link.getAttribute('href') === `#${id}`);
+		});
+	};
+	const rootStyles = getComputedStyle(document.documentElement);
+	const rootMargin = rootStyles
+		.getPropertyValue('--parent-navigation-observer-root-margin')
+		.trim();
+	const threshold = Number.parseFloat(
+		rootStyles.getPropertyValue('--parent-navigation-observer-threshold'),
+	);
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting && entry.target.id) {
+					setActiveNavigation(entry.target.id);
+				}
+			});
+		},
+		{ rootMargin, threshold },
+	);
+
+	targetIds.forEach((id) => {
+		const target = document.getElementById(id);
+		if (target) observer.observe(target);
+	});
+}
+
 const faqToggle = document.querySelector<HTMLButtonElement>('[data-faq-toggle]');
 const extraFaqs = document.querySelectorAll<HTMLElement>('[data-faq-extra]');
 

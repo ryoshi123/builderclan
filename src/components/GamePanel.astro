@@ -32,10 +32,11 @@
 		left: var(--game-frame-position);
 		z-index: var(--game-layer);
 		display: none;
-		padding: var(--space-game-frame-inset);
-		background: var(--color-game-frame-background);
-		border-radius: var(--radius-game-frame);
-		box-shadow: var(--shadow-game-frame);
+		padding: var(--space-parent-3);
+		background: var(--color-parent-card-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-card);
+		box-shadow: var(--shadow-parent-feature);
 		transform: translate(var(--game-center-translation));
 	}
 
@@ -47,7 +48,7 @@
 		box-sizing: border-box;
 		margin: var(--space-page-reset);
 		font-family: var(--font-family-game);
-		font-weight: var(--font-weight-section-heading);
+		font-weight: var(--font-weight-parent-semibold);
 		font-style: normal;
 		font-optical-sizing: auto;
 	}
@@ -63,8 +64,8 @@
 		width: var(--game-wrapper-width);
 		height: var(--game-wrapper-height);
 		overflow: hidden;
-		background: var(--color-game-frame-background);
-		border-radius: var(--radius-game-frame);
+		background: var(--color-parent-card-surface);
+		border-radius: var(--parent-radius-control);
 		transform-origin: center;
 		animation: surface-entry var(--duration-snake-entry) ease-in-out forwards;
 	}
@@ -76,7 +77,7 @@
 		gap: var(--space-compact-control-gap);
 		padding: var(--game-detail-padding-block)
 			var(--game-detail-padding-inline);
-		color: var(--color-game-status-text);
+		color: var(--color-section-body-text);
 		font-size: var(--game-detail-font-size);
 		font-weight: var(--font-weight-game-detail);
 	}
@@ -85,16 +86,22 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-width: var(--animated-control-min-tap-size);
-		min-height: var(--animated-control-min-tap-size);
-		padding: var(--space-game-close-block) var(--space-game-close-inline);
-		color: var(--color-game-status-text);
+		min-width: var(--parent-control-min-height);
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-2) var(--space-parent-3);
+		color: var(--color-text-on-dark);
 		font-size: inherit;
 		font-weight: var(--font-weight-game-detail);
 		cursor: pointer;
-		background: var(--color-game-board-background);
-		border: var(--game-close-border-width) solid var(--color-game-status-text);
-		border-radius: var(--radius-game-frame);
+		background: var(--color-parent-card-hover);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-control);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.game-panel__close:hover {
+		color: var(--color-brand-primary);
+		border-color: var(--color-parent-brand-border-soft);
 	}
 
 	.game-panel__board {

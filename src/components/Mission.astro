@@ -3,90 +3,102 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 ---
 
 <section class="mission" data-reveal="slide-up">
-	<div class="mission__content">
-		<div class="mission__text">
-			<h3>Our Mission</h3>
-			<p>
-				Our mission is to empower students and creators by providing a platform
-				to collaborate, share knowledge, and build real-world solutions. Whether
-				you’re into coding, design, or innovation, BuilderClan is your space to
-				make ideas come alive.
-			</p>
-		</div>
+	<div class="content-container">
+		<article class="mission__card">
+			<div class="mission__accent" aria-hidden="true"></div>
+			<div class="mission__content">
+				<div class="mission__text">
+					<h3>Our Mission</h3>
+					<p>
+						Our mission is to empower students and creators by providing a platform
+						to collaborate, share knowledge, and build real-world solutions. Whether
+						you’re into coding, design, or innovation, BuilderClan is your space to
+						make ideas come alive.
+					</p>
+				</div>
 
-		<div class="mission__image">
-			<img
-				src={missionImage}
-				alt="Students working at desktop computers in a classroom while an instructor stands at the front"
-			/>
-		</div>
+				<img
+					src={missionImage}
+					alt="Students working at desktop computers in a classroom while an instructor stands at the front"
+					class="mission__image"
+				/>
+			</div>
+		</article>
 	</div>
 </section>
 
 <style>
 	.mission {
-		padding: var(--space-mission-block) var(--space-page-reset);
-		border-radius: var(--radius-square);
+		padding: var(--space-parent-section-half) var(--space-page-reset);
+		background: var(--color-page-background);
+	}
+
+	.mission__card {
+		position: relative;
+		padding: var(--space-parent-feature-card-inset);
+		overflow: hidden;
+		background: var(--color-parent-card-translucent);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-feature);
+		box-shadow: var(--shadow-parent-feature);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.mission__accent {
+		position: absolute;
+		top: var(--space-page-reset);
+		right: var(--space-page-reset);
+		width: var(--parent-feature-accent-size);
+		height: var(--parent-feature-accent-size);
+		pointer-events: none;
+		background: var(--color-parent-brand-glow-minimal);
+		border-bottom-left-radius: var(--parent-radius-pill);
+		transition: background-color var(--duration-parent-standard) ease;
 	}
 
 	.mission__content {
-		display: flex;
-		flex-direction: var(--layout-mission-direction);
-		flex-wrap: wrap;
+		position: relative;
+		display: grid;
+		grid-template-columns: var(--parent-mission-grid-columns);
 		align-items: center;
-		justify-content: space-between;
-		width: min(var(--mission-content-max-width), var(--content-width));
-		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-section-edge-reset) var(--space-section-edge-reset)
-			var(--space-mission-bottom);
-		gap: var(--space-content-gap);
-	}
-
-	.mission__text {
-		flex: var(--layout-fill-share);
-		min-width: var(--mission-column-min-width);
-		margin-bottom: var(--space-mission-text-bottom);
-		color: var(--color-text-on-dark);
-		font-size: var(--font-size-subsection-heading);
-		font-weight: var(--font-weight-paragraph);
-		text-align: var(--layout-mission-text-align);
+		gap: var(--space-parent-8);
 	}
 
 	.mission__text h3 {
 		margin: var(--space-page-reset) var(--space-page-reset)
-			var(--space-section-gutter);
-		color: var(--color-brand-primary);
-		line-height: var(--line-height-feature-copy);
+			var(--space-parent-4);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-parent-2xl);
+		font-weight: var(--font-weight-parent-bold);
+		line-height: var(--line-height-parent-tight);
 	}
 
 	.mission__text p {
 		margin: var(--space-page-reset);
 		color: var(--color-section-body-text);
-		font-size: var(--font-size-section-body);
-		font-weight: var(--font-weight-paragraph);
-		line-height: var(--line-height-feature-copy);
+		font-size: var(--font-size-parent-base);
+		font-weight: var(--font-weight-parent-regular);
+		line-height: var(--line-height-parent-relaxed);
 	}
 
 	.mission__image {
-		display: flex;
-		flex: var(--layout-fill-share);
-		justify-content: center;
-		min-width: var(--mission-column-min-width);
-		padding: var(--space-mission-image-offset) var(--space-section-edge-reset)
-			var(--space-section-edge-reset);
-	}
-
-	.mission__image img {
-		max-width: var(--mission-image-max-width);
-		height: var(--space-centered);
-		border-radius: var(--radius-mission-image);
-		transition: transform var(--duration-button-standard) ease;
+		width: var(--section-full-width);
+		max-width: var(--parent-mission-image-max-width);
+		height: auto;
+		justify-self: center;
+		object-fit: cover;
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-card);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.mission__image img:hover {
-			box-shadow: var(--shadow-image-brand-hover);
-			transform: scale(var(--scale-interactive-hover));
+		.mission__card:hover {
+			border-color: var(--color-parent-brand-border-soft);
+			transform: translateY(var(--parent-feature-hover-offset));
+		}
+
+		.mission__card:hover .mission__accent {
+			background: var(--color-parent-brand-glow-faint);
 		}
 	}
 </style>

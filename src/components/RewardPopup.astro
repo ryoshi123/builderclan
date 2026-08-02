@@ -59,46 +59,62 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 		flex-direction: column;
 		align-items: center;
 		max-width: var(--popup-content-max-width);
-		padding: var(--space-popup-inset);
-		color: var(--color-popup-title);
-		font-size: var(--font-size-popup-copy);
-		text-shadow: var(--shadow-popup-text);
-		background: var(--color-popup-background);
-		border-radius: var(--radius-card-standard);
-		box-shadow: var(--shadow-popup-card);
-		animation: surface-entry var(--duration-popup-entry) ease-in-out;
+		padding: var(--space-parent-8);
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-parent-sm);
+		text-align: center;
+		background: var(--color-parent-card-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-feature);
+		box-shadow: var(--shadow-parent-feature);
+		animation: surface-entry var(--duration-parent-section-entry) var(--easing-parent-in-out);
+	}
+
+	.reward-popup__content h2 {
+		margin: var(--space-parent-4) var(--space-page-reset)
+			var(--space-parent-2);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-parent-2xl);
+		line-height: var(--line-height-parent-tight);
+	}
+
+	.reward-popup__content h3,
+	.reward-popup__content p {
+		margin: var(--space-parent-2) var(--space-page-reset)
+			var(--space-page-reset);
+		font-weight: var(--font-weight-parent-regular);
+		line-height: var(--line-height-parent-relaxed);
 	}
 
 	.reward-popup__egg {
 		width: var(--popup-egg-size);
-		margin-bottom: var(--space-section-gutter);
-		animation: popup-egg-bounce var(--duration-popup-egg-bounce) infinite
-			alternate;
+		margin-bottom: var(--space-parent-4);
+		animation: popup-egg-bounce var(--duration-popup-egg-bounce) infinite alternate;
 	}
 
 	.reward-popup__close {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-width: var(--animated-control-min-tap-size);
-		min-height: var(--animated-control-min-tap-size);
-		margin-top: var(--space-section-gutter);
-		padding: var(--space-popup-control-block) var(--space-popup-control-inline);
-		color: var(--color-popup-action-accent);
-		font-weight: var(--font-weight-popup-action);
-		text-shadow: var(--shadow-popup-action-text);
+		min-width: var(--parent-control-min-height);
+		min-height: var(--parent-control-min-height);
+		margin-top: var(--space-parent-4);
+		padding: var(--space-parent-3) var(--space-parent-5);
+		color: var(--color-parent-card-surface);
+		font-family: inherit;
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-semibold);
 		cursor: pointer;
-		background: var(--color-clear-surface);
-		border: var(--popup-action-border-width) solid
-			var(--color-popup-action-accent);
-		border-radius: var(--radius-action-standard);
-		box-shadow: var(--shadow-popup-action);
-		transition: all var(--duration-button-standard) ease;
+		background: var(--color-brand-primary);
+		border: none;
+		border-radius: var(--parent-radius-pill);
+		box-shadow: var(--shadow-parent-button);
+		transition: all var(--duration-parent-standard) ease;
 	}
 
 	.reward-popup__close:hover {
-		background: var(--color-popup-action-hover-fill);
-		box-shadow: var(--shadow-popup-action-hover);
-		transform: scale(var(--scale-popup-action-hover));
+		background: var(--color-parent-brand-hover);
+		box-shadow: var(--shadow-parent-button-hover);
+		transform: scale(var(--parent-button-hover-scale));
 	}
 </style>

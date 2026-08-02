@@ -15,11 +15,20 @@
 <style>
 	.community {
 		width: var(--section-full-width);
-		padding: var(--space-community-section-top) var(--space-page-reset)
-			var(--space-community-section-bottom);
+		padding: var(--space-parent-section-block) var(--space-page-reset);
+		background: var(--color-page-background);
 	}
 
 	.community__content {
-		text-align: left;
+		max-width: var(--parent-copy-max-width);
+		text-align: center;
+	}
+
+	.community .section-heading {
+		color: var(--color-brand-primary);
+	}
+
+	.community .section-copy {
+		margin-inline: var(--space-centered);
 	}
 </style>

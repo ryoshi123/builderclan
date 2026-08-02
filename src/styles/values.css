@@ -77,7 +77,7 @@
 	--color-game-frame-shadow: rgba(52, 87, 220, 0.2);
 
 	/* Font families and the Doto variable-font setting. */
-	--font-family-page: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-family-page: "Lexend", sans-serif;
 	--font-family-hero-subtitle: "Doto", sans-serif;
 	--font-family-game: "Montserrat", sans-serif;
 	--font-variation-hero-subtitle-rounding: "ROND" 0;
@@ -323,8 +323,8 @@
 	--navigation-logo-end-scale: 1;
 	--navigation-logo-start-opacity: 0.5;
 	--navigation-logo-end-opacity: 1;
-	--navigation-links-display: flex;
-	--navigation-toggle-display: none;
+	--navigation-links-display: none;
+	--navigation-toggle-display: flex;
 	--navigation-toggle-current-size: var(--font-size-navigation-toggle);
 	--navigation-toggle-border-width: 1px;
 	--navigation-toggle-line-width: 22px;
@@ -433,6 +433,212 @@
 	--duration-rocket-flight: 2s;
 	--duration-game-tick: 100ms;
 	--easing-rocket-flight: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+	/* Parent organisation component design, translated from Tailwind/Framer Motion. */
+	--color-page-background: #141414;
+	--color-page-text-default: #ffffff;
+	--color-text-on-dark: #ffffff;
+	--color-section-body-text: #a1a1aa;
+	--color-faq-body-text: #a1a1aa;
+	--color-footer-text: #71717a;
+	--color-parent-card-surface: #1c1c1c;
+	--color-parent-card-hover: #222222;
+	--color-parent-control-hover: #282828;
+	--color-parent-border: #262626;
+	--color-parent-border-scrolled: #333333;
+	--color-parent-border-hover: #383838;
+	--color-parent-brand-hover: #bce62e;
+	--color-parent-number-rest: #3f3f46;
+	--color-parent-number-hover: #52525b;
+	--color-parent-header-rest: rgba(28, 28, 28, 0.85);
+	--color-parent-header-scrolled: rgba(24, 24, 24, 0.95);
+	--color-parent-nav-track: rgba(20, 20, 20, 0.7);
+	--color-parent-menu-surface: rgba(28, 28, 28, 0.95);
+	--color-parent-card-translucent: rgba(28, 28, 28, 0.9);
+	--color-parent-brand-border-soft: rgba(202, 255, 51, 0.5);
+	--color-parent-brand-border-faint: rgba(202, 255, 51, 0.4);
+	--color-parent-brand-glow-minimal: rgba(202, 255, 51, 0.05);
+	--color-parent-brand-glow-faint: rgba(202, 255, 51, 0.1);
+	--color-parent-brand-glow-soft: rgba(202, 255, 51, 0.2);
+	--color-parent-brand-glow-medium: rgba(202, 255, 51, 0.3);
+	--color-parent-brand-glow-strong: rgba(202, 255, 51, 0.5);
+	--color-parent-shadow-heavy: rgba(0, 0, 0, 0.5);
+	--color-parent-shadow-logo: rgba(0, 0, 0, 0.8);
+	--color-parent-divider-soft: rgba(38, 38, 38, 0.6);
+
+	--font-size-parent-caption: 0.6875rem;
+	--font-size-parent-xs: 0.75rem;
+	--font-size-parent-sm: 0.875rem;
+	--font-size-parent-base: 1rem;
+	--font-size-parent-lg: 1.125rem;
+	--font-size-parent-xl: 1.25rem;
+	--font-size-parent-2xl: 1.5rem;
+	--font-size-parent-3xl: 1.875rem;
+	--font-size-parent-4xl: 2.25rem;
+	--font-size-parent-5xl: 3rem;
+	--font-size-parent-6xl: 3.75rem;
+	--font-size-parent-hero: var(--font-size-parent-4xl);
+	--font-size-parent-section-heading: var(--font-size-parent-3xl);
+	--font-size-parent-section-copy: var(--font-size-parent-base);
+	--font-size-parent-card-title: var(--font-size-parent-lg);
+	--font-size-parent-card-copy: var(--font-size-parent-sm);
+	--font-weight-parent-light: 300;
+	--font-weight-parent-regular: 400;
+	--font-weight-parent-medium: 500;
+	--font-weight-parent-semibold: 600;
+	--font-weight-parent-bold: 700;
+	--font-weight-parent-extrabold: 800;
+	--font-weight-parent-black: 900;
+	--line-height-parent-hero: 1.15;
+	--line-height-parent-tight: 1.25;
+	--line-height-parent-snug: 1.375;
+	--line-height-parent-normal: 1.5;
+	--line-height-parent-relaxed: 1.625;
+	--letter-spacing-parent-tight: -0.025em;
+	--letter-spacing-parent-wide: 0.05em;
+
+	--space-parent-1: 0.25rem;
+	--space-parent-1-5: 0.375rem;
+	--space-parent-2: 0.5rem;
+	--space-parent-2-5: 0.625rem;
+	--space-parent-3: 0.75rem;
+	--space-parent-3-5: 0.875rem;
+	--space-parent-4: 1rem;
+	--space-parent-5: 1.25rem;
+	--space-parent-6: 1.5rem;
+	--space-parent-7: 1.75rem;
+	--space-parent-8: 2rem;
+	--space-parent-10: 2.5rem;
+	--space-parent-11: 2.75rem;
+	--space-parent-12: 3rem;
+	--space-parent-14: 3.5rem;
+	--space-parent-16: 4rem;
+	--space-parent-20: 5rem;
+	--space-parent-24: 6rem;
+	--space-parent-section-block: var(--space-parent-24);
+	--space-parent-section-half: var(--space-parent-12);
+	--space-parent-content-inline: var(--space-parent-4);
+	--space-parent-hero-container-inline: var(--space-parent-4);
+	--space-parent-page-top: var(--space-parent-24);
+	--space-parent-header-top: var(--space-parent-4);
+	--space-parent-header-inline: var(--space-parent-4);
+	--space-parent-header-block: var(--space-parent-3);
+	--space-parent-card-inset: var(--space-parent-6);
+	--space-parent-feature-card-inset: var(--space-parent-8);
+	--space-parent-card-gap: var(--space-parent-6);
+	--space-parent-heading-bottom: var(--space-parent-4);
+	--space-parent-header-bottom: var(--space-parent-12);
+	--space-parent-hero-top: var(--space-parent-6);
+	--space-parent-hero-bottom: var(--space-parent-12);
+	--space-parent-footer-top: var(--space-parent-16);
+	--space-parent-footer-bottom: var(--space-parent-8);
+	--space-parent-cta-inset: var(--space-parent-10);
+
+	--parent-border-width: 1px;
+	--parent-focus-ring-width: 2px;
+	--parent-focus-ring-offset: 2px;
+	--parent-container-max-width: 1350px;
+	--parent-header-max-width: 1152px;
+	--parent-faq-max-width: 1024px;
+	--parent-copy-max-width: 768px;
+	--parent-hero-copy-max-width: 576px;
+	--parent-hero-logo-width: 12rem;
+	--parent-hero-visual-min-height: 25rem;
+	--parent-header-logo-width: 2rem;
+	--parent-header-blur: 24px;
+	--parent-menu-blur: 40px;
+	--parent-menu-icon-size: 1.25rem;
+	--parent-control-min-height: 44px;
+	--parent-member-card-width: 17rem;
+	--parent-member-photo-size: 9.375rem;
+	--parent-section-glow-width: 72rem;
+	--parent-section-glow-height: 24rem;
+	--parent-hero-glow-width: 64rem;
+	--parent-hero-glow-height: 24rem;
+	--parent-cta-glow-size: 20rem;
+	--parent-menu-closed-offset: -10px;
+	--parent-center-x: -50%;
+	--parent-card-hover-offset: -4px;
+	--parent-feature-hover-offset: -6px;
+	--parent-cta-hover-offset: -2px;
+	--parent-arrow-hover-x: 0.375rem;
+	--parent-arrow-hover-y: -0.125rem;
+	--parent-quarter-turn: 90deg;
+	--parent-radius-pill: 9999px;
+	--parent-radius-control: 0.75rem;
+	--parent-radius-card: 1rem;
+	--parent-radius-feature: 1.5rem;
+	--parent-radius-menu: 1rem;
+	--parent-icon-box-size: 3rem;
+	--parent-icon-size: 1.25rem;
+	--parent-feature-accent-size: 8rem;
+	--parent-mission-image-max-width: 32rem;
+	--parent-header-z: 50;
+	--parent-content-z: 10;
+	--parent-floating-layer: 10;
+	--parent-floating-edge: 2.5rem;
+	--parent-floating-inset: 0.625rem;
+	--parent-menu-scale-closed: 0.98;
+	--parent-menu-scale-open: 1;
+	--parent-button-hover-scale: 1.04;
+	--parent-button-active-scale: 0.96;
+	--parent-cta-hover-scale: 1.02;
+	--parent-cta-active-scale: 0.98;
+	--parent-logo-hover-scale: 1.05;
+	--parent-reveal-offset: 20px;
+	--parent-card-reveal-offset: 24px;
+	--parent-reveal-hidden-opacity: 0;
+	--parent-reveal-visible-opacity: 1;
+	--parent-ambient-opacity: 0.4;
+	--parent-menu-visible-opacity: 1;
+	--parent-menu-hidden-opacity: 0;
+	--parent-hero-min-height: calc(100vh - var(--space-parent-24));
+	--parent-header-width: calc(100% - var(--space-parent-8));
+	--parent-header-scroll-threshold: 20;
+	--parent-navigation-observer-root-margin: -20% 0px -40% 0px;
+	--parent-navigation-observer-threshold: 0.2;
+	--parent-header-join-display: none;
+	--parent-hero-grid-columns: minmax(0, 1fr);
+	--parent-hero-text-column: auto;
+	--parent-hero-visual-column: auto;
+	--parent-team-grid-columns: minmax(0, 1fr);
+	--parent-feature-grid-columns: minmax(0, 1fr);
+	--parent-mission-grid-columns: minmax(0, 1fr);
+	--parent-footer-direction: column;
+	--parent-footer-alignment: center;
+	--parent-footer-justification: center;
+	--parent-cta-direction: column;
+	--parent-cta-text-align: center;
+
+	--shadow-parent-header-rest: 0 25px 50px -12px var(--color-parent-shadow-heavy);
+	--shadow-parent-header-scrolled: 0 10px 30px var(--color-parent-shadow-heavy);
+	--shadow-parent-card: 0 10px 15px -3px var(--color-card-shadow-and-hero-vignette), 0 4px 6px -4px var(--color-card-shadow-and-hero-vignette);
+	--shadow-parent-feature: 0 20px 25px -5px var(--color-card-shadow-and-hero-vignette), 0 8px 10px -6px var(--color-card-shadow-and-hero-vignette);
+	--shadow-parent-button: 0 0 15px var(--color-parent-brand-glow-medium);
+	--shadow-parent-button-hover: 0 0 25px var(--color-parent-brand-glow-strong);
+	--shadow-parent-logo: 0 20px 40px var(--color-parent-shadow-logo);
+	--shadow-parent-active-link: 0 0 10px var(--color-parent-brand-glow-medium);
+	--background-parent-ambient: radial-gradient(circle at center, var(--color-parent-brand-glow-faint), var(--color-clear-surface) 68%);
+	--background-parent-cta-accent: linear-gradient(to left, var(--color-parent-brand-glow-faint), var(--color-clear-surface));
+
+	--duration-parent-menu: 0.2s;
+	--duration-parent-control: 0.25s;
+	--duration-parent-standard: 0.3s;
+	--duration-parent-card-entry: 0.5s;
+	--duration-parent-section-entry: 0.6s;
+	--duration-parent-hero-entry: 0.7s;
+	--duration-parent-logo-entry: 0.8s;
+	--duration-parent-stagger: 0.12s;
+	--duration-parent-stagger-2: 0.24s;
+	--duration-parent-stagger-3: 0.36s;
+	--duration-parent-stagger-4: 0.48s;
+	--duration-parent-stagger-5: 0.6s;
+	--duration-parent-stagger-6: 0.72s;
+	--duration-scroll-entry: var(--duration-parent-section-entry);
+	--scroll-reveal-fade-offset: var(--parent-reveal-offset);
+	--scroll-reveal-slide-offset: var(--parent-card-reveal-offset);
+	--easing-parent-out: ease-out;
+	--easing-parent-in-out: ease-in-out;
 }
 
 @keyframes hero-glow-pulse {
@@ -445,6 +651,30 @@
 	50% {
 		transform: scale(var(--hero-glow-middle-scale));
 		opacity: var(--hero-glow-middle-opacity);
+	}
+}
+
+@keyframes parent-hero-entry {
+	from {
+		transform: translateY(var(--parent-reveal-offset));
+		opacity: var(--parent-reveal-hidden-opacity);
+	}
+
+	to {
+		transform: translateY(var(--space-page-reset));
+		opacity: var(--parent-reveal-visible-opacity);
+	}
+}
+
+@keyframes parent-logo-entry {
+	from {
+		transform: scale(var(--navigation-logo-start-scale));
+		opacity: var(--parent-reveal-hidden-opacity);
+	}
+
+	to {
+		transform: scale(var(--navigation-logo-end-scale));
+		opacity: var(--parent-reveal-visible-opacity);
 	}
 }
 
@@ -534,6 +764,50 @@
 		--hero-logo-card-width: min(100%, 18rem);
 		--hero-logo-card-max-width: 18rem;
 		--hero-logo-card-alignment: flex-start;
+	}
+}
+
+@media (min-width: 640px) {
+	:root {
+		--space-parent-content-inline: var(--space-parent-6);
+		--space-parent-page-top: 7rem;
+		--space-parent-header-top: var(--space-parent-6);
+		--space-parent-feature-card-inset: var(--space-parent-10);
+		--font-size-parent-hero: var(--font-size-parent-5xl);
+		--font-size-parent-section-heading: var(--font-size-parent-4xl);
+		--font-size-parent-section-copy: var(--font-size-parent-lg);
+		--font-size-parent-card-copy: var(--font-size-parent-base);
+		--parent-hero-logo-width: 16rem;
+		--parent-team-grid-columns: repeat(2, minmax(0, 1fr));
+		--parent-footer-direction: row;
+		--parent-footer-justification: space-between;
+		--space-parent-cta-inset: var(--space-parent-14);
+	}
+}
+
+@media (min-width: 768px) {
+	:root {
+		--parent-team-grid-columns: repeat(3, minmax(0, 1fr));
+		--parent-feature-grid-columns: repeat(2, minmax(0, 1fr));
+		--space-parent-cta-inset: var(--space-parent-16);
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--font-size-parent-hero: var(--font-size-parent-6xl);
+		--font-size-parent-section-heading: var(--font-size-parent-5xl);
+		--parent-hero-logo-width: 18rem;
+		--parent-header-width: calc(100% - var(--space-parent-8));
+		--navigation-links-display: flex;
+		--navigation-toggle-display: none;
+		--parent-header-join-display: flex;
+		--parent-hero-grid-columns: repeat(12, minmax(0, 1fr));
+		--parent-hero-text-column: span 7 / span 7;
+		--parent-hero-visual-column: span 5 / span 5;
+		--parent-mission-grid-columns: repeat(2, minmax(0, 1fr));
+		--parent-cta-direction: row;
+		--parent-cta-text-align: left;
 	}
 }
 

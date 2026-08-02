@@ -2,23 +2,32 @@
 const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builderLogoAISAT.svg`;
 ---
 
-<section class="hero" id="hero" data-reveal="fade-up">
+<section class="hero" id="hero">
+	<div class="hero__ambient" aria-hidden="true"></div>
 	<div class="hero__content">
 		<div class="hero__text">
-			<h1 class="hero__title">
-				<span class="hero__title-brand">BuilderClan</span> AISAT
+			<h1 class="hero__title" data-hero-item="title">
+				<span>BuilderClan</span> AISAT
 			</h1>
-			<p class="hero__subtitle">
+			<p class="hero__subtitle" data-hero-item="copy">
 				Join the BuilderClan AISAT community, where creativity meets action.
 				Whether you’re a coder, designer, or innovator, this is your space to
 				collaborate, learn, and create projects that make an impact. Let’s build
 				the future together!
 			</p>
-			<a href="#join" class="hero__button hero__button--primary">Get Started</a>
-			<a href="#about" class="hero__button hero__button--inverse">Learn More</a>
+			<div class="hero__actions" data-hero-item="actions">
+				<a href="#join" class="hero__button hero__button--primary">
+					<span>Get Started</span>
+					<svg aria-hidden="true" viewBox="0 0 24 24">
+						<path d="M7 17 17 7M7 7h10v10" />
+					</svg>
+				</a>
+				<a href="#about" class="hero__button hero__button--secondary">Learn More</a>
+			</div>
 		</div>
 
-		<div class="hero__logo-card">
+		<div class="hero__visual">
+			<div class="hero__visual-glow" aria-hidden="true"></div>
 			<img
 				src={logoSource}
 				alt="BuilderClan AISAT logo"
@@ -32,178 +41,171 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	.hero {
 		position: relative;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		min-height: var(--hero-min-height);
-		padding: var(--hero-padding-top) var(--hero-padding-inline)
-			var(--hero-padding-bottom);
+		min-height: var(--parent-hero-min-height);
+		padding: var(--space-parent-hero-top) var(--space-page-reset)
+			var(--space-parent-hero-bottom);
 		overflow: hidden;
 		color: var(--color-text-on-dark);
-		scroll-margin-top: var(--space-hero-scroll-offset);
-		background: var(--background-hero-section);
+		scroll-margin-top: var(--space-section-scroll-offset);
+		background: var(--color-page-background);
 	}
 
-	.hero::before {
+	.hero__ambient,
+	.hero__visual-glow {
 		position: absolute;
-		inset: var(--space-page-reset);
-		z-index: var(--hero-glow-layer);
-		content: '';
-		background: var(--hero-glow-background);
-		filter: blur(var(--hero-glow-blur));
-		mix-blend-mode: overlay;
-		animation: hero-glow-pulse var(--hero-glow-duration) infinite ease-in-out;
+		pointer-events: none;
+		background: var(--background-parent-ambient);
+		filter: blur(var(--parent-menu-blur));
+	}
+
+	.hero__ambient {
+		top: var(--space-parent-section-block);
+		left: var(--game-frame-position);
+		width: min(var(--section-full-width), var(--parent-hero-glow-width));
+		height: var(--parent-hero-glow-height);
+		opacity: var(--parent-ambient-opacity);
+		transform: translateX(var(--parent-center-x));
 	}
 
 	.hero__content {
-		display: flex;
-		flex-direction: var(--hero-content-direction);
-		align-items: var(--hero-content-alignment);
-		justify-content: space-between;
-		width: var(--hero-content-width);
-		max-width: var(--hero-content-max-width);
+		position: relative;
+		z-index: var(--parent-content-z);
+		display: grid;
+		grid-template-columns: var(--parent-hero-grid-columns);
+		align-items: center;
+		width: var(--section-full-width);
+		max-width: var(--parent-container-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
-		gap: var(--space-hero-content-gap);
+		padding-inline: var(--space-parent-hero-container-inline);
+		gap: var(--space-parent-12);
 	}
 
 	.hero__text {
-		flex: var(--hero-text-flex);
-		max-width: var(--hero-text-max-width);
-		text-align: left;
+		grid-column: var(--parent-hero-text-column);
+		padding-inline: var(--space-parent-2);
 	}
 
 	.hero__title {
-		margin: var(--space-page-reset);
-		font-size: var(--font-size-hero-title);
-		font-weight: var(--font-weight-hero-title);
-		background: linear-gradient(
-			to left,
-			var(--color-text-on-dark),
-			var(--color-hero-title-gradient-end)
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: var(--color-clear-surface);
-		/* The original author appears to have intended a title glow, but its
-			colour marker is missing, so the browser discards it. */
-		text-shadow: none;
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-parent-6);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-parent-hero);
+		font-weight: var(--font-weight-parent-extrabold);
+		line-height: var(--line-height-parent-hero);
+		letter-spacing: var(--letter-spacing-parent-tight);
+		animation: parent-hero-entry var(--duration-parent-hero-entry)
+			var(--easing-parent-in-out) var(--duration-parent-stagger) both;
 	}
 
-	.hero__title-brand {
-		background: linear-gradient(
-			to right,
-			var(--color-brand-primary),
-			var(--color-brand-action-secondary)
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: var(--color-clear-surface);
-		text-shadow: var(--shadow-hero-brand-text);
+	.hero__title span {
+		color: var(--color-brand-primary);
+		text-shadow: var(--shadow-parent-button-hover);
 	}
 
 	.hero__subtitle {
-		max-width: var(--hero-copy-max-width);
-		margin: var(--space-hero-copy-top) var(--space-centered)
-			var(--space-page-reset);
-		opacity: var(--hero-copy-opacity);
-		font-family: var(--font-family-hero-subtitle);
-		font-size: var(--font-size-feature-copy);
-		font-weight: var(--font-weight-hero-subtitle);
-		/* The original repeats this setting; one declaration has the same effect. */
-		font-optical-sizing: auto;
-		font-variation-settings: var(--font-variation-hero-subtitle-rounding);
+		max-width: var(--parent-hero-copy-max-width);
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-parent-8);
+		color: var(--color-section-body-text);
+		font-family: var(--font-family-page);
+		font-size: var(--font-size-parent-section-copy);
+		font-weight: var(--font-weight-parent-regular);
+		line-height: var(--line-height-parent-relaxed);
+		animation: parent-hero-entry var(--duration-parent-hero-entry)
+			var(--easing-parent-in-out) var(--duration-parent-stagger-2) both;
 	}
 
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-parent-4);
+		animation: parent-hero-entry var(--duration-parent-hero-entry)
+			var(--easing-parent-in-out) var(--duration-parent-stagger-3) both;
+	}
 
 	.hero__button {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--hero-button-width);
-		min-height: var(--control-min-tap-size);
-		margin-top: var(--space-hero-actions-top);
-		padding: var(--space-hero-button-block) var(--space-hero-button-inline);
-		vertical-align: top;
-		font-weight: var(--font-weight-page-default);
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-3-5) var(--space-parent-7);
+		gap: var(--space-parent-2);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-semibold);
 		text-decoration: none;
-		border-radius: var(--hero-button-radius);
-		box-shadow: var(--shadow-button-default);
-		transform: translateZ(var(--space-page-reset));
-		transition:
-			transform var(--duration-button-press) ease,
-			box-shadow var(--duration-button-press) ease,
-			background-color var(--duration-button-press) ease,
-			color var(--duration-button-press) ease;
+		border-radius: var(--parent-radius-pill);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.hero__button svg {
+		width: var(--space-parent-4);
+		height: var(--space-parent-4);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: var(--parent-focus-ring-width);
+		stroke-linecap: round;
+		stroke-linejoin: round;
 	}
 
 	.hero__button--primary {
-		color: var(--color-page-background);
+		color: var(--color-parent-card-surface);
 		background: var(--color-brand-primary);
-		border: var(--hero-button-border-width) solid var(--color-clear-surface);
+		box-shadow: var(--shadow-parent-button);
 	}
 
-	.hero__button--inverse {
-		margin-inline-start: var(--space-hero-secondary-button-inline);
-		color: var(--color-brand-primary);
-		background: var(--color-clear-surface);
-		border: var(--hero-button-border-width) solid var(--color-brand-primary);
-		box-shadow: var(--shadow-button-inverse);
+	.hero__button--secondary {
+		padding-inline: var(--space-parent-6);
+		color: var(--color-text-on-dark);
+		font-weight: var(--font-weight-parent-medium);
+		background: var(--color-parent-card-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
 	}
 
-	.hero__logo-card {
+	.hero__visual {
+		position: relative;
 		display: flex;
-		flex: var(--hero-logo-flex);
+		grid-column: var(--parent-hero-visual-column);
 		align-items: center;
 		justify-content: center;
-		width: var(--hero-logo-card-width);
-		max-width: var(--hero-logo-card-max-width);
-		aspect-ratio: var(--hero-logo-card-aspect-ratio);
-		align-self: var(--hero-logo-card-alignment);
-		padding: var(--space-hero-logo-inset);
-		background: var(--color-hero-logo-panel);
-		border-radius: var(--hero-logo-card-radius);
-		box-shadow: var(--shadow-hero-logo-card);
-		transition:
-			transform var(--duration-button-standard) ease,
-			box-shadow var(--duration-button-standard) ease;
+		min-height: var(--parent-hero-visual-min-height);
+		padding-block: var(--space-parent-8);
+	}
+
+	.hero__visual-glow {
+		width: var(--parent-hero-logo-width);
+		height: var(--parent-hero-logo-width);
+		opacity: var(--parent-menu-visible-opacity);
 	}
 
 	.hero__logo {
-		width: var(--hero-logo-size);
-		height: var(--hero-logo-size);
-		max-width: var(--hero-logo-size);
+		position: relative;
+		z-index: var(--parent-content-z);
+		width: var(--parent-hero-logo-width);
+		height: auto;
 		object-fit: contain;
-		animation: hero-logo-entry var(--duration-hero-logo-entry) ease forwards;
-	}
-
-	@keyframes hero-logo-entry {
-		from {
-			transform: scale(var(--hero-logo-entry-start-scale));
-			opacity: var(--hero-logo-entry-start-opacity);
-		}
-
-		to {
-			transform: scale(var(--hero-logo-entry-end-scale));
-			opacity: var(--hero-logo-entry-end-opacity);
-		}
+		filter: drop-shadow(var(--shadow-parent-logo));
+		animation: parent-logo-entry var(--duration-parent-logo-entry)
+			var(--easing-parent-out) var(--duration-parent-menu) both;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		.hero__button:hover {
+			transform: scale(var(--parent-button-hover-scale));
+		}
+
+		.hero__button:active {
+			transform: scale(var(--parent-button-active-scale));
+		}
+
 		.hero__button--primary:hover {
-			background: var(--color-brand-action-secondary);
-			transform: scale(var(--hero-interactive-hover-scale));
+			background: var(--color-parent-brand-hover);
+			box-shadow: var(--shadow-parent-button-hover);
 		}
 
-		.hero__button--inverse:hover {
-			color: var(--color-page-background);
-			background: var(--color-brand-primary);
-			box-shadow: var(--shadow-button-inverse);
-			transform: scale(var(--hero-interactive-hover-scale));
-		}
-
-		.hero__logo-card:hover {
-			box-shadow: var(--shadow-hero-logo-card-hover);
-			transform: translateY(var(--hero-logo-hover-offset))
-				scale(var(--hero-interactive-hover-scale));
+		.hero__button--secondary:hover {
+			background: var(--color-parent-border);
+			border-color: var(--color-parent-border-hover);
 		}
 	}
 </style>

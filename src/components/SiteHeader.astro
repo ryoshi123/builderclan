@@ -3,72 +3,101 @@ import { navigationLinks } from '../data/navigation';
 
 const logoSource =
 	import.meta.env.BASE_URL + 'assets/images/builderclan/LogoShort.svg';
+const joinLink = navigationLinks.find(({ label }) => label === 'Join');
+const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
 ---
 
-<header class="site-header">
-	<div class="site-header__inner">
-		<a
-			href="#hero"
-			class="site-header__mark-link"
-			aria-label="Go to the BuilderClan AISAT opening section"
-		>
-			<img
-				src={logoSource}
-				alt="BuilderClan logo"
-				class="site-header__mark"
-			/>
-		</a>
+<header class="site-header" data-site-header>
+	<div class="site-header__frame">
+		<div class="site-header__inner">
+			<a
+				href="#hero"
+				class="site-header__mark-link"
+				aria-label="Go to the BuilderClan AISAT opening section"
+			>
+				<img
+					src={logoSource}
+					alt="BuilderClan logo"
+					class="site-header__mark"
+				/>
+			</a>
 
-		<nav class="site-header__links" aria-label="Primary navigation">
+			<nav class="site-header__links" aria-label="Primary navigation">
+				{
+					primaryLinks.map(({ label, href, external }) => (
+						<a
+							href={href}
+							target={external ? '_blank' : undefined}
+							rel={external ? 'noopener noreferrer' : undefined}
+							data-navigation-link
+						>
+							{label}
+						</a>
+					))
+				}
+			</nav>
+
 			{
-				navigationLinks.map(({ label, href, external }) => (
+				joinLink && (
+					<a class="site-header__join" href={joinLink.href} data-navigation-link>
+						<span>{joinLink.label}</span>
+						<svg aria-hidden="true" viewBox="0 0 24 24">
+							<path d="M7 17 17 7M7 7h10v10" />
+						</svg>
+					</a>
+				)
+			}
+
+			<button
+				type="button"
+				class="site-header__toggle"
+				data-navigation-toggle
+				data-open-label="Close navigation menu"
+				aria-label="Open navigation menu"
+				aria-controls="mobile-navigation"
+				aria-expanded="false"
+			>
+				<span class="site-header__toggle-line site-header__toggle-line--top"></span>
+				<span class="site-header__toggle-line site-header__toggle-line--middle"></span>
+				<span class="site-header__toggle-line site-header__toggle-line--bottom"></span>
+			</button>
+		</div>
+
+		<nav
+			class="site-header__overlay"
+			id="mobile-navigation"
+			data-navigation-overlay
+			aria-label="Mobile navigation"
+			aria-hidden="true"
+			inert
+			data-open="false"
+		>
+			{
+				primaryLinks.map(({ label, href, external }) => (
 					<a
 						href={href}
 						target={external ? '_blank' : undefined}
 						rel={external ? 'noopener noreferrer' : undefined}
+						data-navigation-link
 					>
 						{label}
 					</a>
 				))
 			}
+			{
+				joinLink && (
+					<div class="site-header__overlay-join">
+						<a href={joinLink.href} data-navigation-link>
+							<span>{joinLink.label}</span>
+							<svg aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M7 17 17 7M7 7h10v10" />
+							</svg>
+						</a>
+					</div>
+				)
+			}
 		</nav>
-
-		<button
-			type="button"
-			class="site-header__toggle"
-			data-navigation-toggle
-			data-open-label="Close navigation menu"
-			aria-label="Open navigation menu"
-			aria-controls="mobile-navigation"
-			aria-expanded="false"
-		>
-			<span class="site-header__toggle-line site-header__toggle-line--top"></span>
-			<span class="site-header__toggle-line site-header__toggle-line--middle"></span>
-			<span class="site-header__toggle-line site-header__toggle-line--bottom"></span>
-		</button>
 	</div>
-
-	<nav
-		class="site-header__overlay"
-		id="mobile-navigation"
-		data-navigation-overlay
-		aria-label="Mobile navigation"
-		aria-hidden="true"
-		inert
-		data-open="false"
-	>
-		{
-			navigationLinks.map(({ label, href, external }) => (
-				<a
-					href={href}
-					target={external ? '_blank' : undefined}
-					rel={external ? 'noopener noreferrer' : undefined}
-				>
-					{label}
-				</a>
-			))
-		}
-	</nav>
 </header>
 
 <style>
@@ -79,114 +108,150 @@ const logoSource =
 
 	.site-header {
 		position: fixed;
-		top: var(--space-page-reset);
-		left: var(--space-page-reset);
-		z-index: var(--navigation-layer);
-		width: var(--navigation-width);
-		padding: var(--space-navigation-pill-top-gap) var(--space-page-reset)
-			var(--space-page-reset);
+		top: var(--space-parent-header-top);
+		left: var(--game-frame-position);
+		z-index: var(--parent-header-z);
+		width: var(--parent-header-width);
+		max-width: var(--parent-header-max-width);
 		pointer-events: none;
 		font-family: var(--font-family-page);
-		font-weight: var(--font-weight-page-default);
-		font-style: normal;
-		line-height: var(--line-height-page);
-		background: var(--color-clear-surface);
+		transform: translateX(var(--parent-center-x));
+	}
+
+	.site-header__frame {
+		position: relative;
+		width: var(--section-full-width);
 	}
 
 	.site-header__inner {
-		position: relative;
-		z-index: var(--navigation-pill-layer);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: var(--navigation-content-width);
-		max-width: var(--navigation-content-max-width);
-		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-navigation-pill-block)
-			var(--space-navigation-pill-inline);
-		gap: var(--space-navigation-content-gap);
+		width: var(--section-full-width);
+		padding: var(--space-parent-header-block) var(--space-parent-header-inline);
 		pointer-events: auto;
-		background: var(--color-navigation-pill-surface);
-		border-radius: var(--navigation-pill-radius);
-		box-shadow: var(--shadow-navigation-pill);
-		backdrop-filter: none;
+		background: var(--color-parent-header-rest);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-pill);
+		box-shadow: var(--shadow-parent-header-rest);
+		backdrop-filter: blur(var(--parent-header-blur));
+		transition:
+			background-color var(--duration-parent-standard) ease,
+			border-color var(--duration-parent-standard) ease,
+			box-shadow var(--duration-parent-standard) ease;
+	}
+
+	.site-header[data-scrolled='true'] .site-header__inner {
+		background: var(--color-parent-header-scrolled);
+		border-color: var(--color-parent-border-scrolled);
+		box-shadow: var(--shadow-parent-header-scrolled);
 	}
 
 	.site-header__mark-link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--control-min-tap-size);
-		height: var(--control-min-tap-size);
-		flex: none;
-		border-radius: var(--radius-action-standard);
+		min-width: var(--parent-control-min-height);
+		min-height: var(--parent-control-min-height);
+		border-radius: var(--parent-radius-control);
 	}
 
 	.site-header__mark {
-		width: var(--space-centered);
-		height: var(--navigation-logo-height);
+		width: var(--parent-header-logo-width);
+		height: auto;
+		transition: transform var(--duration-parent-standard) ease;
 	}
 
 	.site-header__mark-link:hover .site-header__mark {
-		animation: site-header-logo-pop var(--duration-navigation-logo-pop) ease forwards;
-	}
-
-	@keyframes site-header-logo-pop {
-		from {
-			transform: scale(var(--navigation-logo-start-scale));
-			opacity: var(--navigation-logo-start-opacity);
-		}
-
-		to {
-			transform: scale(var(--navigation-logo-end-scale));
-			opacity: var(--navigation-logo-end-opacity);
-		}
+		transform: scale(var(--parent-logo-hover-scale));
 	}
 
 	.site-header__links {
 		display: var(--navigation-links-display);
 		align-items: center;
-		gap: var(--space-navigation-link-gap);
+		padding: var(--space-parent-1-5);
+		gap: var(--space-parent-1);
+		background: var(--color-parent-nav-track);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-pill);
+	}
+
+	.site-header__links a,
+	.site-header__join,
+	.site-header__overlay a {
+		text-decoration: none;
 	}
 
 	.site-header__links a {
-		position: relative;
-		display: flex;
-		color: var(--color-text-on-dark);
-		font-weight: var(--font-weight-section-heading);
-		text-decoration: none;
-		transition: color var(--duration-navigation-overlay-slide) ease;
+		padding: var(--space-parent-1-5) var(--space-parent-4);
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-medium);
+		border-radius: var(--parent-radius-pill);
+		transition: all var(--duration-parent-standard) ease;
 	}
 
 	.site-header__links a:hover {
-		color: var(--color-brand-primary);
+		color: var(--color-text-on-dark);
+		background: var(--color-parent-card-hover);
+	}
+
+	.site-header__links a[data-active='true'] {
+		color: var(--color-parent-card-surface);
+		font-weight: var(--font-weight-parent-semibold);
+		background: var(--color-brand-primary);
+		box-shadow: var(--shadow-parent-active-link);
+	}
+
+	.site-header__join {
+		display: var(--parent-header-join-display);
+		align-items: center;
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-2) var(--space-parent-4);
+		gap: var(--space-parent-1-5);
+		color: var(--color-parent-card-surface);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-semibold);
+		background: var(--color-brand-primary);
+		border-radius: var(--parent-radius-pill);
+		box-shadow: var(--shadow-parent-card);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.site-header__join svg,
+	.site-header__overlay-join svg {
+		width: var(--space-parent-3-5);
+		height: var(--space-parent-3-5);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: var(--parent-focus-ring-width);
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.site-header__join:hover {
+		background: var(--color-parent-brand-hover);
+		box-shadow: var(--shadow-parent-button);
 	}
 
 	.site-header__toggle {
 		position: relative;
 		display: var(--navigation-toggle-display);
-		width: var(--control-min-tap-size);
-		height: var(--control-min-tap-size);
-		flex: none;
+		width: var(--parent-control-min-height);
+		height: var(--parent-control-min-height);
+		align-items: center;
+		justify-content: center;
 		padding: var(--space-page-reset);
 		color: var(--color-brand-primary);
 		cursor: pointer;
-		background: var(--color-navigation-toggle-surface);
-		border: var(--navigation-toggle-border-width) solid
-			var(--color-navigation-toggle-border);
-		border-radius: var(--radius-action-standard);
-		transition:
-			color var(--duration-navigation-toggle-morph) ease,
-			background-color var(--duration-navigation-toggle-morph) ease,
-			transform var(--duration-navigation-toggle-morph) ease;
-	}
-
-	.site-header__toggle:active {
-		transform: scale(var(--navigation-toggle-pressed-scale));
+		background: var(--color-parent-card-hover);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-pill);
+		transition: all var(--duration-parent-menu) ease;
 	}
 
 	.site-header__toggle[aria-expanded='true'] {
-		color: var(--color-page-background);
+		color: var(--color-parent-card-surface);
 		background: var(--color-brand-primary);
 	}
 
@@ -194,13 +259,13 @@ const logoSource =
 		position: absolute;
 		top: var(--navigation-toggle-line-center);
 		left: var(--navigation-toggle-line-center);
-		width: var(--navigation-toggle-line-width);
+		width: var(--parent-menu-icon-size);
 		height: var(--navigation-toggle-line-thickness);
 		background: currentColor;
-		border-radius: var(--radius-join-pill);
+		border-radius: var(--parent-radius-pill);
 		transition:
-			transform var(--duration-navigation-toggle-morph) ease,
-			opacity var(--duration-navigation-toggle-morph) ease;
+			transform var(--duration-parent-menu) ease,
+			opacity var(--duration-parent-menu) ease;
 	}
 
 	.site-header__toggle-line--top {
@@ -215,72 +280,94 @@ const logoSource =
 		transform: var(--navigation-toggle-line-bottom-closed);
 	}
 
-	.site-header__toggle[aria-expanded='true']
-		.site-header__toggle-line--top {
+	.site-header__toggle[aria-expanded='true'] .site-header__toggle-line--top {
 		transform: var(--navigation-toggle-line-top-open);
 	}
 
-	.site-header__toggle[aria-expanded='true']
-		.site-header__toggle-line--middle {
+	.site-header__toggle[aria-expanded='true'] .site-header__toggle-line--middle {
 		opacity: var(--opacity-entry-start);
 	}
 
-	.site-header__toggle[aria-expanded='true']
-		.site-header__toggle-line--bottom {
+	.site-header__toggle[aria-expanded='true'] .site-header__toggle-line--bottom {
 		transform: var(--navigation-toggle-line-bottom-open);
 	}
 
 	.site-header__overlay {
-		position: fixed;
-		top: var(--navigation-overlay-top);
-		left: var(--navigation-overlay-closed-position);
-		z-index: var(--navigation-overlay-layer);
+		position: absolute;
+		top: calc(var(--section-full-width) + var(--space-parent-2));
+		left: var(--space-page-reset);
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
-		width: var(--navigation-width);
-		height: var(--navigation-overlay-height);
-		padding: var(--space-navigation-menu-top)
-			var(--space-navigation-menu-inline)
-			var(--space-navigation-menu-bottom);
-		gap: var(--space-navigation-menu-gap);
-		opacity: var(--navigation-overlay-opacity);
+		width: var(--section-full-width);
+		padding: var(--space-parent-5);
+		gap: var(--space-parent-2);
+		opacity: var(--parent-menu-hidden-opacity);
+		visibility: hidden;
 		pointer-events: none;
-		background: var(--color-mobile-navigation-backdrop);
-		transition: left var(--duration-navigation-overlay-slide) ease;
+		background: var(--color-parent-menu-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-menu);
+		box-shadow: var(--shadow-parent-header-rest);
+		backdrop-filter: blur(var(--parent-menu-blur));
+		transform: translateY(var(--parent-menu-closed-offset))
+			scale(var(--parent-menu-scale-closed));
+		transform-origin: top center;
+		transition:
+			opacity var(--duration-parent-menu) var(--easing-parent-out),
+			transform var(--duration-parent-menu) var(--easing-parent-out),
+			visibility var(--duration-parent-menu) var(--easing-parent-out);
 	}
 
 	.site-header__overlay[data-open='true'] {
-		left: var(--navigation-overlay-open-position);
+		opacity: var(--parent-menu-visible-opacity);
+		visibility: visible;
 		pointer-events: auto;
+		transform: translateY(var(--space-page-reset))
+			scale(var(--parent-menu-scale-open));
 	}
 
-	.site-header__overlay a {
+	.site-header__overlay > a {
 		display: flex;
 		align-items: center;
-		width: var(--navigation-menu-link-width);
-		max-width: var(--navigation-menu-link-max-width);
-		min-height: var(--navigation-menu-link-min-height);
-		padding-inline: var(--space-navigation-menu-link-inline);
-		color: var(--color-brand-primary);
-		font-size: var(--font-size-subsection-heading);
-		font-weight: var(--font-weight-section-heading);
-		text-decoration: none;
-		border-radius: var(--radius-action-standard);
-		transition:
-			color var(--duration-navigation-toggle-morph) ease,
-			background-color var(--duration-navigation-toggle-morph) ease,
-			transform var(--duration-navigation-toggle-morph) ease;
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-3) var(--space-parent-4);
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-medium);
+		border-radius: var(--parent-radius-control);
+		transition: all var(--duration-parent-standard) ease;
 	}
 
-	.site-header__overlay a:hover,
-	.site-header__overlay a:focus-visible {
+	.site-header__overlay > a:hover,
+	.site-header__overlay > a:focus-visible {
 		color: var(--color-text-on-dark);
-		background: var(--color-navigation-menu-link-hover);
+		background: var(--color-parent-border);
 	}
 
-	.site-header__overlay a:active {
-		transform: scale(var(--navigation-menu-link-pressed-scale));
+	.site-header__overlay > a[data-active='true'] {
+		color: var(--color-parent-card-surface);
+		font-weight: var(--font-weight-parent-semibold);
+		background: var(--color-brand-primary);
+	}
+
+	.site-header__overlay-join {
+		padding-top: var(--space-parent-2);
+		margin-top: var(--space-parent-1);
+		border-top: var(--parent-border-width) solid var(--color-parent-border);
+	}
+
+	.site-header__overlay-join a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-3) var(--space-parent-4);
+		gap: var(--space-parent-2);
+		color: var(--color-parent-card-surface);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-semibold);
+		background: var(--color-brand-primary);
+		border-radius: var(--parent-radius-control);
+		box-shadow: var(--shadow-parent-card);
 	}
 </style>

@@ -3,23 +3,38 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer" data-reveal="fade-up">
-	<p>&copy; {currentYear} BuilderClan AISAT. All rights reserved.</p>
-	<button
-		type="button"
-		class="site-footer__hell-week"
-		id="hell"
-		data-game-unlock
-	>
-		Team Hell Week
-	</button>
+	<div class="content-container site-footer__inner">
+		<p>&copy; {currentYear} BuilderClan AISAT. All rights reserved.</p>
+		<button
+			type="button"
+			class="site-footer__hell-week"
+			id="hell"
+			data-game-unlock
+		>
+			Team Hell Week
+		</button>
+	</div>
 </footer>
 
 <style>
 	.site-footer {
-		padding: var(--space-footer-top) var(--space-section-edge-reset)
-			var(--space-footer-bottom);
+		padding: var(--space-parent-footer-top) var(--space-page-reset)
+			var(--space-parent-footer-bottom);
 		color: var(--color-footer-text);
+		background: var(--color-page-background);
+	}
+
+	.site-footer__inner {
+		display: flex;
+		flex-direction: var(--parent-footer-direction);
+		align-items: var(--parent-footer-alignment);
+		justify-content: var(--parent-footer-justification);
+		padding-top: var(--space-parent-8);
+		gap: var(--space-parent-4);
+		font-size: var(--font-size-parent-xs);
+		font-weight: var(--font-weight-parent-regular);
 		text-align: center;
+		border-top: var(--parent-border-width) solid var(--color-parent-border);
 	}
 
 	.site-footer p,
@@ -28,16 +43,16 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.site-footer__hell-week {
-		display: block;
-		width: var(--section-full-width);
-		padding: var(--space-page-reset);
+		padding: var(--space-parent-2);
 		color: inherit;
 		font: inherit;
 		line-height: inherit;
-		text-align: center;
+		cursor: pointer;
 		appearance: none;
 		background: none;
 		border: none;
+		border-radius: var(--parent-radius-control);
+		transition: color var(--duration-parent-control) var(--easing-parent-out);
 	}
 
 	.site-footer__hell-week:hover {
