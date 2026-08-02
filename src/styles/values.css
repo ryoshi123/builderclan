@@ -545,6 +545,7 @@
 	--space-parent-hero-bottom: var(--space-parent-12);
 	--space-parent-hero-content-gap: var(--space-parent-12);
 	--space-parent-hero-visual-block: var(--space-parent-8);
+	--space-parent-about-top: var(--space-page-reset);
 	--space-parent-hall-bottom: var(--space-parent-8);
 	--space-parent-footer-top: var(--space-parent-16);
 	--space-parent-footer-bottom: var(--space-parent-8);
@@ -564,8 +565,9 @@
 	--parent-faq-glow-fade-midpoint: 50%;
 	--parent-copy-max-width: 768px;
 	--parent-hero-copy-max-width: 576px;
-	--parent-hero-logo-width: 12rem;
+	--parent-hero-logo-width: 16rem;
 	--parent-hero-visual-min-height: 25rem;
+	--parent-hero-visual-offset-y: var(--space-page-reset);
 	--parent-header-logo-width: 2rem;
 	--parent-header-blur: 24px;
 	--parent-menu-blur: 40px;
@@ -681,6 +683,7 @@
 	--duration-parent-stagger-4: 0.48s;
 	--duration-parent-stagger-5: 0.6s;
 	--duration-parent-stagger-6: 0.72s;
+	--duration-fresh-load-settle: var(--duration-parent-stagger-5);
 	--duration-scroll-entry: var(--duration-parent-section-entry);
 	--scroll-reveal-fade-offset: var(--parent-reveal-offset);
 	--scroll-reveal-slide-offset: var(--parent-card-reveal-offset);
@@ -861,6 +864,7 @@
 		--parent-hero-grid-columns: repeat(12, minmax(0, 1fr));
 		--parent-hero-text-column: span 7 / span 7;
 		--parent-hero-visual-column: span 5 / span 5;
+		--parent-hero-visual-offset-y: var(--space-parent-3);
 		--parent-mission-grid-columns: repeat(2, minmax(0, 1fr));
 		--parent-cta-direction: row;
 		--parent-cta-text-align: left;

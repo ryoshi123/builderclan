@@ -35,18 +35,34 @@ const shareImage = new URL(
 				history.scrollRestoration = 'manual';
 			}
 			if (window.location.hash.length <= 1) {
-				const keepFreshLoadAtTop = () =>
-					window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-				keepFreshLoadAtTop();
-				window.addEventListener('scroll', keepFreshLoadAtTop, { passive: true });
-				document.addEventListener(
-					'DOMContentLoaded',
-					() => {
-						keepFreshLoadAtTop();
-						window.removeEventListener('scroll', keepFreshLoadAtTop);
-					},
-					{ once: true },
-				);
+				const root = document.documentElement;
+				root.dataset.freshLoad = 'true';
+				const markVisitorControl = () => {
+					if (root.dataset.freshLoadComplete !== 'true') {
+						root.dataset.freshLoadCancelled = 'true';
+					}
+				};
+
+				window.addEventListener('touchstart', markVisitorControl, {
+					capture: true,
+					once: true,
+					passive: true,
+				});
+				window.addEventListener('pointerdown', markVisitorControl, {
+					capture: true,
+					once: true,
+					passive: true,
+				});
+				window.addEventListener('wheel', markVisitorControl, {
+					capture: true,
+					once: true,
+					passive: true,
+				});
+				window.addEventListener('keydown', markVisitorControl, {
+					capture: true,
+					once: true,
+				});
+				window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 			}
 		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -1,5 +1,50 @@
 document.documentElement.classList.add('has-client-script');
 
+const rootElement = document.documentElement;
+const freshLoadNeedsTop = rootElement.dataset.freshLoad === 'true';
+const visitorTookScrollControl = () =>
+	rootElement.dataset.freshLoadCancelled === 'true';
+const freshLoadStillNeedsTop = () =>
+	freshLoadNeedsTop &&
+	window.location.hash.length <= 1 &&
+	!visitorTookScrollControl();
+const forceFreshLoadToTop = () => {
+	if (!freshLoadStillNeedsTop()) return;
+	history.scrollRestoration = 'manual';
+	window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+};
+const waitForPageImages = () =>
+	Promise.all(
+		[...document.images].map(
+			(image) =>
+				new Promise<void>((resolve) => {
+					if (image.complete) {
+						resolve();
+						return;
+					}
+					image.addEventListener('load', () => resolve(), { once: true });
+					image.addEventListener('error', () => resolve(), { once: true });
+				}),
+		),
+	);
+const getFreshLoadSettleDelay = () => {
+	const value = getComputedStyle(rootElement)
+		.getPropertyValue('--duration-fresh-load-settle')
+		.trim();
+	const duration = Number.parseFloat(value);
+
+	if (!Number.isFinite(duration)) return 0;
+	return value.endsWith('ms') ? duration : duration * 1000;
+};
+const finishFreshLoadPositioning = async () => {
+	forceFreshLoadToTop();
+	await Promise.all([waitForPageImages(), document.fonts.ready]);
+	forceFreshLoadToTop();
+	window.setTimeout(() => {
+		forceFreshLoadToTop();
+		rootElement.dataset.freshLoadComplete = 'true';
+	}, getFreshLoadSettleDelay());
+};
 const getLocationTarget = () => {
 	if (window.location.hash.length <= 1) return null;
 
@@ -11,18 +56,23 @@ const getLocationTarget = () => {
 		return null;
 	}
 };
-const restoreExpectedLoadPosition = () => {
-	history.scrollRestoration = 'manual';
-	const target = getLocationTarget();
-	if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
-	else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+const restoreLocationTarget = () => {
+	getLocationTarget()?.scrollIntoView({ block: 'start', behavior: 'instant' });
 };
 
-restoreExpectedLoadPosition();
-window.addEventListener('load', restoreExpectedLoadPosition, { once: true });
-window.addEventListener('pageshow', restoreExpectedLoadPosition);
+forceFreshLoadToTop();
+if (freshLoadNeedsTop) {
+	if (document.readyState === 'complete') void finishFreshLoadPositioning();
+	else window.addEventListener('load', finishFreshLoadPositioning, { once: true });
+	window.addEventListener('pageshow', forceFreshLoadToTop);
+} else {
+	restoreLocationTarget();
+	window.addEventListener('load', restoreLocationTarget, { once: true });
+	window.addEventListener('pageshow', restoreLocationTarget);
+}
 window.addEventListener('hashchange', () => {
 	history.scrollRestoration = 'manual';
+	rootElement.dataset.freshLoadCancelled = 'true';
 });
 
 const reverseText = (value: string) => [...value].reverse().join('');
