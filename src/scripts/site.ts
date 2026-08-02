@@ -189,18 +189,6 @@ const memberScrollShell = document.querySelector<HTMLElement>(
 );
 
 if (memberScrollRow && memberScrollShell) {
-	type MemberGesture = {
-		x: number;
-		y: number;
-		scrollLeft: number;
-		axis: 'horizontal' | 'vertical' | null;
-	};
-	let memberGesture: MemberGesture | null = null;
-	const memberAxisThreshold = Number.parseFloat(
-		getComputedStyle(document.documentElement).getPropertyValue(
-			'--parent-member-axis-lock-threshold',
-		),
-	);
 	const updateMemberScrollCue = () => {
 		const scrollable = memberScrollRow.scrollWidth > memberScrollRow.clientWidth;
 		const atEnd =
@@ -212,56 +200,6 @@ if (memberScrollRow && memberScrollShell) {
 	};
 
 	memberScrollRow.addEventListener('scroll', updateMemberScrollCue, {
-		passive: true,
-	});
-	memberScrollRow.addEventListener(
-		'touchstart',
-		(event) => {
-			const touch = event.touches[0];
-			if (!touch || event.touches.length !== 1) {
-				memberGesture = null;
-				return;
-			}
-
-			memberGesture = {
-				x: touch.clientX,
-				y: touch.clientY,
-				scrollLeft: memberScrollRow.scrollLeft,
-				axis: null,
-			};
-		},
-		{ passive: true },
-	);
-	memberScrollRow.addEventListener(
-		'touchmove',
-		(event) => {
-			if (!memberGesture) return;
-			const touch = event.touches[0];
-			if (!touch) return;
-
-			const deltaX = touch.clientX - memberGesture.x;
-			const deltaY = touch.clientY - memberGesture.y;
-			if (
-				memberGesture.axis === null &&
-				Math.max(Math.abs(deltaX), Math.abs(deltaY)) >= memberAxisThreshold
-			) {
-				memberGesture.axis =
-					Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
-			}
-
-			if (memberGesture.axis !== 'horizontal') return;
-			event.preventDefault();
-			memberScrollRow.scrollLeft = memberGesture.scrollLeft - deltaX;
-		},
-		{ passive: false },
-	);
-	const finishMemberGesture = () => {
-		memberGesture = null;
-	};
-	memberScrollRow.addEventListener('touchend', finishMemberGesture, {
-		passive: true,
-	});
-	memberScrollRow.addEventListener('touchcancel', finishMemberGesture, {
 		passive: true,
 	});
 	new ResizeObserver(updateMemberScrollCue).observe(memberScrollRow);
@@ -294,127 +232,6 @@ const openReward = () => {
 };
 
 if (rocket) {
-	const rootStyles = getComputedStyle(document.documentElement);
-	const rocketClearance = Number.parseFloat(
-		rootStyles.getPropertyValue('--parent-rocket-content-clearance'),
-	);
-	const rocketAvoidanceStep = Number.parseFloat(
-		rootStyles.getPropertyValue('--parent-rocket-avoidance-step'),
-	);
-	const parseDuration = (value: string) => {
-		const duration = Number.parseFloat(value);
-		return value.trim().endsWith('ms') ? duration : duration * 1000;
-	};
-	const rocketAvoidanceWatchDuration = parseDuration(
-		rootStyles.getPropertyValue('--duration-parent-rocket-avoidance-watch'),
-	);
-	let rocketAvoidanceFrame = 0;
-	let watchRocketUntil = 0;
-
-	const elementIsVisible = (element: Element) => {
-		const closedDisclosure = element.closest('details:not([open])');
-		if (
-			(closedDisclosure && !element.closest('summary')) ||
-			element.closest(
-				'[hidden], [aria-hidden="true"], [data-rocket], [data-reward-popup], [data-game-panel]',
-			)
-		) {
-			return false;
-		}
-
-		let current: Element | null = element;
-		while (current) {
-			const style = getComputedStyle(current);
-			if (
-				style.display === 'none' ||
-				style.visibility === 'hidden' ||
-				Number.parseFloat(style.opacity) <= 0
-			) {
-				return false;
-			}
-			current = current.parentElement;
-		}
-		return true;
-	};
-	const visibleContentRects = () => {
-		const rects: DOMRect[] = [];
-		const textWalker = document.createTreeWalker(
-			document.body,
-			NodeFilter.SHOW_TEXT,
-			{
-				acceptNode(node) {
-					const parent = node.parentElement;
-					if (!node.textContent?.trim() || !parent || !elementIsVisible(parent)) {
-						return NodeFilter.FILTER_REJECT;
-					}
-					return NodeFilter.FILTER_ACCEPT;
-				},
-			},
-		);
-
-		while (textWalker.nextNode()) {
-			const range = document.createRange();
-			range.selectNodeContents(textWalker.currentNode);
-			rects.push(...range.getClientRects());
-		}
-
-		document.querySelectorAll<HTMLImageElement>('img').forEach((image) => {
-			if (elementIsVisible(image)) rects.push(image.getBoundingClientRect());
-		});
-		return rects;
-	};
-	const updateRocketPosition = () => {
-		rocketAvoidanceFrame = 0;
-		if (rocket.classList.contains('rocket--launching')) return;
-
-		rocket.style.removeProperty('--rocket-avoided-block-edge');
-		const rocketRect = rocket.getBoundingClientRect();
-		const baseBottom = Number.parseFloat(getComputedStyle(rocket).bottom);
-		const headerBottom = siteHeader?.getBoundingClientRect().bottom ?? 0;
-		const highestBottom = Math.max(
-			baseBottom,
-			window.innerHeight - headerBottom - rocketClearance - rocketRect.height,
-		);
-		const obstacles = visibleContentRects().filter(
-			(rect) =>
-				rect.bottom > headerBottom &&
-				rect.top < window.innerHeight &&
-				rect.right + rocketClearance > rocketRect.left &&
-				rect.left - rocketClearance < rocketRect.right,
-		);
-		let chosenBottom = baseBottom;
-
-		for (
-			let candidateBottom = baseBottom;
-			candidateBottom <= highestBottom;
-			candidateBottom += rocketAvoidanceStep
-		) {
-			const candidateTop =
-				window.innerHeight - candidateBottom - rocketRect.height;
-			const candidateBottomEdge = candidateTop + rocketRect.height;
-			const overlaps = obstacles.some(
-				(rect) =>
-					rect.bottom + rocketClearance > candidateTop &&
-					rect.top - rocketClearance < candidateBottomEdge,
-			);
-			if (!overlaps) {
-				chosenBottom = candidateBottom;
-				break;
-			}
-		}
-
-		rocket.style.setProperty('--rocket-avoided-block-edge', `${chosenBottom}px`);
-		if (performance.now() < watchRocketUntil) {
-			rocketAvoidanceFrame = window.requestAnimationFrame(updateRocketPosition);
-		}
-	};
-	const scheduleRocketPosition = () => {
-		watchRocketUntil = performance.now() + rocketAvoidanceWatchDuration;
-		if (!rocketAvoidanceFrame) {
-			rocketAvoidanceFrame = window.requestAnimationFrame(updateRocketPosition);
-		}
-	};
-
 	rocket.addEventListener('click', () => {
 		launchCount += 1;
 		rocket.classList.remove('rocket--resetting');
@@ -436,19 +253,8 @@ if (rocket) {
 		void rocket.offsetWidth;
 		window.requestAnimationFrame(() => {
 			rocket.classList.remove('rocket--resetting');
-			scheduleRocketPosition();
 		});
 	});
-	rocket.addEventListener('animationcancel', scheduleRocketPosition);
-	document.addEventListener('scroll', scheduleRocketPosition, {
-		capture: true,
-		passive: true,
-	});
-	window.addEventListener('resize', scheduleRocketPosition, { passive: true });
-	window.addEventListener('load', scheduleRocketPosition, { once: true });
-	window.addEventListener('pageshow', scheduleRocketPosition);
-	document.addEventListener('toggle', scheduleRocketPosition, true);
-	scheduleRocketPosition();
 }
 
 rewardClose?.addEventListener('click', closeReward);

@@ -19,40 +19,52 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 	.rocket {
 		position: fixed;
 		left: var(--parent-rocket-inline-edge);
-		bottom: var(--rocket-avoided-block-edge, var(--parent-floating-edge));
+		bottom: var(--parent-rocket-block-edge);
 		z-index: var(--parent-floating-layer);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-width: var(--parent-control-min-height);
-		min-height: var(--parent-control-min-height);
-		padding: var(--parent-floating-inset);
-		color: var(--color-parent-card-surface);
+		width: var(--rocket-control-width);
+		height: var(--rocket-control-height);
+		padding: var(--space-rocket-control-block) var(--space-rocket-control-inline);
+		color: var(--color-rocket-idle);
+		font-size: var(--font-size-rocket-control);
+		line-height: normal;
 		cursor: pointer;
-		background: var(--color-brand-primary);
+		background: var(--color-clear-surface);
 		border: none;
-		border-radius: var(--radius-round);
-		box-shadow: var(--shadow-parent-card);
-		transition: transform var(--duration-parent-standard) ease;
+		border-radius: var(--radius-square);
+		box-shadow: none;
 	}
 
 	.rocket__icon {
 		display: inline-block;
-		width: var(--social-icon-size);
-		height: var(--social-icon-size);
+		flex: none;
+		width: var(--rocket-icon-size);
+		height: var(--rocket-icon-size);
 		background-color: currentColor;
 		mask: var(--rocket-icon-source) center / contain no-repeat;
 		-webkit-mask: var(--rocket-icon-source) center / contain no-repeat;
+		transform: translateY(var(--rocket-icon-block-offset));
+		transition: transform var(--duration-rocket-hover) ease;
 	}
 
 	.rocket:hover {
-		transform: scale(var(--scale-social-hover));
+		color: var(--color-rocket-hover);
+	}
+
+	.rocket:hover .rocket__icon {
+		width: var(--font-size-rocket-control-hover);
+		height: var(--font-size-rocket-control-hover);
+		transform: translateY(var(--rocket-icon-block-offset))
+			scale(var(--scale-rocket-hover));
 	}
 
 	.rocket--launching {
 		will-change: transform, opacity;
 		animation: rocket-flight var(--duration-rocket-flight)
-			var(--easing-rocket-flight) var(--rocket-flight-fill-mode);
+			var(--easing-rocket-flight)
+			var(--rocket-flight-fill-mode);
 	}
 
 	.rocket--resetting {
