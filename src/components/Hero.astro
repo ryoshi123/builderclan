@@ -29,61 +29,85 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 </section>
 
 <style>
-.hero {
+	.hero {
 		position: relative;
 		display: flex;
-		align-items: var(--hero-section-align);
+		align-items: center;
 		justify-content: center;
-		min-height: var(--hero-min-height);
-		padding: var(--hero-padding-top) var(--hero-padding-inline) var(--hero-padding-bottom);
+		min-height: var(--page-min-height);
+		padding: var(--hero-padding-top) var(--hero-padding-inline)
+			var(--hero-padding-bottom);
 		overflow: hidden;
 		color: var(--color-text-on-dark);
 		scroll-margin-top: var(--space-hero-scroll-offset);
 		background: var(--background-hero-section);
 	}
 
+	.hero::before {
+		position: absolute;
+		inset: var(--space-page-reset);
+		z-index: var(--hero-glow-layer);
+		content: '';
+		background: var(--hero-glow-background);
+		filter: blur(var(--hero-glow-blur));
+		mix-blend-mode: overlay;
+		animation: hero-glow-pulse var(--hero-glow-duration) infinite ease-in-out;
+	}
+
 	.hero__content {
 		display: flex;
-		flex-direction: var(--hero-content-direction);
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		width: var(--hero-content-width);
 		max-width: var(--hero-content-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
-		gap: var(--space-content-gap);
 	}
 
 	.hero__text {
 		flex: var(--hero-column-flex);
-		width: var(--section-full-width);
 		max-width: var(--hero-text-max-width);
-		text-align: var(--hero-text-align);
+		text-align: left;
 	}
 
 	.hero__title {
 		margin: var(--space-page-reset);
-		color: var(--color-text-on-dark);
 		font-size: var(--font-size-hero-title);
 		font-weight: var(--font-weight-hero-title);
-		line-height: var(--line-height-heading);
-		letter-spacing: var(--letter-spacing-heading);
+		background: linear-gradient(
+			to left,
+			var(--color-text-on-dark),
+			var(--color-hero-title-gradient-end)
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: var(--color-clear-surface);
+		/* The original author appears to have intended a title glow, but its
+			colour marker is missing, so the browser discards it. */
 		text-shadow: none;
 	}
 
 	.hero__title-brand {
-		color: var(--color-brand-primary);
+		background: linear-gradient(
+			to right,
+			var(--color-brand-primary),
+			var(--color-brand-action-secondary)
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: var(--color-clear-surface);
 		text-shadow: var(--shadow-hero-brand-text);
 	}
 
 	.hero__subtitle {
 		max-width: var(--hero-copy-max-width);
-		margin: var(--space-hero-copy-top) var(--space-page-reset) var(--space-page-reset);
+		margin: var(--space-hero-copy-top) var(--space-centered)
+			var(--space-page-reset);
 		opacity: var(--hero-copy-opacity);
-		color: var(--color-supporting-text);
 		font-family: var(--font-family-hero-subtitle);
 		font-size: var(--font-size-feature-copy);
 		font-weight: var(--font-weight-hero-subtitle);
-		line-height: var(--line-height-feature-copy);
+		/* The original repeats this setting; one declaration has the same effect. */
 		font-optical-sizing: auto;
 		font-variation-settings: var(--font-variation-hero-subtitle-rounding);
 	}
@@ -95,32 +119,32 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		width: var(--hero-button-width);
 		min-height: var(--control-min-tap-size);
 		margin-top: var(--space-card-inset);
-		padding: var(--space-standard-button-block) var(--space-standard-button-inline);
-		font-size: var(--font-size-action-label);
-		font-weight: var(--font-weight-button);
+		padding: var(--space-standard-button-block)
+			var(--space-standard-button-inline);
+		font-weight: var(--font-weight-page-default);
 		text-decoration: none;
 		border-radius: var(--hero-button-radius);
 		box-shadow: var(--shadow-button-default);
+		transform: translateZ(var(--space-page-reset));
 		transition:
-			box-shadow var(--duration-button-hover) var(--easing-site-out),
-			background-color var(--duration-button-hover) var(--easing-site-out),
-			border-color var(--duration-button-hover) var(--easing-site-out),
-			color var(--duration-button-hover) var(--easing-site-out);
+			transform var(--duration-button-press) ease,
+			box-shadow var(--duration-button-press) ease,
+			background-color var(--duration-button-press) ease,
+			color var(--duration-button-press) ease;
 	}
 
 	.hero__button--primary {
 		color: var(--color-page-background);
 		background: var(--color-brand-primary);
-		border: var(--hero-button-border-width) solid var(--color-brand-primary);
+		border: var(--hero-button-border-width) solid var(--color-clear-surface);
 	}
 
 	.hero__button--inverse {
 		margin-top: var(--space-hero-secondary-button-top);
 		margin-inline-start: var(--space-hero-secondary-button-inline);
-		padding-inline: var(--space-secondary-button-inline);
-		color: var(--color-text-on-dark);
-		background: var(--color-raised-card-surface);
-		border: var(--hero-button-border-width) solid var(--color-standard-border);
+		color: var(--color-brand-primary);
+		background: var(--color-clear-surface);
+		border: var(--hero-button-border-width) solid var(--color-brand-primary);
 		box-shadow: var(--shadow-button-inverse);
 	}
 
@@ -129,18 +153,16 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		flex: var(--hero-column-flex);
 		align-items: center;
 		justify-content: center;
-		width: var(--section-full-width);
 		max-width: var(--hero-logo-card-max-width);
 		aspect-ratio: var(--hero-logo-card-aspect-ratio);
-		margin: var(--space-hero-logo-top) var(--space-centered) var(--space-page-reset);
+		margin-top: var(--space-hero-logo-top);
 		padding: var(--space-hero-logo-inset);
 		background: var(--color-hero-logo-panel);
-		border: var(--card-border-width) solid var(--color-standard-border);
 		border-radius: var(--hero-logo-card-radius);
 		box-shadow: var(--shadow-hero-logo-card);
 		transition:
-			border-color var(--duration-button-standard) var(--easing-site-out),
-			box-shadow var(--duration-button-standard) var(--easing-site-out);
+			transform var(--duration-button-standard) ease,
+			box-shadow var(--duration-button-standard) ease;
 	}
 
 	.hero__logo {
@@ -148,8 +170,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		height: var(--hero-logo-size);
 		max-width: var(--hero-logo-size);
 		object-fit: contain;
-		animation: hero-logo-entry var(--duration-hero-logo-entry)
-			var(--easing-site-out) var(--duration-hero-logo-delay) both;
+		animation: hero-logo-entry var(--duration-hero-logo-entry) ease forwards;
 	}
 
 	@keyframes hero-logo-entry {
@@ -157,6 +178,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 			transform: scale(var(--hero-logo-entry-start-scale));
 			opacity: var(--hero-logo-entry-start-opacity);
 		}
+
 		to {
 			transform: scale(var(--hero-logo-entry-end-scale));
 			opacity: var(--hero-logo-entry-end-opacity);
@@ -166,12 +188,20 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	@media (hover: hover) and (pointer: fine) {
 		.hero__button--primary:hover {
 			background: var(--color-brand-action-secondary);
-			border-color: var(--color-brand-action-secondary);
+			transform: scale(var(--hero-interactive-hover-scale));
 		}
+
 		.hero__button--inverse:hover {
-			background: var(--color-interactive-surface);
-			border-color: var(--color-hover-border);
+			color: var(--color-page-background);
+			background: var(--color-brand-primary);
+			box-shadow: var(--shadow-button-inverse);
+			transform: scale(var(--hero-interactive-hover-scale));
 		}
-		.hero__logo-card:hover { border-color: var(--color-hover-border); }
+
+		.hero__logo-card:hover {
+			box-shadow: var(--shadow-hero-logo-card-hover);
+			transform: translateY(var(--hero-logo-hover-offset))
+				scale(var(--hero-interactive-hover-scale));
+		}
 	}
 </style>

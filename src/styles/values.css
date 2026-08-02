@@ -1,273 +1,224 @@
 :root {
-	/* BuilderClan AISAT colour system. */
+	/* Flat page design colours. Drawing-file fills are intentionally excluded. */
 	--color-brand-primary: #caff33;
-	--color-brand-action-secondary: #dcff73;
-	--color-brand-action-pressed: #a4cf27;
-	--color-page-background: #0d0f0c;
-	--color-recessed-surface: #11130f;
-	--color-navigation-surface: #151812;
-	--color-navigation-scrolled-surface: #181b16;
-	--color-raised-card-surface: #181b16;
-	--color-interactive-surface: #20241d;
-	--color-standard-border: #2b3026;
-	--color-navigation-scrolled-border: #343b2e;
-	--color-hover-border: #3c4534;
-	--color-muted-text: #87917e;
-	--color-faded-text: #aeb6a5;
-	--color-supporting-text: #d4dacd;
-	--color-text-on-dark: #f4f7ee;
-	--color-page-text-default: var(--color-text-on-dark);
-	--color-section-body-text: var(--color-faded-text);
-	--color-faq-body-text: var(--color-faded-text);
-	--color-footer-text: var(--color-muted-text);
-	--color-hero-title-gradient-end: var(--color-text-on-dark);
-	--color-hero-background-start: var(--color-page-background);
-	--color-hero-background-middle: var(--color-page-background);
-	--color-hero-background-end: var(--color-page-background);
-	--color-hero-logo-panel: var(--color-raised-card-surface);
-	--color-card-gradient-start: var(--color-raised-card-surface);
-	--color-card-gradient-end: var(--color-raised-card-surface);
-	--color-content-surface-gradient-end: var(--color-raised-card-surface);
+	--color-brand-action-secondary: #a6d71f;
+	--color-faq-action-background: var(--color-brand-action-secondary);
+	--color-faq-action-hover: #b6e533;
+	--color-join-gradient-middle: var(--color-brand-action-secondary);
+	--color-join-gradient-end: var(--color-faq-action-hover);
+	--color-join-hover-glow: var(--color-faq-action-hover);
+	--color-team-icon-gradient-start: var(--color-faq-action-hover);
+	--color-team-icon-gradient-end: #3d5105;
+	--color-rocket-idle: var(--color-brand-action-secondary);
+	--color-rocket-hover: var(--color-faq-action-hover);
+	--color-focus-ring: var(--color-brand-primary);
+	--color-popup-title: var(--color-brand-primary);
+	--color-popup-title-glow: var(--color-faq-action-hover);
+	--color-popup-edge-glow: #35ff3c;
+	--color-text-on-dark: #ffffff;
+	--color-hero-title-gradient-end: #e1e1e1;
+	--color-faq-body-text: var(--color-hero-title-gradient-end);
+	--color-inverted-section-text: var(--color-section-body-text);
+	--color-section-body-text: #e6e6e6;
+	--color-game-status-text: #b8c6dc;
+	--color-footer-text: #858585;
+	--color-popup-background: var(--color-hero-background-end);
+	--color-hero-background-end: #0f0f0f;
+	--color-page-text-default: #111827;
+	--color-card-gradient-start: var(--color-hero-background-end);
+	--color-hero-background-start: var(--color-card-gradient-start);
+	--color-page-background: #1a1a1a;
+	--color-join-action-text: var(--color-page-background);
+	--color-join-background-base: var(--color-page-background);
+	--color-game-board-background: #212837;
+	--color-card-gradient-end: var(--color-content-surface-gradient-end);
+	--color-hero-background-middle: var(--color-card-gradient-end);
+	--color-faq-card-secondary-glow: #25254c;
+	--color-page-gradient-middle: var(--color-content-surface-gradient-end);
+	--color-game-frame-background: #293447;
+	--color-content-surface-gradient-end: #2a2a2a;
+	--color-raised-card-surface: var(--color-content-surface-gradient-end);
 	--color-team-card-background: var(--color-raised-card-surface);
 	--color-hall-card-background: var(--color-raised-card-surface);
 	--color-faq-card-background: var(--color-raised-card-surface);
-	--color-faq-action-background: var(--color-brand-primary);
-	--color-faq-action-hover: var(--color-brand-action-secondary);
-	--color-faq-border: var(--color-standard-border);
-	--color-join-background-base: var(--color-recessed-surface);
-	--color-join-background-alternate: var(--color-recessed-surface);
-	--color-join-gradient-middle: var(--color-brand-primary);
-	--color-join-gradient-end: var(--color-brand-primary);
-	--color-join-action-text: var(--color-page-background);
-	--color-join-hover-glow: var(--color-clear-surface);
-	--color-team-icon-gradient-start: var(--color-interactive-surface);
-	--color-team-icon-gradient-end: var(--color-interactive-surface);
-	--color-inverted-section-text: var(--color-supporting-text);
-	--color-focus-ring: var(--color-brand-primary);
-	--color-rocket-idle: var(--color-brand-primary);
-	--color-rocket-hover: var(--color-brand-action-secondary);
-	--color-hall-member-name: var(--color-text-on-dark);
+	--color-join-background-alternate: var(--color-content-surface-gradient-end);
+	--color-faq-card-primary-glow: #38384e;
+	--color-popup-action-accent: #00fff0;
+	--color-snake-head: #60cbff;
+	--color-popup-secondary-glow: #ff62f5;
+	--color-hall-member-name: #ff3030;
+	--color-snake-food: #ff003d;
 
-	/* Hidden reward and game colours use the same restrained palette. */
-	--color-popup-title: var(--color-brand-primary);
-	--color-popup-title-glow: var(--color-clear-surface);
-	--color-popup-edge-glow: var(--color-brand-primary);
-	--color-popup-background: var(--color-raised-card-surface);
-	--color-popup-action-accent: var(--color-brand-primary);
-	--color-game-board-background: var(--color-recessed-surface);
-	--color-game-frame-background: var(--color-raised-card-surface);
-	--color-game-status-text: var(--color-supporting-text);
-	--color-snake-head: var(--color-brand-primary);
-	--color-popup-secondary-glow: var(--color-clear-surface);
-	--color-snake-food: var(--color-text-on-dark);
+	/* Transparent surfaces, shadows, and glows. */
+	--color-hero-subtitle-shadow: #bbff00fb;
 	--color-clear-surface: transparent;
-
-	/* Transparent shadows, borders, and overlays. */
-	--color-navigation-pill-surface: var(--color-navigation-surface);
-	--color-navigation-pill-scrolled: var(--color-navigation-scrolled-surface);
-	--color-mobile-navigation-backdrop: var(--color-navigation-surface);
-	--color-popup-backdrop: rgba(0, 0, 0, 0.78);
-	--color-subtle-shadow-tail: rgba(0, 0, 0, 0.16);
-	--color-subtle-shadow-lead: rgba(0, 0, 0, 0.24);
-	--color-medium-shadow: rgba(0, 0, 0, 0.28);
-	--color-card-shadow-and-hero-vignette: rgba(0, 0, 0, 0.32);
+	--color-subtle-shadow-tail: rgba(0, 0, 0, .04);
+	--color-subtle-shadow-lead: rgba(0, 0, 0, .06);
+	--color-medium-shadow: rgba(0, 0, 0, .12);
+	--color-hero-logo-panel: rgba(0, 0, 0, 0.05);
+	--color-card-shadow-and-hero-vignette: rgba(0, 0, 0, 0.2);
 	--color-inset-section-shadow: rgba(0, 0, 0, 0.25);
-	--color-elevated-shadow: rgba(0, 0, 0, 0.34);
-	--color-deep-shadow: rgba(0, 0, 0, 0.48);
-	--color-logo-shadow: rgba(0, 0, 0, 0.42);
-	--color-brand-border-half: rgba(202, 255, 51, 0.48);
-	--color-brand-glow-soft: rgba(202, 255, 51, 0.08);
-	--color-brand-glow-medium: rgba(202, 255, 51, 0.14);
-	--color-brand-glow-strong: rgba(202, 255, 51, 0.2);
-	--color-olive-glow-soft: rgba(202, 255, 51, 0.06);
-	--color-popup-action-hover-fill: rgba(202, 255, 51, 0.08);
-	--color-popup-action-glow: var(--color-clear-surface);
-	--color-hero-subtitle-shadow: var(--color-clear-surface);
-	--color-hero-brand-glow: var(--color-clear-surface);
-	--color-interactive-card-brand-glow: var(--color-clear-surface);
-	--color-hall-highlight-glow: var(--color-clear-surface);
-	--color-hero-highlight-glow: var(--color-clear-surface);
-	--color-hero-light-glow: var(--color-clear-surface);
-	--color-hall-warning-glow: var(--color-clear-surface);
-	--color-faq-card-primary-glow: var(--color-clear-surface);
-	--color-faq-card-secondary-glow: var(--color-clear-surface);
-	--color-game-frame-shadow: rgba(0, 0, 0, 0.5);
+	--color-elevated-shadow: rgba(0, 0, 0, 0.35);
+	--color-navigation-pill-surface: var(--color-elevated-shadow);
+	--color-popup-backdrop: rgba(0, 0, 0, 0.7);
+	--color-mobile-navigation-backdrop: rgba(0, 0, 0, 0.95);
+	--color-popup-action-hover-fill: rgba(0, 255, 240, 0.1);
+	--color-popup-action-glow: rgba(0, 255, 240, 0.7);
+	--color-hero-brand-glow: rgba(202, 255, 51, 0.2);
+	--color-interactive-card-brand-glow: rgba(202, 255, 51, 0.25);
+	--color-hall-highlight-glow: rgba(253, 249, 35, 0.712);
+	--color-hero-highlight-glow: rgba(255, 241, 51, 0.2);
+	--color-faq-border: rgba(255, 255, 255, 0.1);
+	--color-hero-light-glow: rgba(255, 255, 255, 0.15);
+	--color-hall-warning-glow: rgba(255, 66, 36, 0.603);
+	--color-game-frame-shadow: rgba(52, 87, 220, 0.2);
 
-	/* Typography. The dotted Doto face remains exclusive to the hero paragraph. */
-	--font-family-page: "Lexend", ui-sans-serif, system-ui, sans-serif;
+	/* Font families and the Doto variable-font setting. */
+	--font-family-page: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 	--font-family-hero-subtitle: "Doto", sans-serif;
-	--font-family-game: "Lexend", ui-sans-serif, system-ui, sans-serif;
-	--font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	--font-family-game: "Montserrat", sans-serif;
 	--font-variation-hero-subtitle-rounding: "ROND" 0;
-	--font-size-micro-label: 0.625rem;
-	--font-size-tiny-label: 0.6875rem;
-	--font-size-small-label: 0.75rem;
-	--font-size-card-copy: 0.875rem;
-	--font-size-action-label: 0.875rem;
-	--font-size-section-body: 1rem;
-	--font-size-feature-copy: 1rem;
-	--font-size-navigation-brand: 1rem;
-	--font-size-social-icon: 1.25rem;
-	--font-size-navigation-toggle: 1.125rem;
-	--font-size-subsection-heading: 1.5rem;
-	--font-size-vision-heading: var(--font-size-subsection-heading);
-	--font-size-section-heading: 2rem;
-	--font-size-hero-title: 2.5rem;
-	--font-size-rocket-control: 2rem;
-	--font-size-rocket-control-hover: 2rem;
-	--font-size-popup-copy: 0.875rem;
-	--font-weight-thin: 100;
-	--font-weight-light: 300;
-	--font-weight-paragraph: 400;
-	--font-weight-page-default: 400;
-	--font-weight-game-detail: 500;
-	--font-weight-navigation: 500;
-	--font-weight-button: 650;
-	--font-weight-popup-action: 650;
-	--font-weight-hero-subtitle: 700;
-	--font-weight-section-heading: 700;
-	--font-weight-hero-title: 800;
-	--line-height-icon: 1;
-	--line-height-heading: 1.08;
-	--line-height-section-heading: 1.2;
-	--line-height-page: 1.65;
-	--line-height-faq-copy: 1.6;
-	--line-height-feature-copy: 1.65;
-	--letter-spacing-heading: -0.035em;
-	--letter-spacing-label: 0.04em;
 
-	/* Deliberate spacing rhythm, navigation, and controls. */
+	/* Text sizes. Browser-default heading sizes are unknown and have no token. */
+	--font-size-action-label: 1rem;
+	--font-size-section-body: 1.1rem;
+	--font-size-feature-copy: 1.2rem;
+	--font-size-navigation-brand: 1.25rem;
+	--font-size-social-icon: 1.4rem;
+	--font-size-navigation-toggle: 1.8rem;
+	--font-size-subsection-heading: 2rem;
+	--font-size-vision-heading: 2.2rem;
+	--font-size-rocket-control: 2.5rem;
+	--font-size-rocket-control-hover: 3rem;
+	--font-size-section-heading: 3rem;
+	--font-size-hero-title: clamp(2.5rem, 6vw, 4rem);
+	--font-size-popup-copy: small;
+
+	/* Font weights. */
+	--font-weight-paragraph: normal;
+	--font-weight-game-detail: 500;
+	--font-weight-page-default: 600;
+	--font-weight-section-heading: 700;
+	--font-weight-hero-subtitle: bold;
+	--font-weight-popup-action: var(--font-weight-hero-subtitle);
+	--font-weight-hero-title: 800;
+
+	/* Line heights. */
+	--line-height-page: 1.6;
+	--line-height-faq-copy: 1.5;
+	--line-height-feature-copy: 1.8;
+	--line-height-icon: 1;
+
+	/* Spacing. The original units and distinct zero spellings are preserved. */
 	--space-page-reset: 0;
 	--space-section-edge-reset: 0rem;
-	--space-hairline: 0.0625rem;
-	--space-mission-image-offset: 0rem;
+	--space-mission-image-offset: 0.1rem;
 	--space-compact-control-gap: 0.5rem;
-	--space-card-title-gap: 0.625rem;
-	--space-section-intro-offset: 1rem;
-	--space-section-gutter: 1.25rem;
-	--space-content-inline-total: 2.5rem;
-	--space-popup-inset: 1.25rem;
-	--space-popup-control-inline: 1.25rem;
-	--space-card-inset: 1.25rem;
-	--space-content-gap: 1rem;
-	--space-card-gap-phone: 1rem;
-	--space-card-gap-desktop: 1.25rem;
-	--space-compact-section-block: 4rem;
-	--space-desktop-section-block: 5.5rem;
-	--space-spacious-section-block: 6.5rem;
-	--space-footer-top: 3.5rem;
-	--space-footer-bottom: 2rem;
-	--space-navigation-brand-gap: 0.375rem;
-	--space-navigation-pill-block: 0.3125rem;
-	--space-navigation-pill-inline: 0.625rem;
-	--space-navigation-pill-inline-wide: 1.25rem;
-	--space-navigation-pill-top-gap: 0.75rem;
-	--space-navigation-pill-top-gap-wide: 1.25rem;
-	--space-navigation-link-gap: 1.5rem;
-	--space-navigation-link-offset: 0rem;
-	--space-navigation-overlay-gap: 0.25rem;
-	--space-navigation-overlay-inline: 0.5rem;
-	--space-navigation-overlay-top: 0.5rem;
-	--space-navigation-overlay-link-inline: 1rem;
-	--space-standard-button-block: 0.75rem;
-	--space-standard-button-inline: 1.25rem;
-	--space-secondary-button-inline: 1.25rem;
-	--space-join-control-block: 0.75rem;
-	--space-join-control-inline: 1.5rem;
-	--space-section-block-current: var(--space-compact-section-block);
-	--space-about-section-top: 5rem;
-	--space-about-section-bottom: 3.5rem;
-	--space-mission-top: 3.5rem;
-	--space-mission-bottom: 3.5rem;
-	--space-vision-top: 3.5rem;
-	--space-vision-bottom: 4.5rem;
-	--space-team-section-top: 4.5rem;
-	--space-team-section-bottom: 4.5rem;
-	--space-team-card-block: var(--space-card-inset);
-	--space-team-card-inline: var(--space-card-inset);
-	--space-hall-section-top: 4.5rem;
-	--space-hall-section-bottom: 5rem;
-	--space-community-section-top: 5rem;
-	--space-community-section-bottom: 3.5rem;
-	--space-faq-section-top: 3.5rem;
-	--space-faq-section-bottom: 5rem;
-	--space-join-section-block: 5rem;
-	--space-join-control-top: 1.5rem;
-	--space-footer-block: var(--space-footer-top) var(--space-section-edge-reset) var(--space-footer-bottom);
-	--space-faq-button-top: 1.5rem;
-	--space-faq-control-block: var(--space-standard-button-block);
-	--space-faq-control-inline: var(--space-standard-button-inline);
-	--space-floating-control-block-edge: 1.25rem;
-	--space-floating-control-inline-edge: 1.25rem;
-	--space-popup-control-block: var(--space-standard-button-block);
+	--space-card-title-gap: 0.6rem;
+	--space-section-intro-offset: 0.75rem;
+	--space-join-control-block: 0.8rem;
+	--space-standard-button-block: 0.9rem;
+	--space-section-gutter: 1rem;
+	--space-popup-inset: 1.1rem;
+	--space-popup-control-inline: 1.2rem;
+	--space-card-inset: 1.5rem;
+	--space-join-control-inline: 1.6rem;
+	--space-standard-button-inline: 1.75rem;
+	--space-content-gap: 2rem;
+	--space-compact-section-block: 3rem;
+	--space-desktop-section-block: 4rem;
+	--space-spacious-section-block: 5rem;
+	--space-navigation-brand-gap: 8px;
+	--space-game-frame-inset: 10px;
+	--space-faq-control-block: 12px;
+	--space-game-mobile-score-block: 15px;
+	--space-game-desktop-score-block: 20px;
+	--space-game-score-inline: 27px;
+	--space-faq-control-inline: 28px;
+	--space-fixed-header-offset: 50px;
+	--space-centered: auto;
+	--space-hero-scroll-offset: 150px;
+	--space-section-scroll-offset: var(--space-hero-scroll-offset);
+	--space-section-block-current: var(--space-content-gap);
+	--space-about-section-block: var(--space-section-block-current);
+	--space-mission-block: var(--space-section-block-current);
+	--space-mission-bottom: var(--space-section-edge-reset);
+	--space-vision-block: var(--space-section-block-current);
+	--space-vision-inline: var(--space-section-gutter);
+	--space-team-section-top: var(--space-section-block-current);
+	--space-team-section-bottom: var(--space-section-block-current);
+	--space-team-card-block: var(--space-section-gutter);
+	--space-team-card-inline: var(--space-content-gap);
+	--space-hall-section-top: var(--space-section-block-current);
+	--space-hall-section-bottom: var(--space-section-block-current);
+	--space-community-section-top: var(--space-section-block-current);
+	--space-community-section-bottom: var(--space-section-block-current);
+	--space-faq-section-top: var(--space-section-block-current);
+	--space-faq-section-bottom: var(--space-section-block-current);
+	--space-join-section-block: var(--space-section-block-current);
+	--space-join-control-top: var(--space-card-inset);
+	--space-footer-block: var(--space-section-gutter);
+	--space-floating-control-block-edge: var(--space-game-desktop-score-block);
+	--space-floating-control-inline-edge: var(--space-page-reset);
+	--space-faq-button-top: var(--space-card-inset);
+	--space-popup-control-block: var(--space-card-title-gap);
 	--space-game-close-block: var(--space-compact-control-gap);
 	--space-game-close-inline: var(--space-section-intro-offset);
-	--space-game-frame-inset: 0.625rem;
-	--space-game-mobile-score-block: 0.9375rem;
-	--space-game-desktop-score-block: 1.25rem;
-	--space-game-score-inline: 1.6875rem;
 	--space-mission-text-bottom: var(--space-page-reset);
-	--space-hero-compact-top: 5.5rem;
-	--space-hero-compact-inline: var(--space-section-gutter);
-	--space-hero-compact-bottom: 3.5rem;
-	--space-hero-wide-top: 5.5rem;
-	--space-hero-wide-inline: var(--space-section-gutter);
-	--space-hero-wide-bottom: 4rem;
-	--space-hero-copy-top: 1.25rem;
-	--space-hero-logo-top: 2rem;
-	--space-hero-logo-inset: 1.25rem;
-	--space-hero-button-gap: 0.75rem;
-	--space-hero-secondary-button-top: 1.5rem;
-	--space-hero-secondary-button-inline: 0.75rem;
-	--space-fixed-header-offset: 5.5rem;
-	--space-fixed-header-offset-wide: 6rem;
-	--space-hero-scroll-offset: var(--space-fixed-header-offset);
-	--space-section-scroll-offset: var(--space-fixed-header-offset-wide);
-	--space-hall-row-block: 0.25rem;
-	--space-hall-row-bottom: 0.75rem;
-	--space-centered: auto;
+	--space-navigation-pill-top-gap: var(--space-section-gutter);
+	--space-navigation-pill-block: var(--space-compact-control-gap);
+	--space-navigation-pill-inline: var(--space-card-inset);
+	--space-navigation-link-gap: var(--space-card-inset);
+	--space-navigation-link-offset: var(--space-card-inset);
+	--space-navigation-overlay-inline: var(--space-content-gap);
+	--space-navigation-overlay-gap: var(--space-content-gap);
+	--space-hero-compact-top: var(--space-content-gap);
+	--space-hero-compact-inline: var(--space-card-inset);
+	--space-hero-compact-bottom: var(--space-section-gutter);
+	--space-hero-wide-top: var(--space-content-gap);
+	--space-hero-wide-inline: var(--space-desktop-section-block);
+	--space-hero-wide-bottom: var(--space-spacious-section-block);
+	--space-hero-copy-top: var(--space-section-gutter);
+	--space-hero-logo-top: var(--space-content-gap);
+	--space-hero-logo-inset: var(--space-compact-control-gap);
+	--space-hero-button-gap: var(--space-section-intro-offset);
+	--space-hero-secondary-button-top: var(--space-section-intro-offset);
+	--space-hero-secondary-button-inline: var(--space-page-reset);
 
-	/* Shared geometry and responsive state. */
-	--page-min-height: 100svh;
-	--hero-min-height: auto;
-	--breakpoint-small: 640px;
-	--breakpoint-layout: 768px;
-	--breakpoint-wide-layout: 1024px;
+	/* Fixed layout sizes and visible layout breakpoints. */
+	--page-min-height: 100vh;
+	--breakpoint-site-layout: 768px;
+	--breakpoint-site-wide-layout: 769px;
 	--breakpoint-game-layout: 800px;
-	--content-width: calc(100% - var(--space-content-inline-total));
-	--content-max-width: 70rem;
+	--content-width: 92%;
+	--content-max-width: 1100px;
 	--section-full-width: 100%;
-	--section-copy-max-width: 40rem;
-	--section-heading-border-width: 0px;
+	--section-copy-max-width: 48rem;
+	--section-heading-border-width: 2px;
 	--focus-ring-width: 2px;
-	--focus-ring-offset: 3px;
+	--focus-ring-offset: 2px;
 	--control-min-tap-size: 44px;
-	--animated-control-min-tap-size: 44px;
-	--faq-heading-border-width: var(--section-heading-border-width);
+	--animated-control-min-tap-size: 49px;
+	--faq-heading-border-width: 3px;
 	--faq-card-border-width: 1px;
 	--game-close-border-width: var(--faq-card-border-width);
-	--popup-action-border-width: 1px;
-	--mission-content-max-width: var(--content-max-width);
-	--mission-column-min-width: 0px;
-	--mission-copy-max-width: 36rem;
-	--mission-image-max-width: 20rem;
-	--mission-image-width: 100%;
-	--vision-copy-max-width: 40rem;
-	--team-grid-columns: repeat(auto-fit, minmax(13rem, 1fr));
-	--faq-grid-columns: repeat(auto-fit, minmax(18rem, 1fr));
-	--member-card-width: 13rem;
-	--member-photo-size: 8.5rem;
-	--social-icon-size: 1.375rem;
-	--member-row-continuation-cue-width: 4rem;
-	--team-icon-size: 3rem;
-	--team-icon-glyph-size: 1.5rem;
-	--team-icon-stroke-width: 1.5;
-	--popup-egg-size: 5rem;
+	--popup-action-border-width: 2px;
+	--mission-content-max-width: 1200px;
+	--mission-column-min-width: 280px;
+	--mission-image-max-width: 100%;
+	--vision-copy-max-width: 800px;
+	--team-grid-columns: repeat(auto-fit, minmax(250px, 1fr));
+	--faq-grid-columns: repeat(auto-fit, minmax(280px, 1fr));
+	--member-photo-size: 150px;
+	--social-icon-size: 24px;
+	--member-row-continuation-cue-width: var(--space-desktop-section-block);
 	--rocket-icon-size: 1em;
 	--rocket-icon-baseline-offset: -0.125em;
 	--popup-viewport-width: 100vw;
 	--popup-viewport-height: 100vh;
-	--popup-content-max-width: 25rem;
+	--popup-content-max-width: 400px;
+	--team-icon-size: 80px;
+	--popup-egg-size: var(--team-icon-size);
 	--game-wrapper-width: 65vmin;
 	--game-wrapper-height: 70vmin;
 	--game-board-size: 100%;
@@ -280,215 +231,209 @@
 	--game-detail-padding-inline: var(--space-game-score-inline);
 	--radius-square: 0;
 	--radius-round: 50%;
-	--radius-card-standard: 0.75rem;
-	--radius-large-surface: 1rem;
-	--radius-mission-image: var(--radius-card-standard);
-	--radius-team-card: var(--radius-card-standard);
-	--radius-hall-card: var(--radius-card-standard);
-	--radius-action-standard: 0.625rem;
-	--radius-join-pill: var(--radius-action-standard);
-	--radius-game-frame: 0.5rem;
-	--navigation-pill-radius: 9999px;
+	--radius-card-standard: 1rem;
+	--radius-mission-image: 20px;
+	--radius-team-card: 25px;
+	--radius-hall-card: 16px;
+	--radius-action-standard: 8px;
+	--radius-join-pill: 9999px;
+	--radius-game-frame: 5px;
+	--blur-hall-card: 2px;
+	--blur-faq-card: 10px;
+	--offset-hall-card-hover: -10px;
+	--offset-popup-egg-bounce: -15px;
 	--layout-fill-share: 1;
-	--layout-mission-direction: column;
+	--layout-mission-direction: row;
 	--layout-mission-text-align: left;
-	--opacity-member-detail: 1;
+	--opacity-member-detail: 0.8;
+	--scale-interactive-hover: 1.05;
+	--scale-social-hover: 1.1;
+	--scale-popup-action-hover: 1.08;
+	--scale-rocket-hover: 0.9;
+	--scale-entry-start: 0.9;
+	--scale-entry-end: 1;
 	--opacity-entry-start: 0;
 	--opacity-entry-end: 1;
-	--scale-interactive-hover: 1;
-	--scale-social-hover: 1.05;
-	--scale-popup-action-hover: 1;
-	--scale-rocket-hover: 1;
-	--scale-entry-start: 0.99;
-	--scale-entry-end: 1;
-	--offset-hall-card-hover: 0rem;
-	--offset-popup-egg-bounce: 0rem;
-	--offset-button-hover: 0rem;
-	--scroll-reveal-fade-offset: 0.875rem;
-	--scroll-reveal-slide-offset: 1rem;
-	--scroll-reveal-zoom-start-scale: 0.99;
-	--scroll-reveal-root-margin: 0px 0px -2% 0px;
-	--scroll-reveal-threshold: 0;
-	--surface-animation-size: 100% 100%;
+	--surface-animation-size: 400% 400%;
 	--surface-animation-start-position: 0% 50%;
-	--surface-animation-middle-position: 50% 50%;
-	--surface-animation-end-position: 100% 50%;
-	--hero-background-start-position: 0%;
-	--hero-background-middle-position: 50%;
-	--hero-background-end-position: 100%;
-	--blur-hall-card: 0px;
-	--blur-faq-card: 0px;
-	--member-row-continuation-layer: 1;
+	--surface-animation-middle-position: 100% 50%;
+	--surface-animation-end-position: 0% 50%;
 	--popup-content-layer: 2;
 	--popup-layer: 10000;
 	--game-layer: 9999;
-	--navigation-layer: 10001;
-	--navigation-overlay-layer: 1;
-	--navigation-pill-layer: 2;
-	--hero-glow-layer: 0;
 	--navigation-swipe-threshold: 60px;
+	--scroll-reveal-root-margin: 0px 0px 16px 0px;
+	--scroll-reveal-threshold: 0;
+	--scroll-reveal-fade-offset: var(--space-section-gutter);
+	--scroll-reveal-slide-offset: var(--space-section-gutter);
+	--scroll-reveal-zoom-start-scale: 0.98;
+	--member-row-continuation-layer: 1;
+	--hero-background-start-position: 0%;
+	--hero-background-middle-position: 40%;
+	--hero-background-end-position: 80%;
 	--rocket-flight-horizontal-distance: 100vw;
 	--rocket-flight-vertical-distance: -100vh;
 	--rocket-flight-rotation: 45deg;
 	--rocket-flight-start-opacity: 1;
 	--rocket-flight-end-opacity: 0;
-	--layout-center-position: 50%;
-	--layout-center-translation: -50%;
-	--card-flex-fixed: 0 0 auto;
-	--section-ambient-inset: 0;
-	--section-ambient-blur: 0px;
-	--background-section-ambient: none;
-	--background-section-ambient-reverse: none;
-	--navigation-dropdown-blur: 0px;
-	--navigation-overlay-closed-scale: 1;
-	--navigation-overlay-display: flex;
-	--navigation-toggle-open-rotation: 45deg;
-	--navigation-toggle-close-rotation: -45deg;
-	--navigation-scroll-threshold: 20px;
-	--hero-content-direction: column;
-	--hero-text-align: left;
-	--delay-card-two: 0.05s;
-	--delay-card-three: 0.1s;
-	--delay-card-four: 0.15s;
-	--delay-card-five: 0.2s;
-	--delay-card-six: 0.25s;
-	--delay-card-seven: 0.3s;
-	--delay-faq-two: 0.035s;
-	--delay-faq-three: 0.07s;
-	--delay-faq-four: 0.105s;
-	--delay-faq-five: 0.14s;
-	--delay-faq-six: 0.175s;
-	--delay-faq-seven: 0.21s;
-	--delay-faq-eight: 0.245s;
-	--delay-faq-nine: 0.28s;
 
-	/* Compact floating navigation and anchored phone menu. */
+	/* Navigation geometry and responsive state. */
 	--navigation-width: 100%;
-	--navigation-content-width: fit-content;
-	--navigation-content-max-width: var(--content-max-width);
-	--navigation-logo-height: 1.375rem;
-	--navigation-backdrop-blur: 0px;
-	--navigation-mobile-control-size: var(--control-min-tap-size);
-	--navigation-mobile-pill-height: 3.5rem;
-	--navigation-overlay-width: min(18rem, calc(100% - var(--space-content-inline-total)));
-	--navigation-overlay-top: calc(var(--space-navigation-pill-top-gap) + var(--navigation-mobile-pill-height) + var(--space-navigation-overlay-top));
-	--navigation-overlay-height: auto;
-	--navigation-overlay-closed-position: -0.5rem;
+	--navigation-content-width: 92%;
+	--navigation-content-max-width: 1100px;
+	--navigation-logo-height: 24px;
+	--navigation-backdrop-blur: 3px;
+	--navigation-overlay-top: var(--space-page-reset);
+	--navigation-overlay-height: 100vh;
+	--navigation-overlay-closed-position: -100%;
 	--navigation-overlay-open-position: 0;
-	--navigation-overlay-opacity: 1;
-	--navigation-overlay-link-height: 3rem;
-	--navigation-toggle-line-width: 1.125rem;
-	--navigation-toggle-line-height: 0.125rem;
-	--navigation-toggle-line-offset: 0.25rem;
-	--navigation-logo-start-scale: 0.96;
+	--navigation-layer: 10001;
+	--navigation-overlay-layer: 1;
+	--navigation-pill-layer: 2;
+	--navigation-overlay-opacity: 0.7;
+	--navigation-pill-radius: var(--radius-join-pill);
+	--navigation-logo-start-scale: 0.8;
 	--navigation-logo-end-scale: 1;
-	--navigation-logo-start-opacity: 0.7;
+	--navigation-logo-start-opacity: 0.5;
 	--navigation-logo-end-opacity: 1;
-	--navigation-links-display: none;
-	--navigation-toggle-display: inline-flex;
+	--navigation-links-display: flex;
+	--navigation-toggle-display: none;
 	--navigation-toggle-current-size: var(--font-size-navigation-toggle);
 
-	/* Hero geometry. */
-	--hero-content-width: var(--content-width);
-	--hero-content-max-width: var(--content-max-width);
-	--hero-text-max-width: 38rem;
-	--hero-column-flex: 1 1 18.75rem;
-	--hero-copy-max-width: 37rem;
-	--hero-logo-card-max-width: 14rem;
+	/* Hero geometry and responsive state. */
+	--hero-content-width: 100%;
+	--hero-content-max-width: 1200px;
+	--hero-text-max-width: 600px;
+	--hero-column-flex: 1 1 300px;
+	--hero-copy-max-width: 40rem;
+	--hero-logo-card-max-width: 450px;
 	--hero-logo-card-aspect-ratio: 1 / 1;
 	--hero-logo-size: 100%;
-	--hero-logo-card-radius: var(--radius-large-surface);
-	--hero-button-radius: var(--radius-action-standard);
-	--hero-button-border-width: 1px;
-	--hero-button-display: inline-flex;
-	--hero-button-width: auto;
-	--hero-glow-blur: 0px;
+	--hero-logo-card-radius: 16px;
+	--hero-button-radius: 12px;
+	--hero-button-border-width: 2px;
+	--hero-button-display: flex;
+	--hero-button-width: fit-content;
+	--hero-glow-blur: 50px;
+	--hero-glow-layer: 0;
 	--hero-glow-start-scale: 1;
-	--hero-glow-middle-scale: 1;
-	--hero-glow-start-opacity: 1;
+	--hero-glow-middle-scale: 1.1;
+	--hero-glow-start-opacity: 0.8;
 	--hero-glow-middle-opacity: 1;
-	--hero-logo-entry-start-scale: 0.96;
+	--hero-logo-entry-start-scale: 0.8;
 	--hero-logo-entry-end-scale: 1;
 	--hero-logo-entry-start-opacity: 0;
 	--hero-logo-entry-end-opacity: 1;
-	--hero-logo-hover-offset: 0rem;
-	--hero-interactive-hover-scale: 1;
+	--hero-logo-hover-offset: -10px;
+	--hero-interactive-hover-scale: 1.05;
 	--hero-copy-opacity: 1;
 	--hero-padding-top: var(--space-hero-compact-top);
-	--hero-section-align: flex-start;
 	--hero-padding-inline: var(--space-hero-compact-inline);
 	--hero-padding-bottom: var(--space-hero-compact-bottom);
-	--hero-glow-duration: 0s;
+	--hero-glow-duration: var(--duration-hero-glow-wide);
+	--hero-glow-background:
+		radial-gradient(circle at 79% 45%, var(--color-hero-highlight-glow), var(--color-clear-surface) 40%),
+		radial-gradient(circle at 50% 50%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
+		radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
 
-	/* Restrained cards, controls, shadows, and surfaces. */
-	--card-surface: var(--color-raised-card-surface);
-	--card-surface-hover: var(--color-interactive-surface);
-	--card-border-width: 1px;
-	--card-border-color: var(--color-standard-border);
-	--card-hover-border-color: var(--color-hover-border);
-	--card-radius: var(--radius-card-standard);
-	--card-padding: var(--space-card-inset);
-	--card-hover-offset: 0rem;
-	--shadow-button-default: 0 1px 2px var(--color-subtle-shadow-lead);
-	--shadow-button-inverse: 0 4px 14px var(--color-medium-shadow);
-	--shadow-card-default: 0 1px 2px var(--color-subtle-shadow-tail);
-	--shadow-card-hover: 0 8px 24px var(--color-medium-shadow);
-	--shadow-navigation-pill: 0 12px 32px var(--color-elevated-shadow);
-	--shadow-hero-brand-text: none;
-	--shadow-hero-logo-card: 0 18px 44px var(--color-logo-shadow);
-	--shadow-hero-logo-card-hover: var(--shadow-hero-logo-card);
-	--shadow-image-brand-hover: var(--shadow-card-hover);
-	--shadow-hall-card: var(--shadow-card-default);
-	--shadow-hall-card-hover: var(--shadow-card-hover);
-	--shadow-faq-card: var(--shadow-card-default);
-	--shadow-faq-card-hover: var(--shadow-card-hover);
-	--shadow-join-action: var(--shadow-button-default);
-	--shadow-join-action-hover: 0 4px 14px var(--color-medium-shadow);
-	--shadow-popup-text: none;
-	--shadow-popup-card: 0 24px 70px var(--color-deep-shadow);
-	--shadow-popup-action-text: none;
-	--shadow-popup-action: none;
-	--shadow-popup-action-hover: none;
+	/* Complete effects keep every shadow measurement out of section styles. */
+	--shadow-button-default: 0 1px 2px var(--color-subtle-shadow-lead), 0 4px 8px var(--color-subtle-shadow-tail);
+	--shadow-button-inverse: 0 8px 20px var(--color-medium-shadow);
+	--shadow-navigation-pill: 0 8px 24px var(--color-elevated-shadow);
+	--shadow-hero-brand-text: 0 1px 1px var(--color-hero-subtitle-shadow);
+	--shadow-hero-logo-card: 0 8px 20px var(--color-inset-section-shadow);
+	--shadow-hero-logo-card-hover: 0 16px 16px var(--color-elevated-shadow), 0 0 10px var(--color-brand-primary);
+	--background-hero-section: linear-gradient(to top right, var(--color-hero-background-start) var(--hero-background-start-position), var(--color-hero-background-middle) var(--hero-background-middle-position), var(--color-hero-background-end) var(--hero-background-end-position));
+	--background-team-icon: linear-gradient(135deg, var(--color-team-icon-gradient-start), var(--color-team-icon-gradient-end));
+	--background-member-row-continuation-cue: linear-gradient(to right, var(--color-clear-surface), var(--color-content-surface-gradient-end));
+	--background-join-section: linear-gradient(-45deg, var(--color-join-background-base), var(--color-join-background-alternate), var(--color-faq-card-background), var(--color-join-background-base));
+	--background-join-action: linear-gradient(270deg, var(--color-brand-primary), var(--color-join-gradient-middle), var(--color-join-gradient-end));
+	--shadow-image-brand-hover: 0 1px 15px var(--color-interactive-card-brand-glow);
+	--shadow-hall-card: var(--shadow-button-inverse);
+	--shadow-hall-card-hover: 0 1px 15px var(--color-hall-warning-glow), 0 0 10px var(--color-hall-highlight-glow);
+	--shadow-faq-card: 0 4px 15px var(--color-card-shadow-and-hero-vignette);
+	--shadow-faq-card-hover: 0 0 20px var(--color-faq-card-primary-glow), 0 0 15px var(--color-faq-card-secondary-glow);
+	--shadow-join-action: 0 0 20px var(--color-brand-primary);
+	--shadow-join-action-hover: 0 0 30px var(--color-join-hover-glow);
+	--shadow-popup-text: 0 0 1px var(--color-popup-title), 0 0 20px var(--color-popup-title-glow);
+	--shadow-popup-card: 0 0 3px var(--color-popup-edge-glow);
+	--shadow-popup-action-text: 0 0 6px var(--color-popup-action-accent), 0 0 12px var(--color-popup-secondary-glow);
+	--shadow-popup-action: 0 0 12px var(--color-popup-action-glow);
+	--shadow-popup-action-hover: 0 0 20px var(--color-popup-action-accent), 0 0 30px var(--color-popup-secondary-glow);
 	--shadow-game-frame: 0 20px 40px var(--color-game-frame-shadow);
-	--background-hero-section: var(--color-page-background);
-	--background-team-icon: var(--color-interactive-surface);
-	--background-member-row-continuation-cue: linear-gradient(to right, var(--color-clear-surface), var(--color-page-background) 72%);
-	--background-join-section: var(--color-recessed-surface);
-	--background-join-action: var(--color-brand-primary);
-	--hero-glow-background: none;
 
-	/* Quick, quiet movement translated to plain CSS. */
+	/* Animation and transition settings. */
 	--motion-page-scroll: smooth;
-	--easing-site-out: cubic-bezier(0.22, 1, 0.36, 1);
-	--easing-site-standard: cubic-bezier(0.4, 0, 0.2, 1);
-	--duration-button-press: 0.12s;
-	--duration-button-hover: 0.16s;
-	--duration-button-standard: 0.18s;
-	--duration-team-card-transform: 0.16s;
-	--duration-team-card-shadow: 0.16s;
-	--duration-rocket-hover: 0.16s;
-	--duration-faq-card-return: 0.16s;
-	--duration-navigation-logo-pop: 0.18s;
-	--duration-navigation-overlay-slide: 0.18s;
-	--duration-navigation-scroll: 0.2s;
-	--duration-hero-glow-wide: 0s;
-	--duration-hero-glow-compact: 0s;
-	--duration-hero-logo-entry: 0.45s;
-	--duration-hero-logo-delay: 0.08s;
-	--duration-popup-entry: 0.22s;
-	--duration-popup-egg-bounce: 0s;
-	--duration-join-background-shift: 0s;
-	--duration-join-gradient-shift: 0s;
-	--duration-join-pulse: 0s;
-	--duration-snake-entry: 0.25s;
-	--duration-scroll-entry: 0.38s;
-	--duration-card-entry: 0.32s;
-	--duration-faq-entry: 0.28s;
-	--duration-card-stagger: 0.05s;
-	--duration-faq-stagger: 0.035s;
+	--duration-button-press: 0.18s;
+	--duration-button-hover: 0.2s;
+	--duration-button-standard: 0.3s;
+	--duration-team-card-transform: 0.4s;
+	--duration-team-card-shadow: var(--duration-button-standard);
+	--duration-rocket-hover: var(--duration-button-standard);
+	--duration-faq-card-return: 0.25s;
+	--duration-join-background-shift: 15s;
+	--duration-navigation-logo-pop: 1s;
+	--duration-navigation-overlay-slide: 0.3s;
+	--duration-hero-glow-wide: 9s;
+	--duration-hero-glow-compact: 10s;
+	--duration-hero-logo-entry: 2s;
+	--duration-popup-entry: 0.5s;
+	--duration-popup-egg-bounce: 1.2s;
+	--duration-join-gradient-shift: 8s;
+	--duration-join-pulse: 2.5s;
+	--duration-snake-entry: 0.5s;
+	--duration-scroll-entry: var(--duration-team-card-transform);
 	--duration-rocket-flight: 2s;
 	--duration-game-tick: 100ms;
 	--easing-rocket-flight: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@keyframes hero-glow-pulse {
+	0%,
+	100% {
+		transform: scale(var(--hero-glow-start-scale));
+		opacity: var(--hero-glow-start-opacity);
+	}
+
+	50% {
+		transform: scale(var(--hero-glow-middle-scale));
+		opacity: var(--hero-glow-middle-opacity);
+	}
+}
+
+@keyframes shared-gradient-shift {
+	0% {
+		background-position: var(--surface-animation-start-position);
+	}
+
+	50% {
+		background-position: var(--surface-animation-middle-position);
+	}
+
+	100% {
+		background-position: var(--surface-animation-end-position);
+	}
+}
+
+@keyframes join-action-pulse {
+	0%,
+	100% {
+		transform: scale(var(--scale-entry-end));
+	}
+
+	50% {
+		transform: scale(var(--scale-popup-action-hover));
+	}
+}
+
+@keyframes popup-egg-bounce {
+	from {
+		transform: translateY(var(--space-page-reset));
+	}
+
+	to {
+		transform: translateY(var(--offset-popup-egg-bounce));
+	}
 }
 
 @keyframes surface-entry {
@@ -496,6 +441,7 @@
 		transform: scale(var(--scale-entry-start));
 		opacity: var(--opacity-entry-start);
 	}
+
 	to {
 		transform: scale(var(--scale-entry-end));
 		opacity: var(--opacity-entry-end);
@@ -504,93 +450,52 @@
 
 @keyframes rocket-flight {
 	from {
-		transform: translate(var(--space-page-reset), var(--space-page-reset)) rotate(var(--space-page-reset));
+		transform: translate(var(--space-page-reset), var(--space-page-reset))
+			rotate(var(--space-page-reset));
 		opacity: var(--rocket-flight-start-opacity);
 	}
+
 	to {
-		transform: translate(var(--rocket-flight-horizontal-distance), var(--rocket-flight-vertical-distance)) rotate(var(--rocket-flight-rotation));
+		transform: translate(
+				var(--rocket-flight-horizontal-distance),
+				var(--rocket-flight-vertical-distance)
+			)
+			rotate(var(--rocket-flight-rotation));
 		opacity: var(--rocket-flight-end-opacity);
 	}
 }
 
-/* Site breakpoints: 640px, 768px, and 1024px. */
-@media (min-width: 640px) {
+/* Media conditions cannot consume custom properties, so the audited breakpoint
+	stays here with the shared responsive values instead of in a section style. */
+@media (max-width: 768px) {
 	:root {
-		--font-size-section-body: 1.0625rem;
-		--font-size-feature-copy: 1.0625rem;
-		--font-size-navigation-brand: 1.125rem;
-		--font-size-subsection-heading: 1.875rem;
-		--font-size-vision-heading: var(--font-size-subsection-heading);
-		--font-size-section-heading: 2.5rem;
-		--font-size-hero-title: 3.5rem;
-		--space-section-gutter: 2rem;
-		--space-content-inline-total: 4rem;
-		--space-card-inset: 1.5rem;
-		--space-content-gap: var(--space-card-gap-desktop);
-		--space-section-block-current: var(--space-desktop-section-block);
-		--space-about-section-top: 7rem;
-		--space-about-section-bottom: 4.5rem;
-		--space-mission-top: 4.5rem;
-		--space-mission-bottom: 4.5rem;
-		--space-vision-top: 4.5rem;
-		--space-vision-bottom: 6rem;
-		--space-team-section-top: 6rem;
-		--space-team-section-bottom: 6rem;
-		--space-hall-section-top: 6rem;
-		--space-hall-section-bottom: 7rem;
-		--space-community-section-top: 7rem;
-		--space-community-section-bottom: 4.5rem;
-		--space-faq-section-top: 4.5rem;
-		--space-faq-section-bottom: 7rem;
-		--space-join-section-block: 6.5rem;
-		--space-footer-top: 4rem;
-		--space-footer-bottom: 2.5rem;
-		--space-navigation-pill-top-gap: var(--space-navigation-pill-top-gap-wide);
-		--space-navigation-pill-inline: 0.75rem;
-		--space-fixed-header-offset: var(--space-fixed-header-offset-wide);
-		--space-hero-scroll-offset: var(--space-fixed-header-offset-wide);
-		--space-section-scroll-offset: var(--space-fixed-header-offset-wide);
-		--space-hero-compact-top: 6.5rem;
-		--space-hero-compact-bottom: 5rem;
-		--hero-logo-card-max-width: 18rem;
-		--hero-padding-top: var(--space-hero-compact-top);
-		--hero-padding-inline: var(--space-hero-wide-inline);
-		--hero-padding-bottom: var(--space-hero-compact-bottom);
-		--space-floating-control-inline-edge: var(--space-game-desktop-score-block);
+		--navigation-links-display: none;
+		--navigation-toggle-display: block;
+		--navigation-toggle-current-size: var(--font-size-subsection-heading);
+		--hero-glow-duration: var(--duration-hero-glow-compact);
+		--hero-glow-background:
+			radial-gradient(circle at 60% 85%, var(--color-hero-brand-glow), var(--color-clear-surface) 40%),
+			radial-gradient(circle at 60% 30%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
+			radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
+		--layout-mission-direction: column;
+		--layout-mission-text-align: center;
+		--space-mission-text-bottom: var(--space-content-gap);
 	}
 }
 
-@media (min-width: 768px) {
-	:root { --font-size-section-heading: 2.75rem; }
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 769px) {
 	:root {
-		--font-size-hero-title: 4.25rem;
-		--space-section-gutter: 3rem;
-		--space-content-inline-total: 6rem;
-		--space-navigation-pill-block: 0.625rem;
-		--space-navigation-pill-inline: var(--space-navigation-pill-inline-wide);
-		--space-fixed-header-offset: 6.25rem;
-		--space-hero-scroll-offset: var(--space-fixed-header-offset);
-		--space-section-scroll-offset: var(--space-fixed-header-offset);
-		--hero-min-height: var(--page-min-height);
+		--space-section-block-current: var(--space-compact-section-block);
 		--hero-padding-top: var(--space-hero-wide-top);
-		--hero-section-align: center;
-		--hero-logo-card-max-width: 19rem;
-		--navigation-content-width: var(--content-width);
-		--navigation-logo-height: 1.5rem;
-		--navigation-links-display: flex;
-		--navigation-toggle-display: none;
-		--layout-mission-direction: row;
-		--hero-content-direction: row;
-		--hero-text-align: left;
-		--navigation-overlay-display: none;
-		--layout-mission-text-align: left;
+		--hero-padding-inline: var(--space-hero-wide-inline);
+		--hero-padding-bottom: var(--space-hero-wide-bottom);
+		--space-team-card-block: var(--space-card-inset);
+		--space-team-card-inline: var(--space-card-inset);
 		--space-hero-secondary-button-top: var(--space-card-inset);
 		--space-hero-secondary-button-inline: var(--space-hero-button-gap);
 		--hero-button-display: inline-flex;
 		--hero-button-width: auto;
+		--space-floating-control-inline-edge: var(--space-game-desktop-score-block);
 	}
 }
 
@@ -604,7 +509,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html { scroll-behavior: auto; }
+	html {
+		scroll-behavior: auto;
+	}
+
 	*,
 	*::before,
 	*::after {

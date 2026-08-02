@@ -61,27 +61,28 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 </section>
 
 <style>
-.hall-of-fame {
-		position: relative;
-		width: min(var(--content-max-width), var(--content-width));
-		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-hall-section-top) var(--space-page-reset)
+	.hall-of-fame {
+		padding: var(--space-hall-section-top) var(--space-section-gutter)
 			var(--space-hall-section-bottom);
 		color: var(--color-text-on-dark);
-		text-align: left;
+		text-align: center;
 	}
 
 	.hall-of-fame__heading {
-		display: block;
-		margin: var(--space-page-reset);
-		color: var(--color-text-on-dark);
+		display: inline-block;
+		margin: var(--space-page-reset) var(--space-centered);
+		padding-bottom: var(--space-compact-control-gap);
+		color: var(--color-brand-primary);
 		font-size: var(--font-size-subsection-heading);
 		font-weight: var(--font-weight-section-heading);
-		line-height: var(--line-height-section-heading);
-		letter-spacing: var(--letter-spacing-heading);
+		border-bottom: var(--section-heading-border-width) solid
+			var(--color-text-on-dark);
 	}
 
-	.hall-of-fame__row-shell { position: relative; margin-top: var(--space-content-gap); }
+	.hall-of-fame__row-shell {
+		position: relative;
+		margin-top: var(--space-section-gutter);
+	}
 
 	.hall-of-fame__row-shell::after {
 		position: absolute;
@@ -98,7 +99,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		content: '→';
 		opacity: var(--opacity-entry-start);
 		background: var(--background-member-row-continuation-cue);
-		transition: opacity var(--duration-button-hover) var(--easing-site-standard);
+		transition: opacity var(--duration-button-hover) ease;
 	}
 
 	.hall-of-fame__row-shell[data-scrollable='true'][data-scroll-end='false']::after {
@@ -107,55 +108,48 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__row {
 		display: flex;
-		padding: var(--space-hall-row-block) var(--space-page-reset) var(--space-hall-row-bottom);
+		margin-top: var(--space-page-reset);
+		padding: var(--space-card-inset);
 		overflow-x: auto;
-		gap: var(--space-content-gap);
-		scroll-padding-inline: var(--space-page-reset);
+		gap: var(--space-card-inset);
+		scroll-padding-inline: var(--space-card-inset);
 		scrollbar-width: none;
 		scroll-snap-type: x mandatory;
 		touch-action: pan-x;
 		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: none;
 	}
 
 	.hall-of-fame__card {
-		flex: var(--card-flex-fixed);
-		width: var(--member-card-width);
-		padding: var(--card-padding);
-		text-align: center;
-		background: var(--card-surface);
-		border: var(--card-border-width) solid var(--card-border-color);
-		border-radius: var(--card-radius);
-		box-shadow: var(--shadow-card-default);
+		padding: var(--space-card-inset);
+		background: var(--color-hall-card-background);
+		border-radius: var(--radius-hall-card);
+		box-shadow: var(--shadow-hall-card);
+		backdrop-filter: blur(var(--blur-hall-card));
 		scroll-snap-align: start;
 		scroll-snap-stop: always;
 		transition:
-			background-color var(--duration-button-standard) var(--easing-site-out),
-			border-color var(--duration-button-standard) var(--easing-site-out),
-			box-shadow var(--duration-button-standard) var(--easing-site-out);
+			transform var(--duration-button-standard) ease,
+			box-shadow var(--duration-button-standard) ease;
+		/* The author appears to have intended a moving background, but the old
+			card is a flat colour, so its background-position animation shows nothing. */
 	}
 
 	.hall-of-fame__photo {
 		width: var(--member-photo-size);
 		height: var(--member-photo-size);
-		margin: var(--space-page-reset) var(--space-centered) var(--space-section-gutter);
+		margin-bottom: var(--space-section-gutter);
 		object-fit: cover;
 		border-radius: var(--radius-round);
 	}
 
 	.hall-of-fame__name {
-		margin: var(--space-page-reset) var(--space-page-reset) var(--space-card-title-gap);
 		color: var(--color-hall-member-name);
-		font-size: var(--font-size-feature-copy);
-		font-weight: var(--font-weight-button);
-		line-height: var(--line-height-section-heading);
 	}
 
 	.hall-of-fame__detail {
-		margin: var(--space-page-reset) var(--space-page-reset) var(--space-compact-control-gap);
+		margin-bottom: var(--space-compact-control-gap);
 		opacity: var(--opacity-member-detail);
-		color: var(--color-faded-text);
-		font-size: var(--font-size-card-copy);
-		line-height: var(--line-height-feature-copy);
 	}
 
 	.hall-of-fame__socials {
@@ -166,26 +160,22 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 	}
 
 	.hall-of-fame__socials a {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-width: var(--control-min-tap-size);
-		min-height: var(--control-min-tap-size);
-		border-radius: var(--radius-action-standard);
+		margin: var(--space-page-reset) var(--space-compact-control-gap);
 	}
 
 	.hall-of-fame__social-icon {
 		width: var(--social-icon-size);
 		height: var(--social-icon-size);
-		transition: transform var(--duration-button-standard) var(--easing-site-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.hall-of-fame__card:hover {
-			background: var(--card-surface-hover);
-			border-color: var(--card-hover-border-color);
-			box-shadow: var(--shadow-card-hover);
+			box-shadow: var(--shadow-hall-card-hover);
+			transform: translateY(var(--offset-hall-card-hover));
 		}
-		.hall-of-fame__socials a:hover img { transform: scale(var(--scale-social-hover)); }
+
+		.hall-of-fame__socials a:hover img {
+			transform: scale(var(--scale-social-hover));
+		}
 	}
 </style>

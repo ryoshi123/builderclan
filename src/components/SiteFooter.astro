@@ -16,33 +16,30 @@ const currentYear = new Date().getFullYear();
 
 <style>
 	.site-footer {
-		padding: var(--space-footer-block);
+		padding: var(--space-footer-block) var(--space-section-edge-reset);
 		color: var(--color-footer-text);
-		font-size: var(--font-size-card-copy);
-		line-height: var(--line-height-feature-copy);
 		text-align: center;
-		background: var(--color-page-background);
 	}
 
 	.site-footer p,
-	.site-footer__hell-week { margin: var(--space-page-reset); }
+	.site-footer__hell-week {
+		margin: var(--space-page-reset);
+	}
 
 	.site-footer__hell-week {
 		display: block;
 		width: var(--section-full-width);
-		min-height: var(--control-min-tap-size);
-		padding: var(--space-compact-control-gap);
+		padding: var(--space-page-reset);
 		color: inherit;
 		font: inherit;
 		line-height: inherit;
 		text-align: center;
 		appearance: none;
-		cursor: pointer;
-		background: var(--color-clear-surface);
+		background: none;
 		border: none;
-		border-radius: var(--radius-action-standard);
-		transition: color var(--duration-button-standard) var(--easing-site-standard);
 	}
 
-	.site-footer__hell-week:hover { color: var(--color-brand-primary); }
+	.site-footer__hell-week:hover {
+		color: var(--color-brand-primary);
+	}
 </style>

@@ -8,26 +8,25 @@
 </section>
 
 <style>
-.vision {
-		position: relative;
-		width: min(var(--content-max-width), var(--content-width));
-		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-vision-top) var(--space-page-reset) var(--space-vision-bottom);
-		text-align: left;
+	.vision {
+		padding: var(--space-vision-block) var(--space-vision-inline);
+		font-size: var(--font-size-subsection-heading);
+		text-align: center;
 	}
 
 	.vision h3 {
-		margin: var(--space-page-reset) var(--space-page-reset) var(--space-section-gutter);
-		color: var(--color-text-on-dark);
+		min-width: var(--mission-column-min-width);
+		margin: var(--space-page-reset) var(--space-centered)
+			var(--space-section-gutter);
+		color: var(--color-brand-primary);
 		font-size: var(--font-size-vision-heading);
 		font-weight: var(--font-weight-section-heading);
-		line-height: var(--line-height-section-heading);
-		letter-spacing: var(--letter-spacing-heading);
+		line-height: var(--line-height-feature-copy);
 	}
 
 	.vision p {
 		max-width: var(--vision-copy-max-width);
-		margin: var(--space-page-reset);
+		margin: var(--space-page-reset) var(--space-centered);
 		color: var(--color-section-body-text);
 		font-size: var(--font-size-section-body);
 		font-weight: var(--font-weight-paragraph);

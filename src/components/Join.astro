@@ -18,7 +18,7 @@
 </section>
 
 <style>
-.join {
+	.join {
 		position: relative;
 		width: var(--section-full-width);
 		padding: var(--space-join-section-block) var(--space-section-gutter);
@@ -26,25 +26,21 @@
 		color: var(--color-text-on-dark);
 		text-align: center;
 		background: var(--background-join-section);
-		border-block: var(--card-border-width) solid var(--color-standard-border);
+		background-size: var(--surface-animation-size);
+		animation: shared-gradient-shift var(--duration-join-background-shift) ease
+			infinite;
 	}
 
 	.join__heading {
 		color: var(--color-text-on-dark);
-		font-size: var(--font-size-section-heading);
-		font-weight: var(--font-weight-section-heading);
-		line-height: var(--line-height-heading);
-		letter-spacing: var(--letter-spacing-heading);
-		text-align: center;
 	}
 
-	.join__heading span { color: var(--color-brand-primary); }
+	.join__heading span {
+		color: var(--color-brand-primary);
+	}
 
 	.join__copy {
-		margin-inline: var(--space-centered);
 		color: var(--color-inverted-section-text);
-		line-height: var(--line-height-feature-copy);
-		text-align: center;
 	}
 
 	.join__button {
@@ -56,22 +52,20 @@
 		padding: var(--space-join-control-block) var(--space-join-control-inline);
 		color: var(--color-join-action-text);
 		font-size: var(--font-size-action-label);
-		font-weight: var(--font-weight-button);
+		font-weight: var(--font-weight-page-default);
 		text-decoration: none;
 		background: var(--background-join-action);
-		border: var(--hero-button-border-width) solid var(--color-brand-primary);
+		background-size: var(--surface-animation-size);
 		border-radius: var(--radius-join-pill);
 		box-shadow: var(--shadow-join-action);
-		transition:
-			background-color var(--duration-button-hover) var(--easing-site-out),
-			border-color var(--duration-button-hover) var(--easing-site-out),
-			box-shadow var(--duration-button-hover) var(--easing-site-out);
+		animation:
+			shared-gradient-shift var(--duration-join-gradient-shift) ease infinite,
+			join-action-pulse var(--duration-join-pulse) ease-in-out infinite;
+		transition: transform var(--duration-button-hover) ease;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.join__button:hover {
-			background: var(--color-brand-action-secondary);
-			border-color: var(--color-brand-action-secondary);
 			box-shadow: var(--shadow-join-action-hover);
 		}
 	}

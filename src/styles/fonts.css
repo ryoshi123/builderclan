@@ -1,14 +1,22 @@
 @font-face {
-	font-family: 'Lexend';
-	src: url('../assets/fonts/lexend/Lexend-VariableFont_wght.ttf') format('truetype-variations');
+	font-family: 'Doto';
+	src: url('../assets/fonts/doto/doto-rond-700-latin.woff2') format('woff2');
 	font-style: normal;
-	font-weight: 100 900;
+	font-weight: 700;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: 'Doto';
-	src: url('../assets/fonts/doto/doto-rond-700-latin.woff2') format('woff2');
+	font-family: 'Montserrat';
+	src: url('../assets/fonts/montserrat/montserrat-500-latin.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../assets/fonts/montserrat/montserrat-700-latin.woff2') format('woff2');
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
