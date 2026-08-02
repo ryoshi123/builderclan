@@ -26,7 +26,7 @@
 </div>
 
 <style>
-	.game-panel {
+.game-panel {
 		position: fixed;
 		top: var(--game-frame-position);
 		left: var(--game-frame-position);
@@ -63,7 +63,7 @@
 		background: var(--color-game-frame-background);
 		border-radius: var(--radius-game-frame);
 		transform-origin: center;
-		animation: surface-entry var(--duration-snake-entry) var(--easing-parent-out) forwards;
+		animation: surface-entry var(--duration-snake-entry) var(--easing-site-out) forwards;
 	}
 
 	.game-panel__details {
@@ -84,21 +84,21 @@
 		min-width: var(--animated-control-min-tap-size);
 		min-height: var(--animated-control-min-tap-size);
 		padding: var(--space-game-close-block) var(--space-game-close-inline);
-		color: var(--color-game-status-text);
+		color: var(--color-page-background);
 		font-size: var(--font-size-action-label);
 		font-weight: var(--font-weight-button);
 		cursor: pointer;
-		background: var(--color-game-board-background);
-		border: var(--game-close-border-width) solid var(--color-game-status-text);
+		background: var(--color-brand-primary);
+		border: var(--game-close-border-width) solid var(--color-brand-primary);
 		border-radius: var(--radius-action-standard);
 		transition:
-			transform var(--duration-button-standard) var(--easing-parent-out),
-			background-color var(--duration-button-standard) var(--easing-parent-standard);
+			background-color var(--duration-button-standard) var(--easing-site-standard),
+			border-color var(--duration-button-standard) var(--easing-site-standard);
 	}
 
 	.game-panel__close:hover {
-		background: var(--color-game-frame-background);
-		transform: translateY(var(--offset-button-hover));
+		background: var(--color-brand-action-secondary);
+		border-color: var(--color-brand-action-secondary);
 	}
 
 	.game-panel__board {

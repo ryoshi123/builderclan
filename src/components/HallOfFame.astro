@@ -61,17 +61,19 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 </section>
 
 <style>
-	.hall-of-fame {
+.hall-of-fame {
 		position: relative;
-		padding: var(--space-hall-section-top) var(--space-section-gutter)
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered);
+		padding: var(--space-hall-section-top) var(--space-page-reset)
 			var(--space-hall-section-bottom);
 		color: var(--color-text-on-dark);
-		text-align: center;
+		text-align: left;
 	}
 
 	.hall-of-fame__heading {
 		display: block;
-		margin: var(--space-page-reset) var(--space-centered);
+		margin: var(--space-page-reset);
 		color: var(--color-text-on-dark);
 		font-size: var(--font-size-subsection-heading);
 		font-weight: var(--font-weight-section-heading);
@@ -96,7 +98,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		content: '→';
 		opacity: var(--opacity-entry-start);
 		background: var(--background-member-row-continuation-cue);
-		transition: opacity var(--duration-button-hover) var(--easing-parent-standard);
+		transition: opacity var(--duration-button-hover) var(--easing-site-standard);
 	}
 
 	.hall-of-fame__row-shell[data-scrollable='true'][data-scroll-end='false']::after {
@@ -105,10 +107,10 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__row {
 		display: flex;
-		padding: var(--space-card-inset);
+		padding: var(--space-hall-row-block) var(--space-page-reset) var(--space-hall-row-bottom);
 		overflow-x: auto;
 		gap: var(--space-content-gap);
-		scroll-padding-inline: var(--space-card-inset);
+		scroll-padding-inline: var(--space-page-reset);
 		scrollbar-width: none;
 		scroll-snap-type: x mandatory;
 		touch-action: pan-x;
@@ -117,7 +119,9 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__card {
 		flex: var(--card-flex-fixed);
+		width: var(--member-card-width);
 		padding: var(--card-padding);
+		text-align: center;
 		background: var(--card-surface);
 		border: var(--card-border-width) solid var(--card-border-color);
 		border-radius: var(--card-radius);
@@ -125,17 +129,15 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		scroll-snap-align: start;
 		scroll-snap-stop: always;
 		transition:
-			transform var(--duration-button-standard) var(--easing-parent-out),
-			border-color var(--duration-button-standard) var(--easing-parent-out),
-			box-shadow var(--duration-button-standard) var(--easing-parent-out);
-		/* The old moving-background declaration remains omitted because a flat
-			card has no background movement to display. */
+			background-color var(--duration-button-standard) var(--easing-site-out),
+			border-color var(--duration-button-standard) var(--easing-site-out),
+			box-shadow var(--duration-button-standard) var(--easing-site-out);
 	}
 
 	.hall-of-fame__photo {
 		width: var(--member-photo-size);
 		height: var(--member-photo-size);
-		margin-bottom: var(--space-section-gutter);
+		margin: var(--space-page-reset) var(--space-centered) var(--space-section-gutter);
 		object-fit: cover;
 		border-radius: var(--radius-round);
 	}
@@ -169,20 +171,20 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		justify-content: center;
 		min-width: var(--control-min-tap-size);
 		min-height: var(--control-min-tap-size);
-		border-radius: var(--radius-round);
+		border-radius: var(--radius-action-standard);
 	}
 
 	.hall-of-fame__social-icon {
 		width: var(--social-icon-size);
 		height: var(--social-icon-size);
-		transition: transform var(--duration-button-standard) var(--easing-parent-out);
+		transition: transform var(--duration-button-standard) var(--easing-site-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.hall-of-fame__card:hover {
+			background: var(--card-surface-hover);
 			border-color: var(--card-hover-border-color);
 			box-shadow: var(--shadow-card-hover);
-			transform: translateY(var(--card-hover-offset));
 		}
 		.hall-of-fame__socials a:hover img { transform: scale(var(--scale-social-hover)); }
 	}

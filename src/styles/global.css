@@ -55,12 +55,12 @@ img {
 	font-weight: var(--font-weight-section-heading);
 	line-height: var(--line-height-heading);
 	letter-spacing: var(--letter-spacing-heading);
-	text-align: center;
+	text-align: left;
 }
 
 .section-copy {
 	max-width: var(--section-copy-max-width);
-	margin: var(--space-section-intro-offset) var(--space-centered) var(--space-page-reset);
+	margin: var(--space-section-intro-offset) var(--space-page-reset) var(--space-page-reset);
 	color: var(--color-section-body-text);
 	font-size: var(--font-size-section-body);
 	font-weight: var(--font-weight-paragraph);
@@ -73,8 +73,8 @@ main { background: var(--color-page-background); }
 html.has-client-script [data-reveal] {
 	pointer-events: none;
 	transition:
-		opacity var(--duration-scroll-entry) var(--easing-parent-out),
-		transform var(--duration-scroll-entry) var(--easing-parent-out);
+		opacity var(--duration-scroll-entry) var(--easing-site-out),
+		transform var(--duration-scroll-entry) var(--easing-site-out);
 }
 
 html.has-client-script [data-reveal='fade-up'],
@@ -100,11 +100,11 @@ html.has-client-script [data-reveal][data-reveal-instant='true'] { transition: n
 
 html.has-client-script [data-reveal][data-revealed='true']
 	:is(.team-types__card, .hall-of-fame__card) {
-	animation: parent-card-entry var(--duration-card-entry) var(--easing-parent-out) both;
+	animation: card-entry var(--duration-card-entry) var(--easing-site-out) both;
 }
 
 html.has-client-script [data-reveal][data-revealed='true'] .faq__card {
-	animation: parent-card-entry var(--duration-faq-entry) var(--easing-parent-out) both;
+	animation: card-entry var(--duration-faq-entry) var(--easing-site-out) both;
 }
 
 html.has-client-script [data-reveal][data-revealed='true']
@@ -136,7 +136,7 @@ html.has-client-script [data-reveal][data-revealed='true']
 html.has-client-script [data-reveal][data-revealed='true']
 	.faq__card:nth-child(9) { animation-delay: var(--delay-faq-nine); }
 
-@keyframes parent-card-entry {
+@keyframes card-entry {
 	from {
 		opacity: var(--opacity-entry-start);
 		transform: translateY(var(--scroll-reveal-slide-offset));
@@ -148,6 +148,8 @@ html.has-client-script [data-reveal][data-revealed='true']
 }
 
 @media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+
 	html.has-client-script [data-reveal],
 	html.has-client-script [data-reveal] :is(.team-types__card, .hall-of-fame__card, .faq__card) {
 		visibility: visible;

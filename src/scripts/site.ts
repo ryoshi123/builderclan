@@ -60,6 +60,12 @@ if (navigationToggle && navigationOverlay) {
 		setNavigationOpen(navigationOverlay.dataset.open !== 'true');
 	});
 
+	navigationToggle.addEventListener('keydown', (event) => {
+		if (event.key !== 'Enter' && event.key !== ' ') return;
+		event.preventDefault();
+		setNavigationOpen(navigationOverlay.dataset.open !== 'true');
+	});
+
 	navigationOverlay.querySelectorAll('a').forEach((link) => {
 		link.addEventListener('click', () => setNavigationOpen(false));
 	});
@@ -69,6 +75,18 @@ if (navigationToggle && navigationOverlay) {
 			setNavigationOpen(false);
 		}
 	}, { passive: true });
+
+	document.addEventListener('click', (event) => {
+		if (navigationOverlay.dataset.open !== 'true') return;
+		if (event.target instanceof Node && siteHeader?.contains(event.target)) return;
+		setNavigationOpen(false);
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape' || navigationOverlay.dataset.open !== 'true') return;
+		event.preventDefault();
+		setNavigationOpen(false);
+	});
 }
 
 const faqToggle = document.querySelector<HTMLButtonElement>('[data-faq-toggle]');

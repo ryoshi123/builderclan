@@ -1,124 +1,127 @@
-# BuilderClan design system
+# BuilderClan AISAT design system
 
-The site's design values live in `src/styles/values.css`. Component styles use role names from that file instead of writing colours, text sizes, spacing, radii, shadows, or timings directly.
+All visual values live in `src/styles/values.css`. Components use role names from that file; they do not contain raw colours, sizes, spacing, radii, shadows, or timings.
+
+## Design direction
+
+- Dark, quiet surfaces with one accent: BuilderClan lime.
+- Left-aligned reading edges for content sections; centred treatment is reserved for the Join call-to-action and profile-card content.
+- Restrained borders and shadows. Cards do not grow, lift, glow, or use animated borders.
+- Movement is short and subtle, with an immediate no-motion version for visitors who request reduced motion.
 
 ## Colours
 
-### Parent organisation palette used by the page
-
-- Main brand and focus: `#caff33`
-- Brand hover: `#bce62e`
-- Ambient olive glow: `#a5cc29`
-- Page background: `#141414`
-- Recessed surface: `#161616`
-- Scrolled navigation surface: `#181818`
-- Raised card surface: `#1c1c1c`
-- Interactive surface: `#222222`
-- Standard border: `#262626`
-- Input and hover surface: `#282828`
-- Strong borders: `#333333`, `#383838`, and `#444444`
-- Main text: `#ffffff`
-- Supporting text: `#d4d4d8`
-- Faded text: `#a1a1aa`
-- Low-emphasis text: `#71717a`
-- Placeholder text: `#52525b`
-- Legacy light text available for parent parity: `#e4e4e7`
-
-### Chapter accessibility adjustment
-
-- Footer text: `#7d7d86`; this is the first equal-channel lightening step from the parent `#71717a` that passes `4.5:1` against `#141414`.
-
-### Feature colours kept because the parent has no equivalent
-
-- Reward edge: `#35ff3c`
-- Reward action: `#00fff0`
-- Reward secondary glow: `#ff62f5`
-- Game board: `#212837`
-- Game frame: `#293447`
-- Game status: `#b8c6dc`
-- Snake head: `#60cbff`
-- Snake food: `#ff003d`
-- Hall member names: `#ff3030`
-
-Transparent navigation surfaces, shadows, borders, and lime glows are kept in a separate labelled group in the values file.
+- Brand lime: `#caff33`.
+- Lime hover: `#dcff73`.
+- Lime pressed: `#a4cf27`.
+- Page background: `#0d0f0c`.
+- Recessed surface: `#11130f`.
+- Navigation surface: `#151812`.
+- Raised card and scrolled-navigation surface: `#181b16`.
+- Interactive surface: `#20241d`.
+- Standard border: `#2b3026`.
+- Stronger hover border: `#3c4534`.
+- Main text: `#f4f7ee`.
+- Supporting text: `#d4dacd`.
+- Body text: `#aeb6a5`.
+- Quiet footer text: `#87917e`.
+- Shadows use black with controlled opacity; no coloured card glow is used.
+- The hidden reward and game use these same neutral surfaces and lime accent instead of a separate blue, cyan, or magenta palette.
 
 ## Type
 
-- Page and game: self-hosted variable `Lexend`, weights `100-900`; normal page text uses `400`.
-- Hero paragraph: self-hosted `Doto` at `700`, with `"ROND" 0`.
-- Monospace fallback for number-like details: the system monospace stack.
-- Hero title: `36px` on phones, `48px` from `640px`, and `60px` from `1024px`; weight `800`, line-height `1.15`.
-- Main section heading: `30px` on phones, `36px` from `640px`, and `48px` from `768px`; weight `800`.
-- Subsection heading: `24px` on phones and `30px` from `640px`.
-- Body copy: `16px` on phones and `18px` from `640px`; line-height `1.625`.
+- Page, controls, and game: self-hosted variable Lexend.
+- Hero paragraph only: self-hosted Doto at weight `700`, with `"ROND" 0`.
+- Hero title: `40px` on phones, `56px` from `640px`, and `68px` from `1024px`; weight `800`; line-height `1.08`.
+- Main section heading: `32px` on phones, `40px` from `640px`, and `44px` from `768px`; weight `700`.
+- Subsection heading: `24px` on phones and `30px` from `640px`; weight `700`.
+- Body copy: `16px` on phones and `17px` from `640px`; line-height `1.65`.
 - Card copy and button labels: `14px`.
-- Heading letter spacing: `-0.025em`.
+- Heading letter spacing: `-0.035em`.
 
-## Spacing and width
+## Width and alignment
 
-- Section padding above and below: `96px` at every width.
-- Page gutter: `16px`.
-- Maximum content width: `1350px`.
-- Card gap: `24px` on phones and `32px` from `640px`.
-- Card padding: `24px`.
-- Footer: `64px` above and `32px` below.
-- Primary button padding: `14px` vertically and `28px` horizontally.
-- Secondary button horizontal padding: `24px`.
-- Minimum control size: `44px`.
-- Jump offset: `112px` at every width.
+- Maximum content width: `1120px`.
+- Page gutters: `20px` on phones, `32px` from `640px`, and `48px` from `1024px`.
+- Standard reading line: maximum `640px`.
+- Mission reading line: maximum `576px`.
+- Main content sections share the same left edge.
 
-## Corners
+## Section rhythm
 
-- Cards: `16px`.
-- Navigation: fully rounded with `9999px`.
-- Large image and logo surfaces: `24px`.
-- Buttons: fully rounded with `9999px`.
-- Circular photos, icons, and controls: `50%`.
-- Hidden game frame: `8px`.
+Phone top and bottom padding:
+
+- About: `80px / 56px`.
+- Mission: `56px / 56px`.
+- Vision: `56px / 72px`.
+- Team types: `72px / 72px`.
+- Hall of Fame: `72px / 80px`.
+- Community: `80px / 56px`.
+- FAQ: `56px / 80px`.
+- Join: `80px / 80px`.
+
+From `640px`:
+
+- About: `112px / 72px`.
+- Mission: `72px / 72px`.
+- Vision: `72px / 96px`.
+- Team types: `96px / 96px`.
+- Hall of Fame: `96px / 112px`.
+- Community: `112px / 72px`.
+- FAQ: `72px / 112px`.
+- Join: `104px / 104px`.
 
 ## Cards
 
-Team type, Hall of Fame, and FAQ cards all use the same treatment:
+Team-type, member, and FAQ cards share one treatment:
 
-- Background: raised surface `#1c1c1c`.
-- Border: `1px solid #262626`.
-- Radius: `16px`.
-- Padding: `24px`.
-- Default shadow: two-layer soft black shadow.
-- Hover: move up `4px`, use a half-opacity lime border, and add a soft lime shadow over a deeper black shadow.
-- Hover duration: `300ms` with the parent ease-out curve.
+- Surface: `#181b16`.
+- Border: `1px solid #2b3026`.
+- Corner radius: `12px`.
+- Padding: `20px` on phones and `24px` from `640px`.
+- Gap: `16px` on phones and `20px` from `640px`.
+- Shadow: one quiet black `1px / 2px` shadow.
+- Hover: slightly raised surface colour, stronger neutral border, and a restrained black shadow; no movement or coloured bloom.
 
 ## Buttons
 
-- Primary: lime background, page-dark text, fully rounded, `14px x 28px` padding.
-- Primary hover: `#bce62e`, move up `2px`, and scale to `1.02`.
-- Secondary: `#1c1c1c` background, `#262626` border, white text, fully rounded.
-- Secondary hover: `#222222` background and `#383838` border.
-- The Join button keeps its existing moving lime gradient, mapped to the parent limes and parent pill shape.
+- Minimum tap target: `44px`.
+- Padding: `12px` vertically and `20px` horizontally; the Join button uses `24px` horizontally.
+- Corner radius: `10px`.
+- Primary: lime surface with page-dark text.
+- Secondary: raised dark surface, neutral border, and main text.
+- Hover changes colour and shadow only; controls do not grow or jump.
 
 ## Navigation
 
-- Floats `16px` from the top on phones and `24px` from `640px`.
-- Maximum width: `1350px`, with `16px` page gutters.
-- Background: `rgba(28, 28, 28, 0.85)`; after `20px` of scrolling it becomes `rgba(24, 24, 24, 0.95)`.
-- Border: `#262626`; scrolled border: `#333333`.
-- Blur: `24px`; radius: `9999px`; shadow: `0 10px 30px rgba(0, 0, 0, 0.5)`.
-- Desktop links appear from `1024px`.
-- The phone menu is a blurred `#1c1c1c` dropdown under the navigation, not a full-screen sheet.
+- Phone and tablet pill: content-sized and centred, with `5px` vertical padding, `10px` phone horizontal padding, a `44px` menu control, and a fully rounded outer shape.
+- The measured phone pill is `219px × 56px` at a `390px` viewport.
+- Desktop pill: maximum `1120px`, centred, `20px` from the top, with `10px` vertical and `20px` horizontal padding.
+- Surface is opaque rather than frosted: `#151812`, changing to `#181b16` after scrolling.
+- Phone menu: an opaque `288px` panel anchored below the pill; each link is `48px` high.
+- The menu moves down and fades over `180ms`. The two-line menu icon becomes a lime close state, and the menu closes from a link, Escape, an outside click, or a left swipe.
 
 ## Movement
 
-- Section reveal: move up `20px` over `600ms`.
-- Card entry: move up `24px` over `500ms`, staggered by `120ms`.
-- FAQ card entry: `300ms`, staggered by `40ms`.
-- Hero logo: scale from `0.8` over `800ms` after a `200ms` delay.
-- Navigation state change: `300ms`.
-- Phone menu: `200ms`.
-- Reduced-motion mode removes all animation and shows every reveal immediately.
+- Section reveal: `14px` over `380ms`.
+- Card reveal: `16px` over `320ms`, staggered by `50ms`.
+- FAQ reveal: `280ms`, staggered by `35ms`.
+- Button and card hover: `160ms`.
+- Phone menu: `180ms`.
+- Hero logo entrance: `450ms` after an `80ms` delay.
+- The rocket keeps its existing `2s` flight because that movement communicates the feature.
+- Reduced-motion mode removes all animations and transitions.
 
-## Screen sizes
+## Surfaces and effects
 
-- `640px`: larger type, desktop section rhythm, larger card gaps, and wider navigation inset.
-- `768px`: main section headings reach their largest size.
-- `1024px`: desktop navigation links appear, Mission and the Hero use side-by-side layouts, and the Hero title reaches `60px`.
-- `800px` remains only for the hidden game's existing viewport-specific sizing.
+- The page and hero use flat backgrounds. The removed one-sided hero glow had no balancing visual purpose.
+- The Join section uses a flat recessed surface with a restrained border and a static lime button.
+- The Hall of Fame keeps its neutral edge fade because it communicates horizontal scrolling.
+- The reward popup keeps one strong shadow because it must separate from its modal backdrop.
+
+## Breakpoints
+
+- `640px`: larger type, wider gutters, desktop section rhythm, and larger card padding.
+- `768px`: main headings reach `44px`.
+- `1024px`: desktop navigation links appear; Hero and Mission become side-by-side layouts.
+- `800px` remains specific to the hidden game sizing.

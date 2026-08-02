@@ -16,7 +16,7 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 </button>
 
 <style>
-	.rocket {
+.rocket {
 		position: fixed;
 		bottom: var(--space-floating-control-block-edge);
 		left: var(--space-floating-control-inline-edge);
@@ -26,12 +26,16 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 		justify-content: center;
 		min-width: var(--control-min-tap-size);
 		min-height: var(--control-min-tap-size);
-		padding: var(--space-page-reset);
+		padding: var(--space-compact-control-gap);
 		font-size: var(--font-size-rocket-control);
 		cursor: pointer;
-		background: var(--color-clear-surface);
-		border: none;
-		border-radius: var(--radius-round);
+		background: var(--color-navigation-surface);
+		border: var(--card-border-width) solid var(--color-standard-border);
+		border-radius: var(--radius-action-standard);
+		box-shadow: var(--shadow-button-inverse);
+		transition:
+			background-color var(--duration-rocket-hover) var(--easing-site-out),
+			border-color var(--duration-rocket-hover) var(--easing-site-out);
 	}
 
 	.rocket__icon {
@@ -45,16 +49,15 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 		background-color: currentColor;
 		mask: var(--rocket-icon-source) center / contain no-repeat;
 		-webkit-mask: var(--rocket-icon-source) center / contain no-repeat;
-		transition:
-			transform var(--duration-rocket-hover) var(--easing-parent-out),
-			color var(--duration-rocket-hover) var(--easing-parent-standard);
+		transition: color var(--duration-rocket-hover) var(--easing-site-standard);
 	}
 
-	.rocket:hover .rocket__icon {
-		color: var(--color-rocket-hover);
-		font-size: var(--font-size-rocket-control-hover);
-		transform: scale(var(--scale-rocket-hover));
+	.rocket:hover {
+		background: var(--color-raised-card-surface);
+		border-color: var(--color-hover-border);
 	}
+
+	.rocket:hover .rocket__icon { color: var(--color-rocket-hover); }
 
 	.rocket--launching {
 		will-change: transform, opacity;

@@ -18,7 +18,7 @@
 </section>
 
 <style>
-	.join {
+.join {
 		position: relative;
 		width: var(--section-full-width);
 		padding: var(--space-join-section-block) var(--space-section-gutter);
@@ -26,9 +26,7 @@
 		color: var(--color-text-on-dark);
 		text-align: center;
 		background: var(--background-join-section);
-		background-size: var(--surface-animation-size);
-		animation: shared-gradient-shift var(--duration-join-background-shift)
-			var(--easing-parent-standard) infinite;
+		border-block: var(--card-border-width) solid var(--color-standard-border);
 	}
 
 	.join__heading {
@@ -37,13 +35,16 @@
 		font-weight: var(--font-weight-section-heading);
 		line-height: var(--line-height-heading);
 		letter-spacing: var(--letter-spacing-heading);
+		text-align: center;
 	}
 
 	.join__heading span { color: var(--color-brand-primary); }
 
 	.join__copy {
+		margin-inline: var(--space-centered);
 		color: var(--color-inverted-section-text);
 		line-height: var(--line-height-feature-copy);
+		text-align: center;
 	}
 
 	.join__button {
@@ -58,21 +59,20 @@
 		font-weight: var(--font-weight-button);
 		text-decoration: none;
 		background: var(--background-join-action);
-		background-size: var(--surface-animation-size);
 		border: var(--hero-button-border-width) solid var(--color-brand-primary);
 		border-radius: var(--radius-join-pill);
 		box-shadow: var(--shadow-join-action);
-		animation: shared-gradient-shift var(--duration-join-gradient-shift)
-			var(--easing-parent-standard) infinite;
 		transition:
-			transform var(--duration-button-hover) var(--easing-parent-out),
-			box-shadow var(--duration-button-hover) var(--easing-parent-out);
+			background-color var(--duration-button-hover) var(--easing-site-out),
+			border-color var(--duration-button-hover) var(--easing-site-out),
+			box-shadow var(--duration-button-hover) var(--easing-site-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.join__button:hover {
+			background: var(--color-brand-action-secondary);
+			border-color: var(--color-brand-action-secondary);
 			box-shadow: var(--shadow-join-action-hover);
-			transform: translateY(var(--offset-button-hover)) scale(var(--scale-interactive-hover));
 		}
 	}
 </style>

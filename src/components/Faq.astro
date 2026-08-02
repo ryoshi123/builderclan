@@ -58,17 +58,18 @@ import { faqs } from '../data/faqs';
 </section>
 
 <style>
-	.faq {
+.faq {
 		position: relative;
 		width: var(--section-full-width);
 		margin: var(--space-page-reset);
-		padding: var(--space-faq-section-top) var(--space-section-gutter)
+		padding: var(--space-faq-section-top) var(--space-page-reset)
 			var(--space-faq-section-bottom);
 	}
 
 	.faq__heading {
-		margin-bottom: var(--space-content-gap);
-		text-align: center;
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered) var(--space-content-gap);
+		text-align: left;
 	}
 
 	.faq__heading h2 {
@@ -96,9 +97,9 @@ import { faqs } from '../data/faqs';
 		border-radius: var(--card-radius);
 		box-shadow: var(--shadow-card-default);
 		transition:
-			transform var(--duration-faq-card-return) var(--easing-parent-out),
-			border-color var(--duration-faq-card-return) var(--easing-parent-out),
-			box-shadow var(--duration-faq-card-return) var(--easing-parent-out);
+			background-color var(--duration-faq-card-return) var(--easing-site-out),
+			border-color var(--duration-faq-card-return) var(--easing-site-out),
+			box-shadow var(--duration-faq-card-return) var(--easing-site-out);
 	}
 
 	.faq__card--hidden { display: none; }
@@ -136,24 +137,26 @@ import { faqs } from '../data/faqs';
 		border-radius: var(--radius-action-standard);
 		box-shadow: var(--shadow-button-default);
 		transition:
-			transform var(--duration-button-hover) var(--easing-parent-out),
-			box-shadow var(--duration-button-hover) var(--easing-parent-out),
-			background-color var(--duration-button-hover) var(--easing-parent-out),
-			border-color var(--duration-button-hover) var(--easing-parent-out);
+			box-shadow var(--duration-button-hover) var(--easing-site-out),
+			background-color var(--duration-button-hover) var(--easing-site-out),
+			border-color var(--duration-button-hover) var(--easing-site-out);
 	}
 
-	.faq__button-wrapper { text-align: center; }
+	.faq__button-wrapper {
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered);
+		text-align: left;
+	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.faq__card:hover {
+			background: var(--card-surface-hover);
 			border-color: var(--card-hover-border-color);
 			box-shadow: var(--shadow-card-hover);
-			transform: translateY(var(--card-hover-offset));
 		}
 		.faq__button:hover {
 			background: var(--color-faq-action-hover);
 			border-color: var(--color-faq-action-hover);
-			transform: translateY(var(--offset-button-hover)) scale(var(--scale-interactive-hover));
 		}
 	}
 </style>

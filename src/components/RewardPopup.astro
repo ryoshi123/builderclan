@@ -35,7 +35,7 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 </div>
 
 <style>
-	.reward-popup {
+.reward-popup {
 		position: fixed;
 		top: var(--space-page-reset);
 		left: var(--space-page-reset);
@@ -47,7 +47,6 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 		height: var(--popup-viewport-height);
 		padding: var(--space-section-gutter);
 		background: var(--color-popup-backdrop);
-		backdrop-filter: blur(var(--navigation-backdrop-blur));
 	}
 
 	.reward-popup[data-open='true'] { display: flex; }
@@ -69,13 +68,12 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 		border: var(--card-border-width) solid var(--color-standard-border);
 		border-radius: var(--card-radius);
 		box-shadow: var(--shadow-popup-card);
-		animation: surface-entry var(--duration-popup-entry) var(--easing-parent-out);
+		animation: surface-entry var(--duration-popup-entry) var(--easing-site-out);
 	}
 
 	.reward-popup__egg {
 		width: var(--popup-egg-size);
 		margin-bottom: var(--space-section-gutter);
-		animation: popup-egg-bounce var(--duration-popup-egg-bounce) infinite alternate;
 	}
 
 	.reward-popup__close {
@@ -86,24 +84,21 @@ const eggImage = `${import.meta.env.BASE_URL}assets/images/builderclan/easter-eg
 		min-height: var(--animated-control-min-tap-size);
 		margin-top: var(--space-section-gutter);
 		padding: var(--space-popup-control-block) var(--space-popup-control-inline);
-		color: var(--color-popup-action-accent);
+		color: var(--color-page-background);
 		font-size: var(--font-size-action-label);
 		font-weight: var(--font-weight-popup-action);
-		text-shadow: var(--shadow-popup-action-text);
 		cursor: pointer;
-		background: var(--color-interactive-surface);
+		background: var(--color-popup-action-accent);
 		border: var(--popup-action-border-width) solid var(--color-popup-action-accent);
 		border-radius: var(--radius-action-standard);
 		box-shadow: var(--shadow-popup-action);
 		transition:
-			transform var(--duration-button-standard) var(--easing-parent-out),
-			background-color var(--duration-button-standard) var(--easing-parent-standard),
-			box-shadow var(--duration-button-standard) var(--easing-parent-out);
+			background-color var(--duration-button-standard) var(--easing-site-standard),
+			border-color var(--duration-button-standard) var(--easing-site-standard);
 	}
 
 	.reward-popup__close:hover {
-		background: var(--color-popup-action-hover-fill);
-		box-shadow: var(--shadow-popup-action-hover);
-		transform: translateY(var(--offset-button-hover)) scale(var(--scale-popup-action-hover));
+		background: var(--color-brand-action-secondary);
+		border-color: var(--color-brand-action-secondary);
 	}
 </style>
