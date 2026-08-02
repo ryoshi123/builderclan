@@ -177,7 +177,7 @@
 	--space-secondary-button-inline: 1.5rem;
 	--space-join-control-block: 0.875rem;
 	--space-join-control-inline: 1.75rem;
-	--space-section-block-current: var(--space-compact-section-block);
+	--space-section-block-current: var(--space-desktop-section-block);
 	--space-about-section-block: var(--space-section-block-current);
 	--space-mission-block: var(--space-section-block-current);
 	--space-mission-bottom: var(--space-section-edge-reset);
@@ -282,7 +282,7 @@
 	--radius-action-standard: 9999px;
 	--radius-join-pill: var(--radius-action-standard);
 	--radius-game-frame: 0.5rem;
-	--navigation-pill-radius: var(--radius-card-standard);
+	--navigation-pill-radius: var(--radius-action-standard);
 	--layout-fill-share: 1;
 	--layout-mission-direction: column;
 	--layout-mission-text-align: center;

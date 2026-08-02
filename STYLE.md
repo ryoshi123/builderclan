@@ -52,7 +52,7 @@ Transparent navigation surfaces, shadows, borders, and lime glows are kept in a 
 
 ## Spacing and width
 
-- Section padding above and below: `64px` on phones and `96px` from `640px`.
+- Section padding above and below: `96px` at every width.
 - Page gutter: `16px`.
 - Maximum content width: `1350px`.
 - Card gap: `24px` on phones and `32px` from `640px`.
@@ -65,7 +65,8 @@ Transparent navigation surfaces, shadows, borders, and lime glows are kept in a 
 
 ## Corners
 
-- Cards and navigation: `16px`.
+- Cards: `16px`.
+- Navigation: fully rounded with `9999px`.
 - Large image and logo surfaces: `24px`.
 - Buttons: fully rounded with `9999px`.
 - Circular photos, icons, and controls: `50%`.
@@ -97,7 +98,7 @@ Team type, Hall of Fame, and FAQ cards all use the same treatment:
 - Maximum width: `1350px`, with `16px` page gutters.
 - Background: `rgba(28, 28, 28, 0.85)`; after `20px` of scrolling it becomes `rgba(24, 24, 24, 0.95)`.
 - Border: `#262626`; scrolled border: `#333333`.
-- Blur: `24px`; radius: `16px`; shadow: `0 10px 30px rgba(0, 0, 0, 0.5)`.
+- Blur: `24px`; radius: `9999px`; shadow: `0 10px 30px rgba(0, 0, 0, 0.5)`.
 - Desktop links appear from `1024px`.
 - The phone menu is a blurred `#1c1c1c` dropdown under the navigation, not a full-screen sheet.
 
