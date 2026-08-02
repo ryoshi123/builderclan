@@ -1,4 +1,6 @@
 ---
+import { discordInviteUrl } from '../data/links';
+
 const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builderLogoAISAT.svg`;
 ---
 
@@ -16,7 +18,12 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 				the future together!
 			</p>
 			<div class="hero__actions" data-hero-item="actions">
-				<a href="#join" class="hero__button hero__button--primary">
+				<a
+					href={discordInviteUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hero__button hero__button--primary"
+				>
 					<span>Get Started</span>
 					<svg aria-hidden="true" viewBox="0 0 24 24">
 						<path d="M7 17 17 7M7 7h10v10" />

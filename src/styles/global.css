@@ -28,6 +28,12 @@ body {
 	background: var(--color-page-background);
 }
 
+a,
+button,
+summary {
+	touch-action: var(--interactive-touch-action);
+}
+
 main {
 	padding-top: var(--space-parent-page-top);
 }

@@ -414,6 +414,7 @@
 
 	/* Animation and transition settings. */
 	--motion-page-scroll: smooth;
+	--interactive-touch-action: manipulation;
 	--duration-button-press: 0.18s;
 	--duration-button-hover: 0.2s;
 	--duration-button-standard: 0.3s;
