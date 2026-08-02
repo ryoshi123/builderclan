@@ -11,13 +11,25 @@
 
 <style>
 	.about {
+		position: relative;
 		width: var(--section-full-width);
 		margin: var(--space-page-reset);
 		padding: var(--space-about-section-block) var(--space-section-gutter);
 		color: var(--color-text-on-dark);
+		overflow: hidden;
+	}
+
+	.about::before {
+		position: absolute;
+		inset: var(--section-ambient-inset);
+		content: '';
+		pointer-events: none;
+		background: var(--background-section-ambient);
+		filter: blur(var(--section-ambient-blur));
 	}
 
 	.about__content {
+		position: relative;
 		text-align: center;
 	}
 </style>

@@ -59,6 +59,7 @@ import { faqs } from '../data/faqs';
 
 <style>
 	.faq {
+		position: relative;
 		width: var(--section-full-width);
 		margin: var(--space-page-reset);
 		padding: var(--space-faq-section-top) var(--space-section-gutter)
@@ -71,94 +72,88 @@ import { faqs } from '../data/faqs';
 	}
 
 	.faq__heading h2 {
-		display: inline-block;
+		display: block;
 		margin: var(--space-page-reset);
+		color: var(--color-text-on-dark);
 		font-size: var(--font-size-section-heading);
 		font-weight: var(--font-weight-section-heading);
-		border-bottom: var(--faq-heading-border-width) solid
-			var(--color-brand-primary);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-heading);
 	}
 
 	.faq__grid {
 		display: grid;
 		grid-template-columns: var(--faq-grid-columns);
 		margin: var(--space-page-reset) var(--space-centered);
-		gap: var(--space-section-gutter);
+		gap: var(--space-content-gap);
 	}
 
 	.faq__card {
-		padding: var(--space-card-inset) var(--space-content-gap);
+		padding: var(--card-padding);
 		color: var(--color-text-on-dark);
-		background: var(--color-faq-card-background);
-		border: var(--faq-card-border-width) solid var(--color-faq-border);
-		border-radius: var(--radius-card-standard);
-		box-shadow: var(--shadow-faq-card);
-		backdrop-filter: blur(var(--blur-faq-card));
+		background: var(--card-surface);
+		border: var(--card-border-width) solid var(--card-border-color);
+		border-radius: var(--card-radius);
+		box-shadow: var(--shadow-card-default);
 		transition:
-			transform var(--duration-faq-card-return) ease,
-			box-shadow var(--duration-faq-card-return) ease;
+			transform var(--duration-faq-card-return) var(--easing-parent-out),
+			border-color var(--duration-faq-card-return) var(--easing-parent-out),
+			box-shadow var(--duration-faq-card-return) var(--easing-parent-out);
 	}
 
-	.faq__card--hidden {
-		display: none;
-	}
+	.faq__card--hidden { display: none; }
 
 	.faq__card h3 {
-		margin: var(--space-page-reset) var(--space-page-reset)
-			var(--space-card-title-gap);
-		color: var(--color-brand-primary);
+		margin: var(--space-page-reset) var(--space-page-reset) var(--space-card-title-gap);
+		color: var(--color-text-on-dark);
 		font-size: var(--font-size-feature-copy);
-		font-weight: var(--font-weight-page-default);
+		font-weight: var(--font-weight-button);
+		line-height: var(--line-height-section-heading);
 	}
 
 	.faq__card p {
 		margin: var(--space-page-reset);
 		color: var(--color-faq-body-text);
+		font-size: var(--font-size-card-copy);
 		line-height: var(--line-height-faq-copy);
 	}
 
-	.faq__email {
-		color: inherit;
-	}
+	.faq__email { color: var(--color-brand-primary); }
 
 	.faq__button {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		min-height: var(--control-min-tap-size);
-		margin: var(--space-faq-button-top) var(--space-page-reset)
-			var(--space-page-reset);
+		margin: var(--space-faq-button-top) var(--space-page-reset) var(--space-page-reset);
 		padding: var(--space-faq-control-block) var(--space-faq-control-inline);
 		color: var(--color-page-background);
 		font-size: var(--font-size-action-label);
-		font-weight: var(--font-weight-page-default);
+		font-weight: var(--font-weight-button);
 		cursor: pointer;
 		background: var(--color-faq-action-background);
-		border: none;
+		border: var(--hero-button-border-width) solid var(--color-faq-action-background);
 		border-radius: var(--radius-action-standard);
 		box-shadow: var(--shadow-button-default);
-		transform: translateZ(var(--space-page-reset));
 		transition:
-			transform var(--duration-button-press) ease,
-			box-shadow var(--duration-button-press) ease,
-			background-color var(--duration-button-press) ease,
-			color var(--duration-button-press) ease;
+			transform var(--duration-button-hover) var(--easing-parent-out),
+			box-shadow var(--duration-button-hover) var(--easing-parent-out),
+			background-color var(--duration-button-hover) var(--easing-parent-out),
+			border-color var(--duration-button-hover) var(--easing-parent-out);
 	}
 
-	.faq__button-wrapper {
-		text-align: center;
-	}
+	.faq__button-wrapper { text-align: center; }
 
 	@media (hover: hover) and (pointer: fine) {
 		.faq__card:hover {
-			box-shadow: var(--shadow-faq-card-hover);
-			transform: scale(var(--scale-interactive-hover));
-			transition: all var(--duration-button-standard) ease;
+			border-color: var(--card-hover-border-color);
+			box-shadow: var(--shadow-card-hover);
+			transform: translateY(var(--card-hover-offset));
 		}
-
 		.faq__button:hover {
 			background: var(--color-faq-action-hover);
-			transform: scale(var(--scale-interactive-hover));
+			border-color: var(--color-faq-action-hover);
+			transform: translateY(var(--offset-button-hover)) scale(var(--scale-interactive-hover));
 		}
 	}
 </style>

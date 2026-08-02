@@ -1,222 +1,119 @@
-# BuilderClan shared style values
+# BuilderClan design system
 
-`src/styles/values.css` is the single source of truth for these values. The names describe each value's job so later section styles can use them without writing raw colours or sizes.
+The site's design values live in `src/styles/values.css`. Component styles use role names from that file instead of writing colours, text sizes, spacing, radii, shadows, or timings directly.
 
 ## Colours
 
-There are exactly **44** maintained colour values, represented by **69** role names. Four drawing-only fills and one zero-use colour were removed. The remaining values are split into 23 flat page colours and 21 transparent surfaces, shadows, and glows.
+### Parent organisation palette used by the page
 
-The page uses four maintained lime values, three neutral dark surface values, and two separate blue game surfaces. Every existing role name remains available as an alias. Transparent effects stay separate because their opacity and effect strength are part of their job.
+- Main brand and focus: `#caff33`
+- Brand hover: `#bce62e`
+- Ambient olive glow: `#a5cc29`
+- Page background: `#141414`
+- Recessed surface: `#161616`
+- Scrolled navigation surface: `#181818`
+- Raised card surface: `#1c1c1c`
+- Interactive surface: `#222222`
+- Standard border: `#262626`
+- Input and hover surface: `#282828`
+- Strong borders: `#333333`, `#383838`, and `#444444`
+- Main text: `#ffffff`
+- Supporting text: `#d4d4d8`
+- Faded text: `#a1a1aa`
+- Low-emphasis text: `#71717a`
+- Placeholder text: `#52525b`
+- Legacy light text available for parent parity: `#e4e4e7`
 
-### Flat page colours
+### Feature colours kept because the parent has no equivalent
 
-| Name | Exact value |
-|---|---|
-| Main brand | `#caff33` |
-| Popup title | `#caff33` — points to Main brand |
-| Keyboard focus ring | `#caff33` — points to Main brand |
-| Secondary brand action | `#a6d71f` |
-| FAQ action background | `#a6d71f` — points to Secondary brand action |
-| FAQ action hover | `#b6e533` |
-| Join gradient middle | `#a6d71f` — points to Secondary brand action |
-| Join gradient end | `#b6e533` — points to FAQ action hover |
-| Join hover glow | `#b6e533` — points to FAQ action hover |
-| Team icon gradient start | `#b6e533` — points to FAQ action hover |
-| Team icon gradient end | `#3d5105` |
-| Rocket idle | `#a6d71f` — points to Secondary brand action |
-| Rocket hover | `#b6e533` — points to FAQ action hover |
-| Popup title glow | `#b6e533` — points to FAQ action hover |
-| Popup edge glow | `#35ff3c` |
-| Text on dark backgrounds | `#ffffff` |
-| Hero title gradient end | `#e1e1e1` |
-| FAQ body text | `#e1e1e1` — points to Hero title gradient end |
-| Inverted section text | `#e6e6e6` — points to Section body text |
-| Section body text | `#e6e6e6` |
-| Game status text | `#b8c6dc` |
-| Footer text | `#858585` |
-| Popup background | `#0f0f0f` — points to Hero background end |
-| Hero background end | `#0f0f0f` |
-| Default page text | `#111827` |
-| Card gradient start | `#0f0f0f` — points to Hero background end |
-| Hero background start | `#0f0f0f` — points to Card gradient start |
-| Page background | `#1a1a1a` |
-| Join action text | `#1a1a1a` — points to Page background |
-| Content surface gradient start | `#1a1a1a` — points to Page background |
-| Footer background | `#1a1a1a` — points to Content surface gradient start |
-| Join background base | `#1a1a1a` — points to Page background |
-| Hall card background | `#2a2a2a` — points to Content surface gradient end |
-| Game board background | `#212837` |
-| Card gradient end | `#2a2a2a` — points to Content surface gradient end |
-| Hero background middle | `#2a2a2a` — points to Card gradient end |
-| FAQ card background | `#2a2a2a` — points to Content surface gradient end |
-| FAQ card secondary glow | `#25254c` |
-| Game frame background | `#293447` |
-| Content surface gradient end | `#2a2a2a` |
-| Page gradient middle | `#2a2a2a` — points to Content surface gradient end |
-| Join background alternate | `#2a2a2a` — points to Content surface gradient end |
-| FAQ card primary glow | `#38384e` |
-| Popup action accent | `#00fff0` |
-| Snake head | `#60cbff` |
-| Popup secondary glow | `#ff62f5` |
-| Hall member name | `#ff3030` |
-| Snake food | `#ff003d` |
+- Reward edge: `#35ff3c`
+- Reward action: `#00fff0`
+- Reward secondary glow: `#ff62f5`
+- Game board: `#212837`
+- Game frame: `#293447`
+- Game status: `#b8c6dc`
+- Snake head: `#60cbff`
+- Snake food: `#ff003d`
+- Hall member names: `#ff3030`
 
-### Transparent surfaces, shadows, and glows
+Transparent navigation surfaces, shadows, borders, and lime glows are kept in a separate labelled group in the values file.
 
-| Name | Exact value |
-|---|---|
-| Hero subtitle shadow | `#bbff00fb` |
-| Clear surface | `transparent` |
-| Subtle shadow tail | `rgba(0, 0, 0, .04)` |
-| Subtle shadow lead | `rgba(0, 0, 0, .06)` |
-| Medium shadow | `rgba(0, 0, 0, .12)` |
-| Hero logo panel | `rgba(0, 0, 0, 0.05)` |
-| Card shadow and hero vignette | `rgba(0, 0, 0, 0.2)` |
-| Inset section shadow | `rgba(0, 0, 0, 0.25)` |
-| Elevated shadow | `rgba(0, 0, 0, 0.35)` |
-| Popup backdrop | `rgba(0, 0, 0, 0.7)` |
-| Mobile navigation backdrop | `rgba(0, 0, 0, 0.95)` |
-| Popup action hover fill | `rgba(0, 255, 240, 0.1)` |
-| Popup action glow | `rgba(0, 255, 240, 0.7)` |
-| Hero brand glow | `rgba(202, 255, 51, 0.2)` |
-| Interactive card brand glow | `rgba(202, 255, 51, 0.25)` |
-| Hall highlight glow | `rgba(253, 249, 35, 0.712)` |
-| Hero highlight glow | `rgba(255, 241, 51, 0.2)` |
-| FAQ border | `rgba(255, 255, 255, 0.1)` |
-| Hero light glow | `rgba(255, 255, 255, 0.15)` |
-| Hall warning glow | `rgba(255, 66, 36, 0.603)` |
-| Game frame shadow | `rgba(52, 87, 220, 0.2)` |
+## Type
 
-### Current palette consolidation
+- Page and game: self-hosted variable `Lexend`, weights `100-900`; normal page text uses `400`.
+- Hero paragraph: self-hosted `Doto` at `700`, with `"ROND" 0`.
+- Monospace fallback for number-like details: the system monospace stack.
+- Hero title: `36px` on phones, `48px` from `640px`, and `60px` from `1024px`; weight `800`, line-height `1.15`.
+- Main section heading: `30px` on phones, `36px` from `640px`, and `48px` from `768px`; weight `800`.
+- Subsection heading: `24px` on phones and `30px` from `640px`.
+- Body copy: `16px` on phones and `18px` from `640px`; line-height `1.625`.
+- Card copy and button labels: `14px`.
+- Heading letter spacing: `-0.025em`.
 
-Usage counts are effective authored colour occurrences before consolidation. Differences use CIEDE2000.
+## Spacing and width
 
-| Removed value | Uses | Surviving value | Existing uses | Difference | Job |
-|---|---:|---|---:|---:|---|
-| `#9fce1d` | 1 | `#a6d71f` | 2 | `2.199017` | Darker lime action |
-| `#81a718` | 1 | `#a6d71f` | 2 | `12.881273` | Darker lime gradient stop |
-| `#76a100` | 1 | `#a6d71f` | 2 | `14.864608` | Darker lime idle state |
-| `#acda2c` | 1 | `#b6e533` | 1 | `2.551859` | Lighter lime gradient stop |
-| `#93ba27` | 1 | `#b6e533` | 1 | `10.680308` | Lighter lime hover glow |
-| `#b5ed1b` | 1 | `#b6e533` | 1 | `2.225872` | Lighter lime gradient stop |
-| `#a0da00` | 1 | `#b6e533` | 1 | `3.455460` | Lighter lime hover state |
-| `#aee31d` | 1 | `#b6e533` | 1 | `1.289747` | Lighter lime title glow |
-| `#0a0a0a` | 1 | `#0f0f0f` | 1 | `0.928790` | Recessed neutral surface |
-| `#151515` | 2 | `#0f0f0f` | 1 | `1.478121` | Recessed neutral gradient surface |
-| `#1e1e1e` | 3 | `#1a1a1a` | 5 | `1.256274` | Page-level neutral surface |
-| `#1e1f29` | 2 | `#1a1a1a` | 5 | `6.803183` | Page-level neutral gradient surface |
-| `#201e20` | 1 | `#2a2a2a` | 3 | `4.256785` | Raised neutral card surface |
-| `#242424` | 2 | `#2a2a2a` | 3 | `1.895354` | Raised neutral gradient surface |
-| `#252529` | 2 | `#2a2a2a` | 3 | `3.215515` | Raised neutral card surface |
-| `#312e2e` | 1 | `#2a2a2a` | 3 | `2.471782` | Raised neutral gradient surface |
-| `#e5e7eb` | 1 | `#e6e6e6` | 4 | `2.081886` | General light body text |
+- Section padding above and below: `64px` on phones and `96px` from `640px`.
+- Page gutter: `16px`.
+- Maximum content width: `1350px`.
+- Card gap: `24px` on phones and `32px` from `640px`.
+- Card padding: `24px`.
+- Footer: `64px` above and `32px` below.
+- Primary button padding: `14px` vertically and `28px` horizontally.
+- Secondary button horizontal padding: `24px`.
+- Minimum control size: `44px`.
+- Jump offset: `112px` at every width.
 
-The unused Hall social-hover value `#ff0000` was removed rather than merged.
+## Corners
 
-## Text
+- Cards and navigation: `16px`.
+- Large image and logo surfaces: `24px`.
+- Buttons: fully rounded with `9999px`.
+- Circular photos, icons, and controls: `50%`.
+- Hidden game frame: `8px`.
 
-### Font families
+## Cards
 
-| Name | Exact value |
-|---|---|
-| Page | `ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"` |
-| Hero subtitle | `"Doto", sans-serif` |
-| Hidden game | `"Montserrat", sans-serif` |
-| Hero subtitle Doto setting | `"ROND" 0` |
+Team type, Hall of Fame, and FAQ cards all use the same treatment:
 
-### Text sizes
+- Background: raised surface `#1c1c1c`.
+- Border: `1px solid #262626`.
+- Radius: `16px`.
+- Padding: `24px`.
+- Default shadow: two-layer soft black shadow.
+- Hover: move up `4px`, use a half-opacity lime border, and add a soft lime shadow over a deeper black shadow.
+- Hover duration: `300ms` with the parent ease-out curve.
 
-| Name | Exact value |
-|---|---|
-| Action label | `1rem` |
-| Section body | `1.1rem` |
-| Feature copy | `1.2rem` |
-| Navigation brand | `1.25rem` |
-| Social icon | `1.4rem` |
-| Navigation toggle | `1.8rem` |
-| Subsection heading | `2rem` |
-| Vision heading | `2.2rem` |
-| Rocket control | `2.5rem` |
-| Section heading | `3rem` |
-| Hero title | `clamp(2.5rem, 6vw, 4rem)` |
-| Popup copy | `small` |
-| Browser-default heading sizes | `unknown` |
+## Buttons
 
-### Font weights
+- Primary: lime background, page-dark text, fully rounded, `14px x 28px` padding.
+- Primary hover: `#bce62e`, move up `2px`, and scale to `1.02`.
+- Secondary: `#1c1c1c` background, `#262626` border, white text, fully rounded.
+- Secondary hover: `#222222` background and `#383838` border.
+- The Join button keeps its existing moving lime gradient, mapped to the parent limes and parent pill shape.
 
-| Name | Exact value |
-|---|---|
-| Paragraph | `normal` (normally `400`) |
-| Game detail | `500` |
-| Page default | `600` |
-| Section heading | `700` |
-| Hero subtitle | `bold` (the same weight as `700` here) |
-| Hero title | `800` |
+## Navigation
 
-### Line heights
+- Floats `16px` from the top on phones and `24px` from `640px`.
+- Maximum width: `1350px`, with `16px` page gutters.
+- Background: `rgba(28, 28, 28, 0.85)`; after `20px` of scrolling it becomes `rgba(24, 24, 24, 0.95)`.
+- Border: `#262626`; scrolled border: `#333333`.
+- Blur: `24px`; radius: `16px`; shadow: `0 10px 30px rgba(0, 0, 0, 0.5)`.
+- Desktop links appear from `1024px`.
+- The phone menu is a blurred `#1c1c1c` dropdown under the navigation, not a full-screen sheet.
 
-| Name | Exact value |
-|---|---|
-| Page and inherited default | `1.6` |
-| FAQ copy | `1.5` |
-| Feature copy | `1.8` |
-| Standalone icon | `1` |
+## Movement
 
-## Spacing
-
-The original units are deliberately preserved. The project does not set a root font size, so exact pixel conversions for the `rem` values are `unknown`.
-
-| Name | Exact value |
-|---|---|
-| Page reset | `0` |
-| Section edge reset | `0rem` |
-| Mission image offset | `0.1rem` |
-| Compact control gap | `0.5rem` |
-| Card title gap | `0.6rem` |
-| Section intro offset | `0.75rem` |
-| Join control block padding | `0.8rem` |
-| Standard button block padding | `0.9rem` |
-| Section gutter | `1rem` |
-| Popup inset | `1.1rem` |
-| Popup control inline padding | `1.2rem` |
-| Card inset | `1.5rem` |
-| Join control inline padding | `1.6rem` |
-| Standard button inline padding | `1.75rem` |
-| Content gap | `2rem` |
-| Compact section block padding | `3rem` |
-| Desktop section block padding | `4rem` |
-| Spacious section block padding | `5rem` |
-| Current section block padding | `2rem` through `768px`; `3rem` from `769px` |
-| Hero button gap | `0.75rem` |
-| Navigation brand gap | `8px` |
-| Game frame inset | `10px` |
-| FAQ control block padding | `12px` |
-| Game mobile score block padding | `15px` |
-| Game desktop score block padding | `20px` |
-| Floating rocket block edge | `20px` |
-| Floating rocket inline edge | `0` through `768px`; `20px` from `769px` |
-| Game score inline padding | `27px` |
-| FAQ control inline padding | `28px` |
-| Fixed header offset | `50px` |
-| Minimum tap target | `44px` |
-| Minimum animated tap target | `49px`, which stays above `44px` while the `0.9` entry scale is running |
-| Automatic centring | `auto` |
-| Hero scroll offset | `150px` |
-| Other section jump offset | `150px` — points to Hero scroll offset |
+- Section reveal: move up `20px` over `600ms`.
+- Card entry: move up `24px` over `500ms`, staggered by `120ms`.
+- FAQ card entry: `300ms`, staggered by `40ms`.
+- Hero logo: scale from `0.8` over `800ms` after a `200ms` delay.
+- Navigation state change: `300ms`.
+- Phone menu: `200ms`.
+- Reduced-motion mode removes all animation and shows every reveal immediately.
 
 ## Screen sizes
 
-- At `768px` and below, navigation switches to the hamburger layout, the hero buttons stack, the hero glow moves, Mission becomes a centred column, and section block padding is `2rem`.
-- At `769px` and above, the wide navigation and hero button row return, and section block padding becomes `3rem`. Compact and wide rules no longer overlap.
-- At `800px` and below, the hidden game becomes larger relative to the viewport, its text becomes `1rem`, and its score-row block padding becomes `15px`.
-- The declared `700px` rule is omitted because it targets an unused class and causes no visible change.
-- Exact viewport widths for flex wrapping and auto-fit grids are `unknown` because the files do not fix them.
-
-## Restored effects and horizontal scrolling
-
-- The Team card transform now takes `0.4s`; its shadow takes `0.3s`.
-- The rocket transform and colour now transition over `0.3s`.
-- The Hero background is `#151515` at `0%`, `#242424` at `40%`, and `#0f0f0f` at `80%`, running towards the top right.
-- Every non-Hero section target uses a `150px` jump offset.
-- The Hall of Fame row shows a lime arrow over a dark edge fade while more cards remain, hides it at the end, and snaps each card to the row's padded start edge.
-- Scroll reveals move `1rem` over `0.4s`, begin at the viewport edge, and use no transition for content already passed or visible when the page opens.
+- `640px`: larger type, desktop section rhythm, larger card gaps, and wider navigation inset.
+- `768px`: main section headings reach their largest size.
+- `1024px`: desktop navigation links appear, Mission and the Hero use side-by-side layouts, and the Hero title reaches `60px`.
+- `800px` remains only for the hidden game's existing viewport-specific sizing.

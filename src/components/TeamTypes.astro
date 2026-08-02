@@ -25,17 +25,19 @@ import { teamTypes } from '../data/teamTypes';
 
 <style>
 	.team-types {
+		position: relative;
 		padding: var(--space-team-section-top) var(--space-section-gutter)
 			var(--space-team-section-bottom);
 		text-align: center;
 	}
 
 	.team-types > h3 {
-		margin: var(--space-page-reset) var(--space-page-reset)
-			var(--space-content-gap);
-		color: var(--color-brand-primary);
+		margin: var(--space-page-reset) var(--space-page-reset) var(--space-content-gap);
+		color: var(--color-text-on-dark);
 		font-size: var(--font-size-subsection-heading);
 		font-weight: var(--font-weight-section-heading);
+		line-height: var(--line-height-section-heading);
+		letter-spacing: var(--letter-spacing-heading);
 	}
 
 	.team-types__grid {
@@ -45,15 +47,30 @@ import { teamTypes } from '../data/teamTypes';
 	}
 
 	.team-types__card {
-		padding: var(--space-team-card-block) var(--space-team-card-inline);
-		color: var(--color-section-body-text);
+		padding: var(--card-padding);
+		color: var(--color-faded-text);
+		font-size: var(--font-size-card-copy);
 		font-weight: var(--font-weight-paragraph);
-		background: var(--color-team-card-background);
-		border-radius: var(--radius-team-card);
+		line-height: var(--line-height-feature-copy);
+		background: var(--card-surface);
+		border: var(--card-border-width) solid var(--card-border-color);
+		border-radius: var(--card-radius);
+		box-shadow: var(--shadow-card-default);
 		transition:
-			transform var(--duration-team-card-transform) ease,
-			box-shadow var(--duration-team-card-shadow) ease;
+			transform var(--duration-team-card-transform) var(--easing-parent-out),
+			border-color var(--duration-team-card-transform) var(--easing-parent-out),
+			box-shadow var(--duration-team-card-shadow) var(--easing-parent-out);
 	}
+
+	.team-types__card h4 {
+		margin: var(--space-page-reset) var(--space-page-reset) var(--space-card-title-gap);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-feature-copy);
+		font-weight: var(--font-weight-button);
+		line-height: var(--line-height-section-heading);
+	}
+
+	.team-types__card p { margin: var(--space-page-reset); }
 
 	.team-types__icon {
 		display: flex;
@@ -61,17 +78,18 @@ import { teamTypes } from '../data/teamTypes';
 		justify-content: center;
 		width: var(--team-icon-size);
 		height: var(--team-icon-size);
-		margin: var(--space-page-reset) var(--space-centered)
-			var(--space-section-gutter);
+		margin: var(--space-page-reset) var(--space-centered) var(--space-section-gutter);
 		font-size: var(--font-size-subsection-heading);
 		background: var(--background-team-icon);
+		border: var(--card-border-width) solid var(--color-standard-border);
 		border-radius: var(--radius-round);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.team-types__card:hover {
-			box-shadow: var(--shadow-image-brand-hover);
-			transform: scale(var(--scale-interactive-hover));
+			border-color: var(--card-hover-border-color);
+			box-shadow: var(--shadow-card-hover);
+			transform: translateY(var(--card-hover-offset));
 		}
 	}
 </style>

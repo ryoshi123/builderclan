@@ -3,20 +3,19 @@
 
 *,
 *::before,
-*::after {
-	box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 html {
 	scroll-behavior: var(--motion-page-scroll);
+	background: var(--color-page-background);
 }
 
 body {
-	padding-top: var(--space-fixed-header-offset);
 	margin: var(--space-page-reset);
 	overflow-x: hidden;
 	color: var(--color-page-text-default);
 	font-family: var(--font-family-page);
+	font-size: var(--font-size-section-body);
 	font-weight: var(--font-weight-page-default);
 	font-style: normal;
 	font-optical-sizing: auto;
@@ -24,14 +23,24 @@ body {
 	background: var(--color-page-background);
 }
 
+body,
+button,
+a { -webkit-font-smoothing: antialiased; }
+
+button,
+a { font: inherit; }
+
+img {
+	display: block;
+	max-width: var(--section-full-width);
+}
+
 :focus-visible {
 	outline: var(--focus-ring-width) solid var(--color-focus-ring);
 	outline-offset: var(--focus-ring-offset);
 }
 
-.section-jump-target {
-	scroll-margin-top: var(--space-section-scroll-offset);
-}
+.section-jump-target { scroll-margin-top: var(--space-section-scroll-offset); }
 
 .content-container {
 	width: min(var(--content-max-width), var(--content-width));
@@ -39,57 +48,45 @@ body {
 }
 
 .section-heading {
-	display: inline-block;
+	display: block;
 	margin: var(--space-page-reset) var(--space-centered);
-	padding-bottom: var(--space-compact-control-gap);
+	color: var(--color-text-on-dark);
 	font-size: var(--font-size-section-heading);
 	font-weight: var(--font-weight-section-heading);
-	border-bottom: var(--section-heading-border-width) solid var(--color-brand-primary);
+	line-height: var(--line-height-heading);
+	letter-spacing: var(--letter-spacing-heading);
+	text-align: center;
 }
 
 .section-copy {
 	max-width: var(--section-copy-max-width);
-	margin: var(--space-section-intro-offset) var(--space-centered)
-		var(--space-page-reset);
+	margin: var(--space-section-intro-offset) var(--space-centered) var(--space-page-reset);
 	color: var(--color-section-body-text);
 	font-size: var(--font-size-section-body);
 	font-weight: var(--font-weight-paragraph);
+	line-height: var(--line-height-feature-copy);
 }
+
+.section-surface,
+main { background: var(--color-page-background); }
 
 html.has-client-script [data-reveal] {
 	pointer-events: none;
-	transition-duration: var(--duration-scroll-entry);
-	transition-timing-function: ease;
+	transition:
+		opacity var(--duration-scroll-entry) var(--easing-parent-out),
+		transform var(--duration-scroll-entry) var(--easing-parent-out);
 }
 
-html.has-client-script [data-reveal='fade-up'] {
-	opacity: var(--opacity-entry-start);
-	transform: translate3d(
-		var(--space-page-reset),
-		var(--scroll-reveal-fade-offset),
-		var(--space-page-reset)
-	);
-	transition-property: opacity, transform;
-}
-
+html.has-client-script [data-reveal='fade-up'],
 html.has-client-script [data-reveal='slide-up'] {
 	opacity: var(--opacity-entry-start);
-	transform: translate3d(
-		var(--space-page-reset),
-		var(--scroll-reveal-slide-offset),
-		var(--space-page-reset)
-	);
-	transition-property: opacity, transform;
+	transform: translate3d(var(--space-page-reset), var(--scroll-reveal-fade-offset), var(--space-page-reset));
 }
 
 html.has-client-script [data-reveal='zoom-in-up'] {
 	opacity: var(--opacity-entry-start);
-	transform: translate3d(
-		var(--space-page-reset),
-		var(--scroll-reveal-fade-offset),
-		var(--space-page-reset)
-	) scale(var(--scroll-reveal-zoom-start-scale));
-	transition-property: opacity, transform;
+	transform: translate3d(var(--space-page-reset), var(--scroll-reveal-slide-offset), var(--space-page-reset))
+		scale(var(--scroll-reveal-zoom-start-scale));
 }
 
 html.has-client-script [data-reveal][data-revealed='true'] {
@@ -99,15 +96,64 @@ html.has-client-script [data-reveal][data-revealed='true'] {
 	opacity: var(--opacity-entry-end);
 }
 
-html.has-client-script [data-reveal][data-reveal-instant='true'] {
-	transition: none;
+html.has-client-script [data-reveal][data-reveal-instant='true'] { transition: none; }
+
+html.has-client-script [data-reveal][data-revealed='true']
+	:is(.team-types__card, .hall-of-fame__card) {
+	animation: parent-card-entry var(--duration-card-entry) var(--easing-parent-out) both;
+}
+
+html.has-client-script [data-reveal][data-revealed='true'] .faq__card {
+	animation: parent-card-entry var(--duration-faq-entry) var(--easing-parent-out) both;
+}
+
+html.has-client-script [data-reveal][data-revealed='true']
+	:is(.team-types__card, .hall-of-fame__card):nth-child(2) { animation-delay: var(--delay-card-two); }
+html.has-client-script [data-reveal][data-revealed='true']
+	:is(.team-types__card, .hall-of-fame__card):nth-child(3) { animation-delay: var(--delay-card-three); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.hall-of-fame__card:nth-child(4) { animation-delay: var(--delay-card-four); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.hall-of-fame__card:nth-child(5) { animation-delay: var(--delay-card-five); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.hall-of-fame__card:nth-child(6) { animation-delay: var(--delay-card-six); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.hall-of-fame__card:nth-child(7) { animation-delay: var(--delay-card-seven); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(2) { animation-delay: var(--delay-faq-two); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(3) { animation-delay: var(--delay-faq-three); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(4) { animation-delay: var(--delay-faq-four); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(5) { animation-delay: var(--delay-faq-five); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(6) { animation-delay: var(--delay-faq-six); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(7) { animation-delay: var(--delay-faq-seven); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(8) { animation-delay: var(--delay-faq-eight); }
+html.has-client-script [data-reveal][data-revealed='true']
+	.faq__card:nth-child(9) { animation-delay: var(--delay-faq-nine); }
+
+@keyframes parent-card-entry {
+	from {
+		opacity: var(--opacity-entry-start);
+		transform: translateY(var(--scroll-reveal-slide-offset));
+	}
+	to {
+		opacity: var(--opacity-entry-end);
+		transform: translateY(var(--space-page-reset));
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html.has-client-script [data-reveal] {
+	html.has-client-script [data-reveal],
+	html.has-client-script [data-reveal] :is(.team-types__card, .hall-of-fame__card, .faq__card) {
 		visibility: visible;
 		pointer-events: auto;
 		transform: none;
 		opacity: var(--opacity-entry-end);
+		animation: none;
 	}
 }

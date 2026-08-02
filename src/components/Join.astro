@@ -27,20 +27,23 @@
 		text-align: center;
 		background: var(--background-join-section);
 		background-size: var(--surface-animation-size);
-		animation: shared-gradient-shift var(--duration-join-background-shift) ease
-			infinite;
+		animation: shared-gradient-shift var(--duration-join-background-shift)
+			var(--easing-parent-standard) infinite;
 	}
 
 	.join__heading {
 		color: var(--color-text-on-dark);
+		font-size: var(--font-size-section-heading);
+		font-weight: var(--font-weight-section-heading);
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-heading);
 	}
 
-	.join__heading span {
-		color: var(--color-brand-primary);
-	}
+	.join__heading span { color: var(--color-brand-primary); }
 
 	.join__copy {
 		color: var(--color-inverted-section-text);
+		line-height: var(--line-height-feature-copy);
 	}
 
 	.join__button {
@@ -52,21 +55,24 @@
 		padding: var(--space-join-control-block) var(--space-join-control-inline);
 		color: var(--color-join-action-text);
 		font-size: var(--font-size-action-label);
-		font-weight: var(--font-weight-page-default);
+		font-weight: var(--font-weight-button);
 		text-decoration: none;
 		background: var(--background-join-action);
 		background-size: var(--surface-animation-size);
+		border: var(--hero-button-border-width) solid var(--color-brand-primary);
 		border-radius: var(--radius-join-pill);
 		box-shadow: var(--shadow-join-action);
-		animation:
-			shared-gradient-shift var(--duration-join-gradient-shift) ease infinite,
-			join-action-pulse var(--duration-join-pulse) ease-in-out infinite;
-		transition: transform var(--duration-button-hover) ease;
+		animation: shared-gradient-shift var(--duration-join-gradient-shift)
+			var(--easing-parent-standard) infinite;
+		transition:
+			transform var(--duration-button-hover) var(--easing-parent-out),
+			box-shadow var(--duration-button-hover) var(--easing-parent-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.join__button:hover {
 			box-shadow: var(--shadow-join-action-hover);
+			transform: translateY(var(--offset-button-hover)) scale(var(--scale-interactive-hover));
 		}
 	}
 </style>

@@ -32,11 +32,10 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	.hero {
 		position: relative;
 		display: flex;
-		align-items: center;
+		align-items: var(--hero-section-align);
 		justify-content: center;
 		min-height: var(--page-min-height);
-		padding: var(--hero-padding-top) var(--hero-padding-inline)
-			var(--hero-padding-bottom);
+		padding: var(--hero-padding-top) var(--hero-padding-inline) var(--hero-padding-bottom);
 		overflow: hidden;
 		color: var(--color-text-on-dark);
 		scroll-margin-top: var(--space-hero-scroll-offset);
@@ -48,66 +47,57 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		inset: var(--space-page-reset);
 		z-index: var(--hero-glow-layer);
 		content: '';
+		pointer-events: none;
 		background: var(--hero-glow-background);
 		filter: blur(var(--hero-glow-blur));
-		mix-blend-mode: overlay;
-		animation: hero-glow-pulse var(--hero-glow-duration) infinite ease-in-out;
+		animation: hero-glow-pulse var(--hero-glow-duration) infinite var(--easing-parent-standard);
 	}
 
 	.hero__content {
+		position: relative;
+		z-index: var(--popup-content-layer);
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: var(--hero-content-direction);
 		align-items: center;
 		justify-content: space-between;
 		width: var(--hero-content-width);
 		max-width: var(--hero-content-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
+		gap: var(--space-content-gap);
 	}
 
 	.hero__text {
 		flex: var(--hero-column-flex);
+		width: var(--section-full-width);
 		max-width: var(--hero-text-max-width);
-		text-align: left;
+		text-align: var(--hero-text-align);
 	}
 
 	.hero__title {
 		margin: var(--space-page-reset);
+		color: var(--color-text-on-dark);
 		font-size: var(--font-size-hero-title);
 		font-weight: var(--font-weight-hero-title);
-		background: linear-gradient(
-			to left,
-			var(--color-text-on-dark),
-			var(--color-hero-title-gradient-end)
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: var(--color-clear-surface);
-		/* The original author appears to have intended a title glow, but its
-			colour marker is missing, so the browser discards it. */
+		line-height: var(--line-height-heading);
+		letter-spacing: var(--letter-spacing-heading);
+		/* The old title glow remained invalid. The parent uses crisp type here. */
 		text-shadow: none;
 	}
 
 	.hero__title-brand {
-		background: linear-gradient(
-			to right,
-			var(--color-brand-primary),
-			var(--color-brand-action-secondary)
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: var(--color-clear-surface);
+		color: var(--color-brand-primary);
 		text-shadow: var(--shadow-hero-brand-text);
 	}
 
 	.hero__subtitle {
 		max-width: var(--hero-copy-max-width);
-		margin: var(--space-hero-copy-top) var(--space-centered)
-			var(--space-page-reset);
+		margin: var(--space-hero-copy-top) var(--space-centered) var(--space-page-reset);
 		opacity: var(--hero-copy-opacity);
+		color: var(--color-supporting-text);
 		font-family: var(--font-family-hero-subtitle);
 		font-size: var(--font-size-feature-copy);
 		font-weight: var(--font-weight-hero-subtitle);
-		/* The original repeats this setting; one declaration has the same effect. */
+		line-height: var(--line-height-feature-copy);
 		font-optical-sizing: auto;
 		font-variation-settings: var(--font-variation-hero-subtitle-rounding);
 	}
@@ -119,32 +109,33 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		width: var(--hero-button-width);
 		min-height: var(--control-min-tap-size);
 		margin-top: var(--space-card-inset);
-		padding: var(--space-standard-button-block)
-			var(--space-standard-button-inline);
-		font-weight: var(--font-weight-page-default);
+		padding: var(--space-standard-button-block) var(--space-standard-button-inline);
+		font-size: var(--font-size-action-label);
+		font-weight: var(--font-weight-button);
 		text-decoration: none;
 		border-radius: var(--hero-button-radius);
 		box-shadow: var(--shadow-button-default);
-		transform: translateZ(var(--space-page-reset));
 		transition:
-			transform var(--duration-button-press) ease,
-			box-shadow var(--duration-button-press) ease,
-			background-color var(--duration-button-press) ease,
-			color var(--duration-button-press) ease;
+			transform var(--duration-button-hover) var(--easing-parent-out),
+			box-shadow var(--duration-button-hover) var(--easing-parent-out),
+			background-color var(--duration-button-hover) var(--easing-parent-out),
+			border-color var(--duration-button-hover) var(--easing-parent-out),
+			color var(--duration-button-hover) var(--easing-parent-out);
 	}
 
 	.hero__button--primary {
 		color: var(--color-page-background);
 		background: var(--color-brand-primary);
-		border: var(--hero-button-border-width) solid var(--color-clear-surface);
+		border: var(--hero-button-border-width) solid var(--color-brand-primary);
 	}
 
 	.hero__button--inverse {
 		margin-top: var(--space-hero-secondary-button-top);
 		margin-inline-start: var(--space-hero-secondary-button-inline);
-		color: var(--color-brand-primary);
-		background: var(--color-clear-surface);
-		border: var(--hero-button-border-width) solid var(--color-brand-primary);
+		padding-inline: var(--space-secondary-button-inline);
+		color: var(--color-text-on-dark);
+		background: var(--color-raised-card-surface);
+		border: var(--hero-button-border-width) solid var(--color-standard-border);
 		box-shadow: var(--shadow-button-inverse);
 	}
 
@@ -153,16 +144,17 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		flex: var(--hero-column-flex);
 		align-items: center;
 		justify-content: center;
+		width: var(--section-full-width);
 		max-width: var(--hero-logo-card-max-width);
 		aspect-ratio: var(--hero-logo-card-aspect-ratio);
-		margin-top: var(--space-hero-logo-top);
+		margin: var(--space-hero-logo-top) var(--space-centered) var(--space-page-reset);
 		padding: var(--space-hero-logo-inset);
 		background: var(--color-hero-logo-panel);
 		border-radius: var(--hero-logo-card-radius);
 		box-shadow: var(--shadow-hero-logo-card);
 		transition:
-			transform var(--duration-button-standard) ease,
-			box-shadow var(--duration-button-standard) ease;
+			transform var(--duration-button-standard) var(--easing-parent-out),
+			box-shadow var(--duration-button-standard) var(--easing-parent-out);
 	}
 
 	.hero__logo {
@@ -170,7 +162,8 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		height: var(--hero-logo-size);
 		max-width: var(--hero-logo-size);
 		object-fit: contain;
-		animation: hero-logo-entry var(--duration-hero-logo-entry) ease forwards;
+		animation: hero-logo-entry var(--duration-hero-logo-entry)
+			var(--easing-parent-out) var(--duration-hero-logo-delay) both;
 	}
 
 	@keyframes hero-logo-entry {
@@ -178,7 +171,6 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 			transform: scale(var(--hero-logo-entry-start-scale));
 			opacity: var(--hero-logo-entry-start-opacity);
 		}
-
 		to {
 			transform: scale(var(--hero-logo-entry-end-scale));
 			opacity: var(--hero-logo-entry-end-opacity);
@@ -188,20 +180,17 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	@media (hover: hover) and (pointer: fine) {
 		.hero__button--primary:hover {
 			background: var(--color-brand-action-secondary);
-			transform: scale(var(--hero-interactive-hover-scale));
+			border-color: var(--color-brand-action-secondary);
+			transform: translateY(var(--offset-button-hover)) scale(var(--hero-interactive-hover-scale));
 		}
-
 		.hero__button--inverse:hover {
-			color: var(--color-page-background);
-			background: var(--color-brand-primary);
-			box-shadow: var(--shadow-button-inverse);
-			transform: scale(var(--hero-interactive-hover-scale));
+			background: var(--color-interactive-surface);
+			border-color: var(--color-hover-border);
+			transform: translateY(var(--offset-button-hover)) scale(var(--hero-interactive-hover-scale));
 		}
-
 		.hero__logo-card:hover {
 			box-shadow: var(--shadow-hero-logo-card-hover);
-			transform: translateY(var(--hero-logo-hover-offset))
-				scale(var(--hero-interactive-hover-scale));
+			transform: translateY(var(--hero-logo-hover-offset));
 		}
 	}
 </style>

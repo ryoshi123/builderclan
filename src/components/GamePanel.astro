@@ -34,14 +34,13 @@
 		display: none;
 		padding: var(--space-game-frame-inset);
 		background: var(--color-game-frame-background);
+		border: var(--card-border-width) solid var(--color-standard-border);
 		border-radius: var(--radius-game-frame);
 		box-shadow: var(--shadow-game-frame);
 		transform: translate(var(--game-center-translation));
 	}
 
-	.game-panel[data-open='true'] {
-		display: block;
-	}
+	.game-panel[data-open='true'] { display: block; }
 
 	.game-panel * {
 		box-sizing: border-box;
@@ -52,9 +51,7 @@
 		font-optical-sizing: auto;
 	}
 
-	.game-panel *:not(.game-panel__close) {
-		padding: var(--space-page-reset);
-	}
+	.game-panel *:not(.game-panel__close) { padding: var(--space-page-reset); }
 
 	.game-panel__wrapper {
 		display: flex;
@@ -66,7 +63,7 @@
 		background: var(--color-game-frame-background);
 		border-radius: var(--radius-game-frame);
 		transform-origin: center;
-		animation: surface-entry var(--duration-snake-entry) ease-in-out forwards;
+		animation: surface-entry var(--duration-snake-entry) var(--easing-parent-out) forwards;
 	}
 
 	.game-panel__details {
@@ -74,8 +71,7 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-compact-control-gap);
-		padding: var(--game-detail-padding-block)
-			var(--game-detail-padding-inline);
+		padding: var(--game-detail-padding-block) var(--game-detail-padding-inline);
 		color: var(--color-game-status-text);
 		font-size: var(--game-detail-font-size);
 		font-weight: var(--font-weight-game-detail);
@@ -89,12 +85,20 @@
 		min-height: var(--animated-control-min-tap-size);
 		padding: var(--space-game-close-block) var(--space-game-close-inline);
 		color: var(--color-game-status-text);
-		font-size: inherit;
-		font-weight: var(--font-weight-game-detail);
+		font-size: var(--font-size-action-label);
+		font-weight: var(--font-weight-button);
 		cursor: pointer;
 		background: var(--color-game-board-background);
 		border: var(--game-close-border-width) solid var(--color-game-status-text);
-		border-radius: var(--radius-game-frame);
+		border-radius: var(--radius-action-standard);
+		transition:
+			transform var(--duration-button-standard) var(--easing-parent-out),
+			background-color var(--duration-button-standard) var(--easing-parent-standard);
+	}
+
+	.game-panel__close:hover {
+		background: var(--color-game-frame-background);
+		transform: translateY(var(--offset-button-hover));
 	}
 
 	.game-panel__board {
@@ -105,11 +109,6 @@
 		grid-template: var(--game-board-grid);
 	}
 
-	.game-panel__board :global(.food) {
-		background: var(--color-snake-food);
-	}
-
-	.game-panel__board :global(.head) {
-		background: var(--color-snake-head);
-	}
+	.game-panel__board :global(.food) { background: var(--color-snake-food); }
+	.game-panel__board :global(.head) { background: var(--color-snake-head); }
 </style>

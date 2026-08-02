@@ -14,12 +14,24 @@
 
 <style>
 	.community {
+		position: relative;
 		width: var(--section-full-width);
 		padding: var(--space-community-section-top) var(--space-section-gutter)
 			var(--space-community-section-bottom);
+		overflow: hidden;
+	}
+
+	.community::before {
+		position: absolute;
+		inset: var(--section-ambient-inset);
+		content: '';
+		pointer-events: none;
+		background: var(--background-section-ambient-reverse);
+		filter: blur(var(--section-ambient-blur));
 	}
 
 	.community__content {
+		position: relative;
 		text-align: center;
 	}
 </style>

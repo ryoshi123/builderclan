@@ -18,6 +18,23 @@ const navigationOverlay = document.querySelector<HTMLElement>(
 	'[data-navigation-overlay]',
 );
 
+const siteHeader = document.querySelector<HTMLElement>('.site-header');
+
+const updateNavigationSurface = () => {
+	if (!siteHeader) return;
+	const threshold = Number.parseFloat(
+		getComputedStyle(document.documentElement).getPropertyValue(
+			'--navigation-scroll-threshold',
+		),
+	);
+	siteHeader.dataset.scrolled = String(
+		window.scrollY > (Number.isFinite(threshold) ? threshold : 0),
+	);
+};
+
+updateNavigationSurface();
+window.addEventListener('scroll', updateNavigationSurface, { passive: true });
+
 const setNavigationOpen = (open: boolean) => {
 	if (!navigationToggle || !navigationOverlay) return;
 
@@ -46,6 +63,12 @@ if (navigationToggle && navigationOverlay) {
 	navigationOverlay.querySelectorAll('a').forEach((link) => {
 		link.addEventListener('click', () => setNavigationOpen(false));
 	});
+
+	window.addEventListener('resize', () => {
+		if (getComputedStyle(navigationToggle).display === 'none') {
+			setNavigationOpen(false);
+		}
+	}, { passive: true });
 }
 
 const faqToggle = document.querySelector<HTMLButtonElement>('[data-faq-toggle]');

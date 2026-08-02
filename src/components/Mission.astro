@@ -25,8 +25,8 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 
 <style>
 	.mission {
+		position: relative;
 		padding: var(--space-mission-block) var(--space-section-gutter);
-		border-radius: var(--radius-square);
 	}
 
 	.mission__content {
@@ -37,8 +37,6 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 		justify-content: space-between;
 		max-width: var(--mission-content-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
-		padding: var(--space-section-edge-reset) var(--space-section-edge-reset)
-			var(--space-mission-bottom);
 		gap: var(--space-content-gap);
 	}
 
@@ -47,16 +45,16 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 		min-width: var(--mission-column-min-width);
 		margin-bottom: var(--space-mission-text-bottom);
 		color: var(--color-text-on-dark);
-		font-size: var(--font-size-subsection-heading);
-		font-weight: var(--font-weight-paragraph);
 		text-align: var(--layout-mission-text-align);
 	}
 
 	.mission__text h3 {
-		margin: var(--space-page-reset) var(--space-page-reset)
-			var(--space-section-gutter);
-		color: var(--color-brand-primary);
-		line-height: var(--line-height-feature-copy);
+		margin: var(--space-page-reset) var(--space-page-reset) var(--space-section-gutter);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-subsection-heading);
+		font-weight: var(--font-weight-section-heading);
+		line-height: var(--line-height-section-heading);
+		letter-spacing: var(--letter-spacing-heading);
 	}
 
 	.mission__text p {
@@ -72,21 +70,26 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 		flex: var(--layout-fill-share);
 		justify-content: center;
 		min-width: var(--mission-column-min-width);
-		padding: var(--space-mission-image-offset) var(--space-section-edge-reset)
-			var(--space-section-edge-reset);
+		padding: var(--space-mission-image-offset);
 	}
 
 	.mission__image img {
 		max-width: var(--mission-image-max-width);
 		height: var(--space-centered);
+		border: var(--card-border-width) solid var(--color-standard-border);
 		border-radius: var(--radius-mission-image);
-		transition: transform var(--duration-button-standard) ease;
+		box-shadow: var(--shadow-card-default);
+		transition:
+			transform var(--duration-button-standard) var(--easing-parent-out),
+			border-color var(--duration-button-standard) var(--easing-parent-out),
+			box-shadow var(--duration-button-standard) var(--easing-parent-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.mission__image img:hover {
-			box-shadow: var(--shadow-image-brand-hover);
-			transform: scale(var(--scale-interactive-hover));
+			border-color: var(--card-hover-border-color);
+			box-shadow: var(--shadow-card-hover);
+			transform: translateY(var(--card-hover-offset));
 		}
 	}
 </style>

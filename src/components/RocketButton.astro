@@ -21,13 +21,17 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 		bottom: var(--space-floating-control-block-edge);
 		left: var(--space-floating-control-inline-edge);
 		z-index: var(--game-layer);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		min-width: var(--control-min-tap-size);
 		min-height: var(--control-min-tap-size);
 		padding: var(--space-page-reset);
 		font-size: var(--font-size-rocket-control);
 		cursor: pointer;
-		background: none;
+		background: var(--color-clear-surface);
 		border: none;
+		border-radius: var(--radius-round);
 	}
 
 	.rocket__icon {
@@ -42,8 +46,8 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 		mask: var(--rocket-icon-source) center / contain no-repeat;
 		-webkit-mask: var(--rocket-icon-source) center / contain no-repeat;
 		transition:
-			transform var(--duration-rocket-hover) ease,
-			color var(--duration-rocket-hover) ease;
+			transform var(--duration-rocket-hover) var(--easing-parent-out),
+			color var(--duration-rocket-hover) var(--easing-parent-standard);
 	}
 
 	.rocket:hover .rocket__icon {
@@ -54,7 +58,6 @@ const rocketSource = `${import.meta.env.BASE_URL}assets/images/builderclan/rocke
 
 	.rocket--launching {
 		will-change: transform, opacity;
-		animation: rocket-flight var(--duration-rocket-flight)
-			var(--easing-rocket-flight);
+		animation: rocket-flight var(--duration-rocket-flight) var(--easing-rocket-flight);
 	}
 </style>
