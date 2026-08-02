@@ -58,7 +58,8 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 <style>
 	.hall-of-fame {
-		padding: var(--space-parent-section-block) var(--space-page-reset);
+		padding: var(--space-parent-section-block) var(--space-page-reset)
+			var(--space-parent-hall-bottom);
 		color: var(--color-text-on-dark);
 		background: var(--color-page-background);
 	}
@@ -88,7 +89,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		inset-block: var(--space-page-reset);
 		inset-inline-end: var(--space-page-reset);
 		z-index: var(--member-row-continuation-layer);
-		display: flex;
+		display: var(--parent-member-cue-display);
 		align-items: center;
 		justify-content: center;
 		width: var(--member-row-continuation-cue-width);
@@ -106,14 +107,18 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 	}
 
 	.hall-of-fame__row {
-		display: flex;
-		padding: var(--space-parent-2) var(--space-parent-6);
-		overflow-x: auto;
-		gap: var(--space-parent-card-gap);
-		scroll-padding-inline: var(--space-parent-6);
+		display: var(--parent-member-row-display);
+		grid-template-columns: var(--parent-member-row-columns);
+		align-items: var(--parent-member-row-alignment);
+		padding: var(--parent-member-row-block-padding)
+			var(--parent-member-row-inline-padding);
+		overflow-x: var(--parent-member-row-overflow);
+		gap: var(--parent-member-row-gap);
+		scroll-padding-inline: var(--parent-member-row-inline-padding);
 		scrollbar-width: none;
-		scroll-snap-type: x mandatory;
-		touch-action: pan-x;
+		scroll-snap-type: var(--parent-member-row-snap-type);
+		touch-action: var(--parent-member-row-touch-action);
+		overscroll-behavior-inline: var(--parent-member-row-overscroll);
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -123,15 +128,16 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__card {
 		width: var(--parent-member-card-width);
-		flex: 0 0 var(--parent-member-card-width);
-		padding: var(--space-parent-card-inset);
+		min-width: var(--space-page-reset);
+		flex: var(--parent-member-card-flex);
+		padding: var(--parent-member-card-inset);
 		text-align: center;
 		background: var(--color-parent-card-surface);
 		border: var(--parent-border-width) solid var(--color-parent-border);
 		border-radius: var(--parent-radius-card);
 		box-shadow: var(--shadow-parent-card);
-		scroll-snap-align: start;
-		scroll-snap-stop: always;
+		scroll-snap-align: var(--parent-member-card-snap-align);
+		scroll-snap-stop: var(--parent-member-card-snap-stop);
 		transition: all var(--duration-parent-standard) ease;
 	}
 
@@ -148,7 +154,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		margin: var(--space-page-reset) var(--space-page-reset)
 			var(--space-parent-2);
 		color: var(--color-text-on-dark);
-		font-size: var(--font-size-parent-card-title);
+		font-size: var(--parent-member-name-size);
 		font-weight: var(--font-weight-parent-bold);
 		line-height: var(--line-height-parent-snug);
 	}
@@ -157,7 +163,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		margin: var(--space-page-reset) var(--space-page-reset)
 			var(--space-parent-1);
 		color: var(--color-section-body-text);
-		font-size: var(--font-size-parent-card-copy);
+		font-size: var(--parent-member-detail-size);
 		font-weight: var(--font-weight-parent-regular);
 		line-height: var(--line-height-parent-relaxed);
 	}

@@ -459,12 +459,12 @@
 	--color-parent-card-translucent: rgba(28, 28, 28, 0.9);
 	--color-parent-brand-border-soft: rgba(202, 255, 51, 0.5);
 	--color-parent-brand-border-faint: rgba(202, 255, 51, 0.4);
-	--color-parent-brand-glow-minimal: rgba(202, 255, 51, 0.05);
-	--color-parent-faq-glow: rgba(202, 255, 51, 0.06);
-	--color-parent-brand-glow-faint: rgba(202, 255, 51, 0.1);
-	--color-parent-brand-glow-soft: rgba(202, 255, 51, 0.2);
-	--color-parent-brand-glow-medium: rgba(202, 255, 51, 0.3);
-	--color-parent-brand-glow-strong: rgba(202, 255, 51, 0.5);
+	--color-parent-brand-glow-minimal: rgba(202, 255, 51, 0.02);
+	--color-parent-faq-glow: rgba(202, 255, 51, 0.025);
+	--color-parent-brand-glow-faint: rgba(202, 255, 51, 0.04);
+	--color-parent-brand-glow-soft: rgba(202, 255, 51, 0.07);
+	--color-parent-brand-glow-medium: rgba(202, 255, 51, 0.1);
+	--color-parent-brand-glow-strong: rgba(202, 255, 51, 0.16);
 	--color-parent-shadow-heavy: rgba(0, 0, 0, 0.5);
 	--color-parent-shadow-logo: rgba(0, 0, 0, 0.8);
 	--color-parent-divider-soft: rgba(38, 38, 38, 0.6);
@@ -538,6 +538,9 @@
 	--space-parent-header-bottom: var(--space-parent-12);
 	--space-parent-hero-top: var(--space-parent-6);
 	--space-parent-hero-bottom: var(--space-parent-12);
+	--space-parent-hero-content-gap: var(--space-parent-12);
+	--space-parent-hero-visual-block: var(--space-parent-8);
+	--space-parent-hall-bottom: var(--space-parent-8);
 	--space-parent-footer-top: var(--space-parent-16);
 	--space-parent-footer-bottom: var(--space-parent-8);
 	--space-parent-cta-inset: var(--space-parent-10);
@@ -565,6 +568,24 @@
 	--parent-control-min-height: 44px;
 	--parent-member-card-width: 17rem;
 	--parent-member-photo-size: 9.375rem;
+	--parent-member-card-inset: var(--space-parent-card-inset);
+	--parent-member-name-size: var(--font-size-parent-card-title);
+	--parent-member-detail-size: var(--font-size-parent-card-copy);
+	--parent-member-card-flex: 0 0 var(--parent-member-card-width);
+	--parent-member-card-snap-align: start;
+	--parent-member-card-snap-stop: always;
+	--parent-member-row-display: flex;
+	--parent-member-row-columns: none;
+	--parent-member-row-alignment: flex-start;
+	--parent-member-row-block-padding: var(--space-page-reset);
+	--parent-member-row-inline-padding: var(--space-parent-6);
+	--parent-member-row-gap: var(--space-parent-card-gap);
+	--parent-member-row-overflow: auto;
+	--parent-member-row-snap-type: x mandatory;
+	--parent-member-row-touch-action: pan-y;
+	--parent-member-row-overscroll: contain;
+	--parent-member-cue-display: flex;
+	--parent-member-axis-lock-threshold: 8px;
 	--parent-section-glow-width: 72rem;
 	--parent-section-glow-height: 24rem;
 	--parent-hero-glow-width: 64rem;
@@ -591,6 +612,9 @@
 	--parent-content-z: 10;
 	--parent-floating-layer: 10;
 	--parent-floating-edge: 2.5rem;
+	--parent-rocket-inline-edge: calc(
+		var(--space-page-reset) - var(--space-parent-1)
+	);
 	--parent-floating-inset: 0.625rem;
 	--parent-menu-scale-closed: 0.98;
 	--parent-menu-scale-open: 1;
@@ -766,6 +790,11 @@
 	stays here with the shared responsive values instead of in a section style. */
 @media (max-width: 768px) {
 	:root {
+		--parent-hero-min-height: auto;
+		--parent-hero-visual-min-height: auto;
+		--space-parent-hero-bottom: var(--space-parent-8);
+		--space-parent-hero-content-gap: var(--space-parent-6);
+		--space-parent-hero-visual-block: var(--space-parent-4);
 		--navigation-links-display: none;
 		--navigation-toggle-display: block;
 		--navigation-toggle-current-size: var(--font-size-subsection-heading);
@@ -860,6 +889,26 @@
 
 @media (min-width: 1280px) {
 	:root {
+		--space-parent-hall-bottom: var(--space-parent-section-block);
+		--parent-member-card-width: auto;
+		--parent-member-photo-size: 7rem;
+		--parent-member-card-inset: var(--space-parent-3);
+		--parent-member-name-size: var(--font-size-parent-sm);
+		--parent-member-detail-size: var(--font-size-parent-xs);
+		--parent-member-card-flex: none;
+		--parent-member-card-snap-align: none;
+		--parent-member-card-snap-stop: normal;
+		--parent-member-row-display: grid;
+		--parent-member-row-columns: repeat(7, minmax(0, 1fr));
+		--parent-member-row-alignment: stretch;
+		--parent-member-row-block-padding: var(--space-parent-2);
+		--parent-member-row-inline-padding: var(--space-page-reset);
+		--parent-member-row-gap: var(--space-parent-3);
+		--parent-member-row-overflow: visible;
+		--parent-member-row-snap-type: none;
+		--parent-member-row-touch-action: auto;
+		--parent-member-row-overscroll: auto;
+		--parent-member-cue-display: none;
 		--rocket-position-mode: fixed;
 		--rocket-flow-margin: var(--space-page-reset);
 		--rocket-position-block-edge: var(--space-floating-control-block-edge);

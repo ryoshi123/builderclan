@@ -164,6 +164,18 @@ const memberScrollShell = document.querySelector<HTMLElement>(
 );
 
 if (memberScrollRow && memberScrollShell) {
+	type MemberGesture = {
+		x: number;
+		y: number;
+		scrollLeft: number;
+		axis: 'horizontal' | 'vertical' | null;
+	};
+	let memberGesture: MemberGesture | null = null;
+	const memberAxisThreshold = Number.parseFloat(
+		getComputedStyle(document.documentElement).getPropertyValue(
+			'--parent-member-axis-lock-threshold',
+		),
+	);
 	const updateMemberScrollCue = () => {
 		const scrollable = memberScrollRow.scrollWidth > memberScrollRow.clientWidth;
 		const atEnd =
@@ -175,6 +187,56 @@ if (memberScrollRow && memberScrollShell) {
 	};
 
 	memberScrollRow.addEventListener('scroll', updateMemberScrollCue, {
+		passive: true,
+	});
+	memberScrollRow.addEventListener(
+		'touchstart',
+		(event) => {
+			const touch = event.touches[0];
+			if (!touch || event.touches.length !== 1) {
+				memberGesture = null;
+				return;
+			}
+
+			memberGesture = {
+				x: touch.clientX,
+				y: touch.clientY,
+				scrollLeft: memberScrollRow.scrollLeft,
+				axis: null,
+			};
+		},
+		{ passive: true },
+	);
+	memberScrollRow.addEventListener(
+		'touchmove',
+		(event) => {
+			if (!memberGesture) return;
+			const touch = event.touches[0];
+			if (!touch) return;
+
+			const deltaX = touch.clientX - memberGesture.x;
+			const deltaY = touch.clientY - memberGesture.y;
+			if (
+				memberGesture.axis === null &&
+				Math.max(Math.abs(deltaX), Math.abs(deltaY)) >= memberAxisThreshold
+			) {
+				memberGesture.axis =
+					Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
+			}
+
+			if (memberGesture.axis !== 'horizontal') return;
+			event.preventDefault();
+			memberScrollRow.scrollLeft = memberGesture.scrollLeft - deltaX;
+		},
+		{ passive: false },
+	);
+	const finishMemberGesture = () => {
+		memberGesture = null;
+	};
+	memberScrollRow.addEventListener('touchend', finishMemberGesture, {
+		passive: true,
+	});
+	memberScrollRow.addEventListener('touchcancel', finishMemberGesture, {
 		passive: true,
 	});
 	new ResizeObserver(updateMemberScrollCue).observe(memberScrollRow);
