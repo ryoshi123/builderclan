@@ -25,7 +25,7 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 
 <style>
 	.mission {
-		padding: var(--space-mission-block) var(--space-section-gutter);
+		padding: var(--space-mission-block) var(--space-page-reset);
 		border-radius: var(--radius-square);
 	}
 
@@ -35,7 +35,7 @@ const missionImage = `${import.meta.env.BASE_URL}assets/images/builderclan/about
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
-		max-width: var(--mission-content-max-width);
+		width: min(var(--mission-content-max-width), var(--content-width));
 		margin: var(--space-page-reset) var(--space-centered);
 		padding: var(--space-section-edge-reset) var(--space-section-edge-reset)
 			var(--space-mission-bottom);

@@ -11,8 +11,12 @@ html {
 	scroll-behavior: var(--motion-page-scroll);
 }
 
+html[data-navigation-open] {
+	overflow: hidden;
+}
+
 body {
-	padding-top: var(--space-fixed-header-offset);
+	padding-top: var(--space-page-reset);
 	margin: var(--space-page-reset);
 	overflow-x: hidden;
 	color: var(--color-page-text-default);
@@ -49,7 +53,7 @@ body {
 
 .section-copy {
 	max-width: var(--section-copy-max-width);
-	margin: var(--space-section-intro-offset) var(--space-centered)
+	margin: var(--space-section-intro-offset) var(--space-page-reset)
 		var(--space-page-reset);
 	color: var(--color-section-body-text);
 	font-size: var(--font-size-section-body);

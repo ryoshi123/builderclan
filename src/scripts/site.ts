@@ -32,12 +32,11 @@ const setNavigationOpen = (open: boolean) => {
 			? navigationToggle.dataset.openLabel ?? ''
 			: navigationToggle.dataset.closedLabel ?? '',
 	);
+	document.documentElement.toggleAttribute('data-navigation-open', open);
 	if (!open && focusWasInside) navigationToggle.focus();
 };
 
 if (navigationToggle && navigationOverlay) {
-	const siteHeader = navigationToggle.closest<HTMLElement>('.site-header');
-
 	navigationToggle.dataset.closedLabel =
 		navigationToggle.getAttribute('aria-label') ?? '';
 
@@ -45,7 +44,7 @@ if (navigationToggle && navigationOverlay) {
 		setNavigationOpen(navigationOverlay.dataset.open !== 'true');
 	});
 
-	navigationOverlay.querySelectorAll('a').forEach((link) => {
+	document.querySelectorAll('.site-header a').forEach((link) => {
 		link.addEventListener('click', () => setNavigationOpen(false));
 	});
 
@@ -57,7 +56,15 @@ if (navigationToggle && navigationOverlay) {
 
 	document.addEventListener('click', (event) => {
 		if (navigationOverlay.dataset.open !== 'true') return;
-		if (event.target instanceof Node && siteHeader?.contains(event.target)) return;
+		if (
+			event.target instanceof Element &&
+			(
+				event.target.closest('.site-header__inner') ||
+				event.target.closest('.site-header__overlay a')
+			)
+		) {
+			return;
+		}
 		setNavigationOpen(false);
 	});
 

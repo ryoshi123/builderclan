@@ -59,9 +59,12 @@
 	--color-card-shadow-and-hero-vignette: rgba(0, 0, 0, 0.2);
 	--color-inset-section-shadow: rgba(0, 0, 0, 0.25);
 	--color-elevated-shadow: rgba(0, 0, 0, 0.35);
-	--color-navigation-pill-surface: var(--color-elevated-shadow);
+	--color-navigation-pill-surface: var(--color-hero-background-end);
+	--color-navigation-toggle-surface: var(--color-content-surface-gradient-end);
+	--color-navigation-toggle-border: var(--color-faq-border);
+	--color-navigation-menu-link-hover: var(--color-content-surface-gradient-end);
 	--color-popup-backdrop: rgba(0, 0, 0, 0.7);
-	--color-mobile-navigation-backdrop: rgba(0, 0, 0, 0.95);
+	--color-mobile-navigation-backdrop: var(--color-hero-background-end);
 	--color-popup-action-hover-fill: rgba(0, 255, 240, 0.1);
 	--color-popup-action-glow: rgba(0, 255, 240, 0.7);
 	--color-hero-brand-glow: rgba(202, 255, 51, 0.2);
@@ -158,39 +161,58 @@
 	--space-join-section-block: var(--space-section-block-current);
 	--space-join-control-top: var(--space-card-inset);
 	--space-footer-block: var(--space-section-gutter);
+	--space-footer-top: var(--space-section-block-current);
+	--space-footer-bottom: var(--space-section-gutter);
 	--space-floating-control-block-edge: var(--space-game-desktop-score-block);
 	--space-floating-control-inline-edge: var(--space-page-reset);
+	--space-rocket-flow-block: var(--space-section-gutter);
+	--space-rocket-flow-inline: var(--space-section-gutter);
+	--space-hall-row-block: var(--space-compact-control-gap);
+	--space-hall-row-inline: var(--space-card-inset);
 	--space-faq-button-top: var(--space-card-inset);
 	--space-popup-control-block: var(--space-card-title-gap);
 	--space-game-close-block: var(--space-compact-control-gap);
 	--space-game-close-inline: var(--space-section-intro-offset);
 	--space-mission-text-bottom: var(--space-page-reset);
-	--space-navigation-pill-top-gap: var(--space-section-gutter);
-	--space-navigation-pill-block: var(--space-compact-control-gap);
-	--space-navigation-pill-inline: var(--space-card-inset);
+	--space-navigation-pill-top-gap: var(--space-section-intro-offset);
+	--space-navigation-pill-block: 0.25rem;
+	--space-navigation-pill-inline: var(--space-compact-control-gap);
+	--space-navigation-content-gap: var(--space-section-intro-offset);
 	--space-navigation-link-gap: var(--space-card-inset);
-	--space-navigation-link-offset: var(--space-card-inset);
+	--space-navigation-link-offset: var(--space-page-reset);
+	--space-navigation-menu-top: 6rem;
+	--space-navigation-menu-inline: var(--space-card-inset);
+	--space-navigation-menu-bottom: var(--space-content-gap);
+	--space-navigation-menu-gap: var(--space-compact-control-gap);
+	--space-navigation-menu-link-inline: var(--space-section-gutter);
 	--space-navigation-overlay-inline: var(--space-content-gap);
 	--space-navigation-overlay-gap: var(--space-content-gap);
-	--space-hero-compact-top: var(--space-content-gap);
+	--space-hero-top-with-navigation: calc(
+		var(--space-fixed-header-offset) + var(--space-content-gap)
+	);
+	--space-hero-compact-top: var(--space-hero-top-with-navigation);
 	--space-hero-compact-inline: var(--space-card-inset);
-	--space-hero-compact-bottom: var(--space-section-gutter);
-	--space-hero-wide-top: var(--space-content-gap);
+	--space-hero-compact-bottom: var(--space-section-block-current);
+	--space-hero-wide-top: var(--space-hero-top-with-navigation);
 	--space-hero-wide-inline: var(--space-desktop-section-block);
-	--space-hero-wide-bottom: var(--space-spacious-section-block);
+	--space-hero-wide-bottom: var(--space-section-block-current);
 	--space-hero-copy-top: var(--space-section-gutter);
 	--space-hero-logo-top: var(--space-content-gap);
 	--space-hero-logo-inset: var(--space-compact-control-gap);
+	--space-hero-actions-top: var(--space-card-inset);
+	--space-hero-button-block: 0.625rem;
+	--space-hero-button-inline: 1.25rem;
 	--space-hero-button-gap: var(--space-section-intro-offset);
 	--space-hero-secondary-button-top: var(--space-section-intro-offset);
-	--space-hero-secondary-button-inline: var(--space-page-reset);
+	--space-hero-secondary-button-inline: var(--space-compact-control-gap);
 
 	/* Fixed layout sizes and visible layout breakpoints. */
-	--page-min-height: 100vh;
+	--page-min-height: auto;
+	--hero-min-height: auto;
 	--breakpoint-site-layout: 768px;
 	--breakpoint-site-wide-layout: 769px;
 	--breakpoint-game-layout: 800px;
-	--content-width: 92%;
+	--content-width: calc(var(--section-full-width) - var(--space-content-gap));
 	--content-max-width: 1100px;
 	--section-full-width: 100%;
 	--section-copy-max-width: 48rem;
@@ -203,7 +225,7 @@
 	--faq-card-border-width: 1px;
 	--game-close-border-width: var(--faq-card-border-width);
 	--popup-action-border-width: 2px;
-	--mission-content-max-width: 1200px;
+	--mission-content-max-width: var(--content-max-width);
 	--mission-column-min-width: 280px;
 	--mission-image-max-width: 100%;
 	--vision-copy-max-width: 800px;
@@ -245,6 +267,11 @@
 	--layout-fill-share: 1;
 	--layout-mission-direction: row;
 	--layout-mission-text-align: left;
+	--rocket-position-mode: static;
+	--rocket-flow-margin: var(--space-rocket-flow-block) var(--space-centered)
+		var(--space-rocket-flow-block) var(--space-rocket-flow-inline);
+	--rocket-position-block-edge: auto;
+	--rocket-position-inline-edge: auto;
 	--opacity-member-detail: 0.8;
 	--scale-interactive-hover: 1.05;
 	--scale-social-hover: 1.1;
@@ -279,10 +306,10 @@
 
 	/* Navigation geometry and responsive state. */
 	--navigation-width: 100%;
-	--navigation-content-width: 92%;
-	--navigation-content-max-width: 1100px;
+	--navigation-content-width: fit-content;
+	--navigation-content-max-width: calc(100% - var(--space-content-gap));
 	--navigation-logo-height: 24px;
-	--navigation-backdrop-blur: 3px;
+	--navigation-backdrop-blur: 0px;
 	--navigation-overlay-top: var(--space-page-reset);
 	--navigation-overlay-height: 100vh;
 	--navigation-overlay-closed-position: -100%;
@@ -290,7 +317,7 @@
 	--navigation-layer: 10001;
 	--navigation-overlay-layer: 1;
 	--navigation-pill-layer: 2;
-	--navigation-overlay-opacity: 0.7;
+	--navigation-overlay-opacity: 1;
 	--navigation-pill-radius: var(--radius-join-pill);
 	--navigation-logo-start-scale: 0.8;
 	--navigation-logo-end-scale: 1;
@@ -299,14 +326,33 @@
 	--navigation-links-display: flex;
 	--navigation-toggle-display: none;
 	--navigation-toggle-current-size: var(--font-size-navigation-toggle);
+	--navigation-toggle-border-width: 1px;
+	--navigation-toggle-line-width: 22px;
+	--navigation-toggle-line-thickness: 2px;
+	--navigation-toggle-line-center: 50%;
+	--navigation-toggle-line-top-closed: translate(-50%, -7px);
+	--navigation-toggle-line-middle-closed: translate(-50%, -1px);
+	--navigation-toggle-line-bottom-closed: translate(-50%, 5px);
+	--navigation-toggle-line-top-open: translate(-50%, -1px) rotate(45deg);
+	--navigation-toggle-line-bottom-open: translate(-50%, -1px) rotate(-45deg);
+	--navigation-toggle-pressed-scale: 0.94;
+	--navigation-menu-link-width: 100%;
+	--navigation-menu-link-max-width: 20rem;
+	--navigation-menu-link-min-height: 56px;
+	--navigation-menu-link-pressed-scale: 0.98;
 
 	/* Hero geometry and responsive state. */
-	--hero-content-width: 100%;
-	--hero-content-max-width: 1200px;
+	--hero-content-width: var(--content-width);
+	--hero-content-max-width: var(--content-max-width);
+	--hero-content-direction: row;
+	--hero-content-alignment: center;
+	--hero-text-flex: 1 1 600px;
 	--hero-text-max-width: 600px;
-	--hero-column-flex: 1 1 300px;
 	--hero-copy-max-width: 40rem;
+	--hero-logo-flex: 0 1 450px;
+	--hero-logo-card-width: 100%;
 	--hero-logo-card-max-width: 450px;
+	--hero-logo-card-alignment: center;
 	--hero-logo-card-aspect-ratio: 1 / 1;
 	--hero-logo-size: 100%;
 	--hero-logo-card-radius: 16px;
@@ -328,7 +374,7 @@
 	--hero-interactive-hover-scale: 1.05;
 	--hero-copy-opacity: 1;
 	--hero-padding-top: var(--space-hero-compact-top);
-	--hero-padding-inline: var(--space-hero-compact-inline);
+	--hero-padding-inline: var(--space-page-reset);
 	--hero-padding-bottom: var(--space-hero-compact-bottom);
 	--hero-glow-duration: var(--duration-hero-glow-wide);
 	--hero-glow-background:
@@ -339,7 +385,7 @@
 	/* Complete effects keep every shadow measurement out of section styles. */
 	--shadow-button-default: 0 1px 2px var(--color-subtle-shadow-lead), 0 4px 8px var(--color-subtle-shadow-tail);
 	--shadow-button-inverse: 0 8px 20px var(--color-medium-shadow);
-	--shadow-navigation-pill: 0 8px 24px var(--color-elevated-shadow);
+	--shadow-navigation-pill: 0 6px 18px var(--color-elevated-shadow);
 	--shadow-hero-brand-text: 0 1px 1px var(--color-hero-subtitle-shadow);
 	--shadow-hero-logo-card: 0 8px 20px var(--color-inset-section-shadow);
 	--shadow-hero-logo-card-hover: 0 16px 16px var(--color-elevated-shadow), 0 0 10px var(--color-brand-primary);
@@ -374,6 +420,7 @@
 	--duration-join-background-shift: 15s;
 	--duration-navigation-logo-pop: 1s;
 	--duration-navigation-overlay-slide: 0.3s;
+	--duration-navigation-toggle-morph: 0.2s;
 	--duration-hero-glow-wide: 9s;
 	--duration-hero-glow-compact: 10s;
 	--duration-hero-logo-entry: 2s;
@@ -478,8 +525,15 @@
 			radial-gradient(circle at 60% 30%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
 			radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
 		--layout-mission-direction: column;
-		--layout-mission-text-align: center;
+		--layout-mission-text-align: left;
 		--space-mission-text-bottom: var(--space-content-gap);
+		--hero-content-direction: column;
+		--hero-content-alignment: flex-start;
+		--hero-text-flex: 0 1 auto;
+		--hero-logo-flex: 0 0 auto;
+		--hero-logo-card-width: min(100%, 18rem);
+		--hero-logo-card-max-width: 18rem;
+		--hero-logo-card-alignment: flex-start;
 	}
 }
 
@@ -487,15 +541,31 @@
 	:root {
 		--space-section-block-current: var(--space-compact-section-block);
 		--hero-padding-top: var(--space-hero-wide-top);
-		--hero-padding-inline: var(--space-hero-wide-inline);
+		--hero-padding-inline: var(--space-page-reset);
 		--hero-padding-bottom: var(--space-hero-wide-bottom);
 		--space-team-card-block: var(--space-card-inset);
 		--space-team-card-inline: var(--space-card-inset);
 		--space-hero-secondary-button-top: var(--space-card-inset);
-		--space-hero-secondary-button-inline: var(--space-hero-button-gap);
+		--space-hero-secondary-button-inline: var(--space-compact-control-gap);
 		--hero-button-display: inline-flex;
 		--hero-button-width: auto;
 		--space-floating-control-inline-edge: var(--space-game-desktop-score-block);
+	}
+}
+
+@media (max-width: 480px) {
+	:root {
+		--hero-logo-card-width: 13.75rem;
+		--hero-logo-card-max-width: 13.75rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	:root {
+		--rocket-position-mode: fixed;
+		--rocket-flow-margin: var(--space-page-reset);
+		--rocket-position-block-edge: var(--space-floating-control-block-edge);
+		--rocket-position-inline-edge: var(--space-game-desktop-score-block);
 	}
 }
 

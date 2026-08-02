@@ -62,10 +62,12 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 <style>
 	.hall-of-fame {
-		padding: var(--space-hall-section-top) var(--space-section-gutter)
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered);
+		padding: var(--space-hall-section-top) var(--space-page-reset)
 			var(--space-hall-section-bottom);
 		color: var(--color-text-on-dark);
-		text-align: center;
+		text-align: left;
 	}
 
 	.hall-of-fame__heading {
@@ -109,7 +111,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 	.hall-of-fame__row {
 		display: flex;
 		margin-top: var(--space-page-reset);
-		padding: var(--space-card-inset);
+		padding: var(--space-hall-row-block) var(--space-hall-row-inline);
 		overflow-x: auto;
 		gap: var(--space-card-inset);
 		scroll-padding-inline: var(--space-card-inset);
@@ -122,6 +124,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 
 	.hall-of-fame__card {
 		padding: var(--space-card-inset);
+		text-align: center;
 		background: var(--color-hall-card-background);
 		border-radius: var(--radius-hall-card);
 		box-shadow: var(--shadow-hall-card);

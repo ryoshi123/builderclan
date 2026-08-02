@@ -1,23 +1,23 @@
 ---
 import { navigationLinks } from '../data/navigation';
 
-const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoShort.svg`;
+const logoSource =
+	import.meta.env.BASE_URL + 'assets/images/builderclan/LogoShort.svg';
 ---
 
 <header class="site-header">
 	<div class="site-header__inner">
-		<div class="site-header__brand">
+		<a
+			href="#hero"
+			class="site-header__mark-link"
+			aria-label="Go to the BuilderClan AISAT opening section"
+		>
 			<img
 				src={logoSource}
-				alt="BuilderClan Logo"
+				alt="BuilderClan logo"
 				class="site-header__mark"
 			/>
-			<a href="#hero" class="site-header__brand-link">
-				<span class="site-header__brand-first">Builder</span><span
-					class="site-header__brand-second">Clan</span
-				>
-			</a>
-		</div>
+		</a>
 
 		<nav class="site-header__links" aria-label="Primary navigation">
 			{
@@ -42,7 +42,9 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 			aria-controls="mobile-navigation"
 			aria-expanded="false"
 		>
-			☰
+			<span class="site-header__toggle-line site-header__toggle-line--top"></span>
+			<span class="site-header__toggle-line site-header__toggle-line--middle"></span>
+			<span class="site-header__toggle-line site-header__toggle-line--bottom"></span>
 		</button>
 	</div>
 
@@ -97,26 +99,27 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: min(
-			var(--navigation-content-max-width),
-			var(--navigation-content-width)
-		);
+		width: var(--navigation-content-width);
+		max-width: var(--navigation-content-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
 		padding: var(--space-navigation-pill-block)
 			var(--space-navigation-pill-inline);
+		gap: var(--space-navigation-content-gap);
 		pointer-events: auto;
 		background: var(--color-navigation-pill-surface);
 		border-radius: var(--navigation-pill-radius);
 		box-shadow: var(--shadow-navigation-pill);
-		backdrop-filter: blur(var(--navigation-backdrop-blur));
+		backdrop-filter: none;
 	}
 
-	.site-header__brand {
+	.site-header__mark-link {
 		display: flex;
 		align-items: center;
-		gap: var(--space-navigation-brand-gap);
-		font-size: var(--font-size-navigation-brand);
-		font-weight: var(--font-weight-section-heading);
+		justify-content: center;
+		width: var(--control-min-tap-size);
+		height: var(--control-min-tap-size);
+		flex: none;
+		border-radius: var(--radius-action-standard);
 	}
 
 	.site-header__mark {
@@ -124,7 +127,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		height: var(--navigation-logo-height);
 	}
 
-	.site-header__mark:hover {
+	.site-header__mark-link:hover .site-header__mark {
 		animation: site-header-logo-pop var(--duration-navigation-logo-pop) ease forwards;
 	}
 
@@ -140,29 +143,6 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		}
 	}
 
-	.site-header__brand-link {
-		font-size: var(--font-size-navigation-brand);
-		font-weight: var(--font-weight-section-heading);
-		text-decoration: none;
-	}
-
-	.site-header__brand-first {
-		color: var(--color-text-on-dark);
-	}
-
-	.site-header__brand-second {
-		color: var(--color-brand-primary);
-	}
-
-	.site-header__brand-link:hover .site-header__brand-first {
-		color: var(--color-brand-primary);
-		transition: color var(--duration-navigation-overlay-slide) ease;
-	}
-
-	.site-header__brand-link:hover .site-header__brand-second {
-		color: var(--color-text-on-dark);
-	}
-
 	.site-header__links {
 		display: var(--navigation-links-display);
 		align-items: center;
@@ -172,7 +152,6 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 	.site-header__links a {
 		position: relative;
 		display: flex;
-		margin-left: var(--space-navigation-link-offset);
 		color: var(--color-text-on-dark);
 		font-weight: var(--font-weight-section-heading);
 		text-decoration: none;
@@ -184,12 +163,71 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 	}
 
 	.site-header__toggle {
+		position: relative;
 		display: var(--navigation-toggle-display);
-		font-size: var(--navigation-toggle-current-size);
+		width: var(--control-min-tap-size);
+		height: var(--control-min-tap-size);
+		flex: none;
+		padding: var(--space-page-reset);
 		color: var(--color-brand-primary);
 		cursor: pointer;
-		background: none;
-		border: none;
+		background: var(--color-navigation-toggle-surface);
+		border: var(--navigation-toggle-border-width) solid
+			var(--color-navigation-toggle-border);
+		border-radius: var(--radius-action-standard);
+		transition:
+			color var(--duration-navigation-toggle-morph) ease,
+			background-color var(--duration-navigation-toggle-morph) ease,
+			transform var(--duration-navigation-toggle-morph) ease;
+	}
+
+	.site-header__toggle:active {
+		transform: scale(var(--navigation-toggle-pressed-scale));
+	}
+
+	.site-header__toggle[aria-expanded='true'] {
+		color: var(--color-page-background);
+		background: var(--color-brand-primary);
+	}
+
+	.site-header__toggle-line {
+		position: absolute;
+		top: var(--navigation-toggle-line-center);
+		left: var(--navigation-toggle-line-center);
+		width: var(--navigation-toggle-line-width);
+		height: var(--navigation-toggle-line-thickness);
+		background: currentColor;
+		border-radius: var(--radius-join-pill);
+		transition:
+			transform var(--duration-navigation-toggle-morph) ease,
+			opacity var(--duration-navigation-toggle-morph) ease;
+	}
+
+	.site-header__toggle-line--top {
+		transform: var(--navigation-toggle-line-top-closed);
+	}
+
+	.site-header__toggle-line--middle {
+		transform: var(--navigation-toggle-line-middle-closed);
+	}
+
+	.site-header__toggle-line--bottom {
+		transform: var(--navigation-toggle-line-bottom-closed);
+	}
+
+	.site-header__toggle[aria-expanded='true']
+		.site-header__toggle-line--top {
+		transform: var(--navigation-toggle-line-top-open);
+	}
+
+	.site-header__toggle[aria-expanded='true']
+		.site-header__toggle-line--middle {
+		opacity: var(--opacity-entry-start);
+	}
+
+	.site-header__toggle[aria-expanded='true']
+		.site-header__toggle-line--bottom {
+		transform: var(--navigation-toggle-line-bottom-open);
 	}
 
 	.site-header__overlay {
@@ -200,30 +238,49 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/LogoSho
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		justify-content: center;
+		justify-content: flex-start;
 		width: var(--navigation-width);
 		height: var(--navigation-overlay-height);
-		padding-left: var(--space-navigation-overlay-inline);
-		gap: var(--space-navigation-overlay-gap);
+		padding: var(--space-navigation-menu-top)
+			var(--space-navigation-menu-inline)
+			var(--space-navigation-menu-bottom);
+		gap: var(--space-navigation-menu-gap);
 		opacity: var(--navigation-overlay-opacity);
-		pointer-events: auto;
+		pointer-events: none;
 		background: var(--color-mobile-navigation-backdrop);
 		transition: left var(--duration-navigation-overlay-slide) ease;
 	}
 
 	.site-header__overlay[data-open='true'] {
 		left: var(--navigation-overlay-open-position);
+		pointer-events: auto;
 	}
 
 	.site-header__overlay a {
+		display: flex;
+		align-items: center;
+		width: var(--navigation-menu-link-width);
+		max-width: var(--navigation-menu-link-max-width);
+		min-height: var(--navigation-menu-link-min-height);
+		padding-inline: var(--space-navigation-menu-link-inline);
 		color: var(--color-brand-primary);
 		font-size: var(--font-size-subsection-heading);
 		font-weight: var(--font-weight-section-heading);
 		text-decoration: none;
-		transition: color var(--duration-navigation-overlay-slide) ease;
+		border-radius: var(--radius-action-standard);
+		transition:
+			color var(--duration-navigation-toggle-morph) ease,
+			background-color var(--duration-navigation-toggle-morph) ease,
+			transform var(--duration-navigation-toggle-morph) ease;
 	}
 
-	.site-header__overlay a:hover {
+	.site-header__overlay a:hover,
+	.site-header__overlay a:focus-visible {
 		color: var(--color-text-on-dark);
+		background: var(--color-navigation-menu-link-hover);
+	}
+
+	.site-header__overlay a:active {
+		transform: scale(var(--navigation-menu-link-pressed-scale));
 	}
 </style>

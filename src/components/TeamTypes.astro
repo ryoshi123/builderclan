@@ -25,9 +25,11 @@ import { teamTypes } from '../data/teamTypes';
 
 <style>
 	.team-types {
-		padding: var(--space-team-section-top) var(--space-section-gutter)
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered);
+		padding: var(--space-team-section-top) var(--space-page-reset)
 			var(--space-team-section-bottom);
-		text-align: center;
+		text-align: left;
 	}
 
 	.team-types > h3 {
@@ -46,6 +48,7 @@ import { teamTypes } from '../data/teamTypes';
 
 	.team-types__card {
 		padding: var(--space-team-card-block) var(--space-team-card-inline);
+		text-align: left;
 		color: var(--color-section-body-text);
 		font-weight: var(--font-weight-paragraph);
 		background: var(--color-team-card-background);

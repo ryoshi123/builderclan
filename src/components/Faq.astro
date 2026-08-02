@@ -61,13 +61,15 @@ import { faqs } from '../data/faqs';
 	.faq {
 		width: var(--section-full-width);
 		margin: var(--space-page-reset);
-		padding: var(--space-faq-section-top) var(--space-section-gutter)
+		padding: var(--space-faq-section-top) var(--space-page-reset)
 			var(--space-faq-section-bottom);
 	}
 
 	.faq__heading {
-		margin-bottom: var(--space-content-gap);
-		text-align: center;
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered)
+			var(--space-content-gap);
+		text-align: left;
 	}
 
 	.faq__heading h2 {
@@ -146,7 +148,9 @@ import { faqs } from '../data/faqs';
 	}
 
 	.faq__button-wrapper {
-		text-align: center;
+		width: min(var(--content-max-width), var(--content-width));
+		margin: var(--space-page-reset) var(--space-centered);
+		text-align: left;
 	}
 
 	@media (hover: hover) and (pointer: fine) {

@@ -34,7 +34,7 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: var(--page-min-height);
+		min-height: var(--hero-min-height);
 		padding: var(--hero-padding-top) var(--hero-padding-inline)
 			var(--hero-padding-bottom);
 		overflow: hidden;
@@ -56,16 +56,17 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 
 	.hero__content {
 		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
+		flex-direction: var(--hero-content-direction);
+		align-items: var(--hero-content-alignment);
 		justify-content: space-between;
 		width: var(--hero-content-width);
 		max-width: var(--hero-content-max-width);
 		margin: var(--space-page-reset) var(--space-centered);
+		gap: var(--space-hero-content-gap);
 	}
 
 	.hero__text {
-		flex: var(--hero-column-flex);
+		flex: var(--hero-text-flex);
 		max-width: var(--hero-text-max-width);
 		text-align: left;
 	}
@@ -112,15 +113,16 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 		font-variation-settings: var(--font-variation-hero-subtitle-rounding);
 	}
 
+
 	.hero__button {
-		display: var(--hero-button-display);
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		width: var(--hero-button-width);
 		min-height: var(--control-min-tap-size);
-		margin-top: var(--space-card-inset);
-		padding: var(--space-standard-button-block)
-			var(--space-standard-button-inline);
+		margin-top: var(--space-hero-actions-top);
+		padding: var(--space-hero-button-block) var(--space-hero-button-inline);
+		vertical-align: top;
 		font-weight: var(--font-weight-page-default);
 		text-decoration: none;
 		border-radius: var(--hero-button-radius);
@@ -140,7 +142,6 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 	}
 
 	.hero__button--inverse {
-		margin-top: var(--space-hero-secondary-button-top);
 		margin-inline-start: var(--space-hero-secondary-button-inline);
 		color: var(--color-brand-primary);
 		background: var(--color-clear-surface);
@@ -150,12 +151,13 @@ const logoSource = `${import.meta.env.BASE_URL}assets/images/builderclan/builder
 
 	.hero__logo-card {
 		display: flex;
-		flex: var(--hero-column-flex);
+		flex: var(--hero-logo-flex);
 		align-items: center;
 		justify-content: center;
+		width: var(--hero-logo-card-width);
 		max-width: var(--hero-logo-card-max-width);
 		aspect-ratio: var(--hero-logo-card-aspect-ratio);
-		margin-top: var(--space-hero-logo-top);
+		align-self: var(--hero-logo-card-alignment);
 		padding: var(--space-hero-logo-inset);
 		background: var(--color-hero-logo-panel);
 		border-radius: var(--hero-logo-card-radius);
