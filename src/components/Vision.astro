@@ -16,63 +16,35 @@
 
 <style>
 	.vision {
-		padding: var(--space-parent-section-half) var(--space-page-reset);
+		padding: var(--space-page-reset) var(--space-vision-inline);
 		background: var(--color-page-background);
+		text-align: center;
 	}
 
-	.vision__card {
-		position: relative;
-		padding: var(--space-parent-feature-card-inset);
-		overflow: hidden;
-		background: var(--color-parent-card-translucent);
-		border: var(--parent-border-width) solid var(--color-parent-border);
-		border-radius: var(--parent-radius-feature);
-		box-shadow: var(--shadow-parent-feature);
-		transition: all var(--duration-parent-standard) ease;
-	}
-
-	.vision__accent {
-		position: absolute;
-		top: var(--space-page-reset);
-		right: var(--space-page-reset);
-		width: var(--parent-feature-accent-size);
-		height: var(--parent-feature-accent-size);
-		pointer-events: none;
-		background: var(--color-parent-brand-glow-minimal);
-		border-bottom-left-radius: var(--parent-radius-pill);
-		transition: background-color var(--duration-parent-standard) ease;
+	.vision > .content-container {
+		max-width: var(--vision-copy-max-width);
+		padding-inline: var(--space-page-reset);
 	}
 
 	.vision__content {
-		position: relative;
-		max-width: var(--parent-copy-max-width);
+		max-width: var(--vision-copy-max-width);
+		margin-inline: var(--space-centered);
 	}
 
 	.vision h3 {
-		margin: var(--space-page-reset) var(--space-page-reset)
-			var(--space-parent-4);
-		color: var(--color-text-on-dark);
-		font-size: var(--font-size-parent-2xl);
-		font-weight: var(--font-weight-parent-bold);
-		line-height: var(--line-height-parent-tight);
+		margin: var(--space-vision-heading-top) var(--space-page-reset)
+			var(--space-section-gutter);
+		color: var(--color-brand-primary);
+		font-size: var(--font-size-vision-heading);
+		font-weight: var(--font-weight-section-heading);
+		line-height: var(--line-height-feature-copy);
 	}
 
 	.vision p {
 		margin: var(--space-page-reset);
-		color: var(--color-section-body-text);
-		font-size: var(--font-size-parent-base);
-		font-weight: var(--font-weight-parent-regular);
-		line-height: var(--line-height-parent-relaxed);
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.vision__card:hover {
-			border-color: var(--color-parent-brand-border-soft);
-			transform: translateY(var(--parent-feature-hover-offset));
-		}
-
-		.vision__card:hover .vision__accent {
-			background: var(--color-parent-brand-glow-faint);
-		}
+		color: var(--color-inverted-section-text);
+		font-size: var(--font-size-section-body);
+		font-weight: var(--font-weight-paragraph);
+		line-height: var(--line-height-feature-copy);
 	}
 </style>

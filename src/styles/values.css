@@ -90,6 +90,7 @@
 	--font-size-social-icon: 1.4rem;
 	--font-size-navigation-toggle: 1.8rem;
 	--font-size-subsection-heading: 2rem;
+	--font-size-mission-heading: 2.34rem;
 	--font-size-vision-heading: 2.2rem;
 	--font-size-rocket-control: 2.5rem;
 	--font-size-rocket-control-hover: 3rem;
@@ -124,6 +125,7 @@
 	--space-section-gutter: 1rem;
 	--space-popup-inset: 1.1rem;
 	--space-popup-control-inline: 1.2rem;
+	--space-mission-copy-block: 1.1rem;
 	--space-card-inset: 1.5rem;
 	--space-join-control-inline: 1.6rem;
 	--space-standard-button-inline: 1.75rem;
@@ -147,7 +149,7 @@
 	--space-section-block-current: var(--space-content-gap);
 	--space-about-section-block: var(--space-section-block-current);
 	--space-mission-block: var(--space-section-block-current);
-	--space-mission-bottom: var(--space-section-edge-reset);
+	--space-mission-bottom: var(--space-content-gap);
 	--space-vision-block: var(--space-section-block-current);
 	--space-vision-inline: var(--space-section-gutter);
 	--space-team-section-top: var(--space-section-block-current);
@@ -176,6 +178,8 @@
 	--space-game-close-block: var(--space-compact-control-gap);
 	--space-game-close-inline: var(--space-section-intro-offset);
 	--space-mission-text-bottom: var(--space-page-reset);
+	--space-mission-heading-block: 2.34rem;
+	--space-vision-heading-top: 2.2rem;
 	--space-navigation-pill-top-gap: var(--space-section-intro-offset);
 	--space-navigation-pill-block: 0.25rem;
 	--space-navigation-pill-inline: var(--space-compact-control-gap);
@@ -227,8 +231,9 @@
 	--faq-card-border-width: 1px;
 	--game-close-border-width: var(--faq-card-border-width);
 	--popup-action-border-width: 2px;
-	--mission-content-max-width: var(--content-max-width);
+	--mission-content-max-width: 1200px;
 	--mission-column-min-width: 280px;
+	--mission-image-display-width: 275px;
 	--mission-image-max-width: 100%;
 	--vision-copy-max-width: 800px;
 	--team-grid-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -615,7 +620,7 @@
 	--parent-icon-box-size: 3rem;
 	--parent-icon-size: 1.25rem;
 	--parent-feature-accent-size: 8rem;
-	--parent-mission-image-max-width: 32rem;
+	--parent-mission-image-max-width: var(--mission-image-display-width);
 	--parent-header-z: 50;
 	--parent-content-z: 10;
 	--parent-floating-layer: 9999;
@@ -810,7 +815,7 @@
 			radial-gradient(circle at 60% 30%, var(--color-hero-light-glow), var(--color-clear-surface) 10%),
 			radial-gradient(circle at 80% 70%, var(--color-card-shadow-and-hero-vignette), var(--color-clear-surface) 70%);
 		--layout-mission-direction: column;
-		--layout-mission-text-align: left;
+		--layout-mission-text-align: center;
 		--space-mission-text-bottom: var(--space-content-gap);
 		--hero-content-direction: column;
 		--hero-content-alignment: flex-start;
@@ -865,7 +870,6 @@
 		--parent-hero-text-column: span 7 / span 7;
 		--parent-hero-visual-column: span 5 / span 5;
 		--parent-hero-visual-offset-y: var(--space-parent-3);
-		--parent-mission-grid-columns: repeat(2, minmax(0, 1fr));
 		--parent-cta-direction: row;
 		--parent-cta-text-align: left;
 	}
@@ -873,6 +877,7 @@
 
 @media (min-width: 769px) {
 	:root {
+		--parent-mission-grid-columns: repeat(2, minmax(0, 1fr));
 		--space-section-block-current: var(--space-compact-section-block);
 		--hero-padding-top: var(--space-hero-wide-top);
 		--hero-padding-inline: var(--space-page-reset);
