@@ -24,6 +24,10 @@ The site's design values live in `src/styles/values.css`. Component styles use r
 - Placeholder text: `#52525b`
 - Legacy light text available for parent parity: `#e4e4e7`
 
+### Chapter accessibility adjustment
+
+- Footer text: `#7d7d86`; this is the first equal-channel lightening step from the parent `#71717a` that passes `4.5:1` against `#141414`.
+
 ### Feature colours kept because the parent has no equivalent
 
 - Reward edge: `#35ff3c`

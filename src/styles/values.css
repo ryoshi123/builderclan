@@ -16,6 +16,7 @@
 	--color-faq-hover-border: #444444;
 	--color-placeholder-text: #52525b;
 	--color-low-emphasis-text: #71717a;
+	--color-accessible-footer-text: #7d7d86;
 	--color-faded-text: #a1a1aa;
 	--color-footer-card-text: #b0b0b8;
 	--color-supporting-text: #d4d4d8;
@@ -24,7 +25,7 @@
 	--color-page-text-default: var(--color-text-on-dark);
 	--color-section-body-text: var(--color-faded-text);
 	--color-faq-body-text: var(--color-faded-text);
-	--color-footer-text: var(--color-low-emphasis-text);
+	--color-footer-text: var(--color-accessible-footer-text);
 	--color-hero-title-gradient-end: var(--color-text-on-dark);
 	--color-hero-background-start: var(--color-page-background);
 	--color-hero-background-middle: var(--color-recessed-surface);
