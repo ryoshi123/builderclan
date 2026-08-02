@@ -12,11 +12,8 @@ import { faqs } from '../data/faqs';
 			{
 				faqs.map((faq, index) => (
 					<details
-						class:list={['faq__card', { 'faq__card--hidden': !faq.visible }]}
-						data-faq-extra={!faq.visible ? '' : undefined}
+						class="faq__card"
 						name="builderclan-faq"
-						data-reveal="slide-up"
-						data-reveal-item={String((index % 7) + 1)}
 					>
 						<summary>
 							<span class="faq__number">{String(index + 1).padStart(2, '0')}.</span>
@@ -49,20 +46,6 @@ import { faqs } from '../data/faqs';
 				))
 			}
 		</div>
-
-		<div class="faq__button-wrapper">
-			<button
-				type="button"
-				class="faq__button"
-				id="showMoreBtn"
-				data-faq-toggle
-				data-expanded-label="Show Less"
-				aria-controls="faq-list"
-				aria-expanded="false"
-			>
-				Show More
-			</button>
-		</div>
 	</div>
 </section>
 
@@ -73,9 +56,27 @@ import { faqs } from '../data/faqs';
 		padding: var(--space-parent-section-block) var(--space-page-reset);
 		overflow: hidden;
 		background: var(--color-page-background);
+		isolation: isolate;
+	}
+
+	.faq::before {
+		position: absolute;
+		bottom: var(--space-page-reset);
+		left: var(--game-frame-position);
+		z-index: var(--parent-faq-glow-layer);
+		width: var(--section-full-width);
+		max-width: var(--parent-faq-glow-max-width);
+		height: var(--parent-faq-glow-height);
+		pointer-events: none;
+		content: '';
+		background: var(--background-parent-faq-glow);
+		filter: blur(var(--parent-faq-glow-blur));
+		transform: translateX(var(--parent-center-x));
 	}
 
 	.faq__content {
+		position: relative;
+		z-index: var(--parent-faq-content-layer);
 		max-width: var(--parent-faq-max-width);
 	}
 
@@ -87,7 +88,7 @@ import { faqs } from '../data/faqs';
 	.faq__heading h2 {
 		margin: var(--space-page-reset);
 		color: var(--color-brand-primary);
-		font-size: var(--font-size-parent-section-heading);
+		font-size: var(--font-size-parent-faq-heading);
 		font-weight: var(--font-weight-parent-extrabold);
 		line-height: var(--line-height-parent-tight);
 		letter-spacing: var(--letter-spacing-parent-tight);
@@ -99,10 +100,7 @@ import { faqs } from '../data/faqs';
 
 	.faq__card {
 		border-bottom: var(--parent-border-width) solid var(--color-parent-border);
-	}
-
-	.faq__card--hidden {
-		display: none;
+		interpolate-size: allow-keywords;
 	}
 
 	.faq__card summary {
@@ -122,6 +120,7 @@ import { faqs } from '../data/faqs';
 	.faq__number {
 		margin-top: var(--space-parent-1);
 		color: var(--color-parent-number-rest);
+		font-family: var(--font-family-parent-mono);
 		font-size: var(--font-size-parent-sm);
 		font-weight: var(--font-weight-parent-bold);
 		transition: color var(--duration-parent-menu) ease;
@@ -130,7 +129,7 @@ import { faqs } from '../data/faqs';
 	.faq__question {
 		flex: 1;
 		color: var(--color-section-body-text);
-		font-size: var(--font-size-parent-lg);
+		font-size: var(--font-size-parent-faq-question);
 		font-weight: var(--font-weight-parent-semibold);
 		line-height: var(--line-height-parent-snug);
 		transition: color var(--duration-parent-menu) ease;
@@ -148,7 +147,10 @@ import { faqs } from '../data/faqs';
 		color: var(--color-footer-text);
 		border: var(--parent-border-width) solid var(--color-parent-border-scrolled);
 		border-radius: var(--radius-round);
-		transition: all var(--duration-parent-menu) ease;
+		transition:
+			color var(--duration-parent-menu) ease,
+			background-color var(--duration-parent-menu) ease,
+			border-color var(--duration-parent-menu) ease;
 	}
 
 	.faq__indicator span {
@@ -185,9 +187,24 @@ import { faqs } from '../data/faqs';
 		padding: var(--space-page-reset) var(--space-parent-10)
 			var(--space-parent-7) var(--space-parent-11);
 		color: var(--color-section-body-text);
-		font-size: var(--font-size-parent-base);
+		font-size: var(--font-size-parent-faq-answer);
 		font-weight: var(--font-weight-parent-regular);
 		line-height: var(--line-height-parent-relaxed);
+	}
+
+	.faq__card::details-content {
+		block-size: var(--space-page-reset);
+		overflow: hidden;
+		opacity: var(--opacity-entry-start);
+		transition:
+			block-size var(--duration-parent-faq-expand) var(--easing-parent-in-out),
+			opacity var(--duration-parent-faq-expand) var(--easing-parent-in-out),
+			content-visibility var(--duration-parent-faq-expand) allow-discrete;
+	}
+
+	.faq__card[open]::details-content {
+		block-size: auto;
+		opacity: var(--opacity-entry-end);
 	}
 
 	.faq__answer p {
@@ -198,40 +215,23 @@ import { faqs } from '../data/faqs';
 		color: var(--color-brand-primary);
 	}
 
-	.faq__button-wrapper {
-		margin-top: var(--space-parent-12);
-		text-align: center;
-	}
-
-	.faq__button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: var(--parent-control-min-height);
-		padding: var(--space-parent-3-5) var(--space-parent-5);
-		color: var(--color-text-on-dark);
-		font-family: inherit;
-		font-size: var(--font-size-parent-sm);
-		font-weight: var(--font-weight-parent-regular);
-		cursor: pointer;
-		background: var(--color-parent-card-surface);
-		border: var(--parent-border-width) solid var(--color-parent-border);
-		border-radius: var(--parent-radius-pill);
-		transition: all var(--duration-parent-standard) ease;
-	}
-
 	@media (hover: hover) and (pointer: fine) {
-		.faq__card summary:hover .faq__number {
+		.faq__card:not([open]) summary:hover .faq__number {
 			color: var(--color-parent-number-hover);
 		}
 
-		.faq__card summary:hover .faq__question {
-			color: var(--color-section-body-text);
+		.faq__card:not([open]) summary:hover .faq__question {
+			color: var(--color-parent-question-hover);
 		}
 
-		.faq__button:hover {
-			color: var(--color-brand-primary);
-			border-color: var(--color-parent-brand-border-soft);
+		.faq__card:not([open]) summary:hover .faq__indicator {
+			border-color: var(--color-parent-indicator-hover);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.faq__card::details-content {
+			transition: none;
 		}
 	}
 </style>

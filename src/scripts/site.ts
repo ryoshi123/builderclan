@@ -94,7 +94,7 @@ if (siteHeader) {
 	updateHeaderSurface();
 }
 
-if ('IntersectionObserver' in window && navigationLinks.length > 0) {
+if (navigationLinks.length > 0) {
 	const internalLinks = [...navigationLinks].filter((link) =>
 		link.getAttribute('href')?.startsWith('#'),
 	);
@@ -103,51 +103,57 @@ if ('IntersectionObserver' in window && navigationLinks.length > 0) {
 			.map((link) => link.getAttribute('href')?.slice(1))
 			.filter((id): id is string => Boolean(id)),
 	)];
+	const targets = targetIds
+		.map((id) => document.getElementById(id))
+		.filter((target): target is HTMLElement => Boolean(target));
 	const setActiveNavigation = (id: string) => {
 		internalLinks.forEach((link) => {
-			link.dataset.active = String(link.getAttribute('href') === `#${id}`);
+			const active = link.getAttribute('href') === `#${id}`;
+			link.dataset.active = String(active);
+			if (active) link.setAttribute('aria-current', 'location');
+			else link.removeAttribute('aria-current');
 		});
 	};
 	const rootStyles = getComputedStyle(document.documentElement);
-	const rootMargin = rootStyles
-		.getPropertyValue('--parent-navigation-observer-root-margin')
-		.trim();
-	const threshold = Number.parseFloat(
-		rootStyles.getPropertyValue('--parent-navigation-observer-threshold'),
+	const activeProbeRatio = Number.parseFloat(
+		rootStyles.getPropertyValue('--parent-navigation-active-probe-ratio'),
 	);
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting && entry.target.id) {
-					setActiveNavigation(entry.target.id);
-				}
-			});
-		},
-		{ rootMargin, threshold },
-	);
+	let navigationFrame = 0;
+	const updateActiveNavigation = () => {
+		navigationFrame = 0;
+		if (targets.length === 0) return;
 
-	targetIds.forEach((id) => {
-		const target = document.getElementById(id);
-		if (target) observer.observe(target);
-	});
-}
+		const headerBottom = siteHeader?.getBoundingClientRect().bottom ?? 0;
+		const visiblePageHeight = Math.max(0, window.innerHeight - headerBottom);
+		const probePosition =
+			window.scrollY + headerBottom + visiblePageHeight * activeProbeRatio;
+		let activeTarget = targets[0];
 
-const faqToggle = document.querySelector<HTMLButtonElement>('[data-faq-toggle]');
-const extraFaqs = document.querySelectorAll<HTMLElement>('[data-faq-extra]');
-
-if (faqToggle) {
-	const collapsedLabel = faqToggle.textContent?.trim() ?? '';
-	const expandedLabel = faqToggle.dataset.expandedLabel ?? '';
-
-	faqToggle.addEventListener('click', () => {
-		const expanded = faqToggle.getAttribute('aria-expanded') !== 'true';
-
-		extraFaqs.forEach((card) => {
-			card.classList.toggle('faq__card--hidden', !expanded);
+		targets.forEach((target) => {
+			const targetTop = target.getBoundingClientRect().top + window.scrollY;
+			if (targetTop <= probePosition) activeTarget = target;
 		});
-		faqToggle.setAttribute('aria-expanded', String(expanded));
-		faqToggle.textContent = expanded ? expandedLabel : collapsedLabel;
-	});
+		const finalTarget = targets.at(-1);
+		if (
+			finalTarget &&
+			finalTarget.getBoundingClientRect().top <= window.innerHeight
+		) {
+			activeTarget = finalTarget;
+		}
+
+		setActiveNavigation(activeTarget.id);
+	};
+	const requestNavigationUpdate = () => {
+		if (navigationFrame) return;
+		navigationFrame = window.requestAnimationFrame(updateActiveNavigation);
+	};
+
+	window.addEventListener('scroll', requestNavigationUpdate, { passive: true });
+	window.addEventListener('resize', requestNavigationUpdate, { passive: true });
+	window.addEventListener('hashchange', requestNavigationUpdate);
+	window.addEventListener('pageshow', requestNavigationUpdate);
+	window.addEventListener('load', requestNavigationUpdate, { once: true });
+	requestNavigationUpdate();
 }
 
 const memberScrollRow = document.querySelector<HTMLElement>(

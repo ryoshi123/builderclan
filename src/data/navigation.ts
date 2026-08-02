@@ -1,8 +1,8 @@
 export const navigationLinks = [
 	{
 		label: 'Home',
-		href: 'https://builderclan.org',
-		external: true,
+		href: '#hero',
+		external: false,
 	},
 	{
 		label: 'About',

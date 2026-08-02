@@ -450,6 +450,8 @@
 	--color-parent-brand-hover: #bce62e;
 	--color-parent-number-rest: #3f3f46;
 	--color-parent-number-hover: #52525b;
+	--color-parent-question-hover: #d4d4d8;
+	--color-parent-indicator-hover: #444444;
 	--color-parent-header-rest: rgba(28, 28, 28, 0.85);
 	--color-parent-header-scrolled: rgba(24, 24, 24, 0.95);
 	--color-parent-nav-track: rgba(20, 20, 20, 0.7);
@@ -458,6 +460,7 @@
 	--color-parent-brand-border-soft: rgba(202, 255, 51, 0.5);
 	--color-parent-brand-border-faint: rgba(202, 255, 51, 0.4);
 	--color-parent-brand-glow-minimal: rgba(202, 255, 51, 0.05);
+	--color-parent-faq-glow: rgba(202, 255, 51, 0.06);
 	--color-parent-brand-glow-faint: rgba(202, 255, 51, 0.1);
 	--color-parent-brand-glow-soft: rgba(202, 255, 51, 0.2);
 	--color-parent-brand-glow-medium: rgba(202, 255, 51, 0.3);
@@ -479,6 +482,9 @@
 	--font-size-parent-6xl: 3.75rem;
 	--font-size-parent-hero: var(--font-size-parent-4xl);
 	--font-size-parent-section-heading: var(--font-size-parent-3xl);
+	--font-size-parent-faq-heading: var(--font-size-parent-4xl);
+	--font-size-parent-faq-question: var(--font-size-parent-base);
+	--font-size-parent-faq-answer: var(--font-size-parent-sm);
 	--font-size-parent-section-copy: var(--font-size-parent-base);
 	--font-size-parent-card-title: var(--font-size-parent-lg);
 	--font-size-parent-card-copy: var(--font-size-parent-sm);
@@ -496,6 +502,8 @@
 	--line-height-parent-relaxed: 1.625;
 	--letter-spacing-parent-tight: -0.025em;
 	--letter-spacing-parent-wide: 0.05em;
+	--font-family-parent-mono: ui-monospace, SFMono-Regular, Menlo, Monaco,
+		Consolas, "Liberation Mono", "Courier New", monospace;
 
 	--space-parent-1: 0.25rem;
 	--space-parent-1-5: 0.375rem;
@@ -540,6 +548,12 @@
 	--parent-container-max-width: 1350px;
 	--parent-header-max-width: 1152px;
 	--parent-faq-max-width: 1024px;
+	--parent-faq-glow-max-width: 56rem;
+	--parent-faq-glow-height: 16rem;
+	--parent-faq-glow-blur: 64px;
+	--parent-faq-glow-layer: 0;
+	--parent-faq-content-layer: 1;
+	--parent-faq-glow-fade-midpoint: 50%;
 	--parent-copy-max-width: 768px;
 	--parent-hero-copy-max-width: 576px;
 	--parent-hero-logo-width: 12rem;
@@ -595,8 +609,7 @@
 	--parent-hero-min-height: calc(100vh - var(--space-parent-24));
 	--parent-header-width: calc(100% - var(--space-parent-8));
 	--parent-header-scroll-threshold: 20;
-	--parent-navigation-observer-root-margin: -20% 0px -40% 0px;
-	--parent-navigation-observer-threshold: 0.2;
+	--parent-navigation-active-probe-ratio: 0.2;
 	--parent-header-join-display: none;
 	--parent-hero-grid-columns: minmax(0, 1fr);
 	--parent-hero-text-column: auto;
@@ -620,8 +633,15 @@
 	--shadow-parent-active-link: 0 0 10px var(--color-parent-brand-glow-medium);
 	--background-parent-ambient: radial-gradient(circle at center, var(--color-parent-brand-glow-faint), var(--color-clear-surface) 68%);
 	--background-parent-cta-accent: linear-gradient(to left, var(--color-parent-brand-glow-faint), var(--color-clear-surface));
+	--background-parent-faq-glow: linear-gradient(
+		to top,
+		var(--color-parent-faq-glow),
+		var(--color-clear-surface) var(--parent-faq-glow-fade-midpoint),
+		var(--color-clear-surface)
+	);
 
 	--duration-parent-menu: 0.2s;
+	--duration-parent-faq-expand: 0.28s;
 	--duration-parent-control: 0.25s;
 	--duration-parent-standard: 0.3s;
 	--duration-parent-card-entry: 0.5s;
@@ -775,6 +795,9 @@
 		--space-parent-feature-card-inset: var(--space-parent-10);
 		--font-size-parent-hero: var(--font-size-parent-5xl);
 		--font-size-parent-section-heading: var(--font-size-parent-4xl);
+		--font-size-parent-faq-heading: var(--font-size-parent-5xl);
+		--font-size-parent-faq-question: var(--font-size-parent-lg);
+		--font-size-parent-faq-answer: var(--font-size-parent-base);
 		--font-size-parent-section-copy: var(--font-size-parent-lg);
 		--font-size-parent-card-copy: var(--font-size-parent-base);
 		--parent-hero-logo-width: 16rem;
@@ -787,6 +810,7 @@
 
 @media (min-width: 768px) {
 	:root {
+		--font-size-parent-faq-heading: var(--font-size-parent-6xl);
 		--parent-team-grid-columns: repeat(3, minmax(0, 1fr));
 		--parent-feature-grid-columns: repeat(2, minmax(0, 1fr));
 		--space-parent-cta-inset: var(--space-parent-16);
