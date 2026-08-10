@@ -599,6 +599,14 @@
 	--parent-member-row-touch-action: auto;
 	--parent-member-row-overscroll: auto;
 	--parent-member-cue-display: flex;
+	--hall-page-grid-columns: minmax(0, 1fr);
+	--hall-page-grid-gap: var(--space-parent-card-gap);
+	--hall-page-row-padding: var(--space-page-reset);
+	--hall-page-row-overflow: visible;
+	--hall-page-row-snap-type: none;
+	--hall-page-row-touch-action: auto;
+	--hall-page-card-width: var(--section-full-width);
+	--hall-page-card-height: auto;
 	--parent-section-glow-width: 72rem;
 	--parent-section-glow-height: 24rem;
 	--parent-hero-glow-width: 64rem;
@@ -842,6 +850,7 @@
 		--font-size-parent-card-copy: var(--font-size-parent-base);
 		--parent-hero-logo-width: 16rem;
 		--parent-team-grid-columns: repeat(2, minmax(0, 1fr));
+		--hall-page-grid-columns: repeat(2, minmax(0, 1fr));
 		--parent-footer-direction: row;
 		--parent-footer-justification: space-between;
 		--space-parent-cta-inset: var(--space-parent-14);
@@ -859,6 +868,7 @@
 
 @media (min-width: 1024px) {
 	:root {
+		--hall-page-grid-columns: repeat(4, minmax(0, 1fr));
 		--font-size-parent-hero: var(--font-size-parent-6xl);
 		--font-size-parent-section-heading: var(--font-size-parent-5xl);
 		--parent-hero-logo-width: 18rem;

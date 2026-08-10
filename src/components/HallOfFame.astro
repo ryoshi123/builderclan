@@ -1,58 +1,101 @@
 ---
-import { members } from '../data/members';
+import { hallOfFameGroups } from '../data/members';
 
-const githubIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/github-mark.svg`;
-const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/LinkedIn.svg`;
+interface Props {
+	compact?: boolean;
+	page?: boolean;
+}
+
+const { compact = false, page = false } = Astro.props;
+const hallOfFameUrl = import.meta.env.BASE_URL + 'hall-of-fame/';
+const homeUrl = import.meta.env.BASE_URL;
+const githubIcon = import.meta.env.BASE_URL + 'assets/images/builderclan/github-mark.svg';
+const linkedinIcon = import.meta.env.BASE_URL + 'assets/images/builderclan/LinkedIn.svg';
 ---
 
 <section
-	class="hall-of-fame section-jump-target"
+	class:list={[
+		'hall-of-fame',
+		'section-jump-target',
+		{ 'hall-of-fame--compact': compact, 'hall-of-fame--page': page },
+	]}
 	id="hall-of-fame"
 	data-reveal="fade-up"
 >
 	<div class="content-container">
 		<header class="hall-of-fame__header">
-			<h3>Hell Week 14B1 Hall of Fame</h3>
+			{page ? <h1>Hall of Fame</h1> : <h3>Hall of Fame</h3>}
+			{
+				compact && (
+					<a class="hall-of-fame__page-link" href={hallOfFameUrl}>
+						Hall of Fame
+					</a>
+				)
+			}
 		</header>
-		<div class="hall-of-fame__row-shell" data-member-scroll-shell>
-			<div
-				class="hall-of-fame__row"
-				data-member-scroll-row
-				aria-label="Hall of Fame members; scroll horizontally for more"
-			>
-				{
-					members.map((member) => (
-						<article class="hall-of-fame__card">
-							<img
-								src={`${import.meta.env.BASE_URL}${member.photo}`}
-								alt={member.name}
-								class="hall-of-fame__photo"
-							/>
-							<h4 class="hall-of-fame__name">{member.name}</h4>
-							<p class="hall-of-fame__detail">{member.department}</p>
-							<p class="hall-of-fame__detail">{member.project}</p>
 
-							<div class="hall-of-fame__socials">
-								<a href={member.github} target="_blank" rel="noopener noreferrer">
-									<img
-										src={githubIcon}
-										alt={`${member.name} on GitHub`}
-										class="hall-of-fame__social-icon"
-									/>
-								</a>
-								<a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-									<img
-										src={linkedinIcon}
-										alt={`${member.name} on LinkedIn`}
-										class="hall-of-fame__social-icon"
-									/>
-								</a>
-							</div>
-						</article>
-					))
-				}
-			</div>
-		</div>
+		{
+			page && (
+				<>
+					<a class="hall-of-fame__back-link" href={homeUrl}>
+						Home
+					</a>
+					<div class="hall-of-fame__groups">
+						{hallOfFameGroups.map((group) => (
+							<section class="hall-of-fame__group">
+								<h2 class="hall-of-fame__group-title">{group.title}</h2>
+								<div class="hall-of-fame__row-shell">
+									<div
+										class="hall-of-fame__row hall-of-fame__row--grid"
+										aria-label={group.title + ' Hall of Fame members'}
+									>
+										{
+											group.members.map((member) => (
+												<article class="hall-of-fame__card">
+													<img
+														src={import.meta.env.BASE_URL + member.photo}
+														alt={member.name}
+														class="hall-of-fame__photo"
+													/>
+													<h3 class="hall-of-fame__name">{member.name}</h3>
+													<p class="hall-of-fame__detail">{member.department}</p>
+													<p class="hall-of-fame__detail">{member.project}</p>
+
+													<div class="hall-of-fame__socials">
+														<a
+															href={member.github}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															<img
+																src={githubIcon}
+																alt={member.name + ' on GitHub'}
+																class="hall-of-fame__social-icon"
+															/>
+														</a>
+														<a
+															href={member.linkedin}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															<img
+																src={linkedinIcon}
+																alt={member.name + ' on LinkedIn'}
+																class="hall-of-fame__social-icon"
+															/>
+														</a>
+													</div>
+												</article>
+											))
+										}
+									</div>
+								</div>
+							</section>
+						))}
+					</div>
+				</>
+			)
+		}
 	</div>
 </section>
 
@@ -71,6 +114,7 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		text-align: center;
 	}
 
+	.hall-of-fame__header h1,
 	.hall-of-fame__header h3 {
 		margin: var(--space-page-reset);
 		color: var(--color-brand-primary);
@@ -80,19 +124,78 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		letter-spacing: var(--letter-spacing-parent-tight);
 	}
 
+	.hall-of-fame--compact .hall-of-fame__header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-parent-4);
+		margin-bottom: var(--space-page-reset);
+	}
+
+	.hall-of-fame__page-link,
+	.hall-of-fame__back-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--parent-control-min-height);
+		padding: var(--space-parent-3-5) var(--space-parent-6);
+		color: var(--color-text-on-dark);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-medium);
+		text-decoration: none;
+		background: var(--color-parent-card-surface);
+		border: var(--parent-border-width) solid var(--color-parent-border);
+		border-radius: var(--parent-radius-pill);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.hall-of-fame__page-link:hover,
+	.hall-of-fame__page-link:focus-visible,
+	.hall-of-fame__back-link:hover,
+	.hall-of-fame__back-link:focus-visible {
+		color: var(--color-text-on-dark);
+		background: var(--color-parent-card-hover);
+		border-color: var(--color-parent-brand-border-soft);
+	}
+
+	.hall-of-fame__back-link {
+		display: flex;
+		width: fit-content;
+		margin: var(--space-page-reset) var(--space-centered)
+			var(--space-parent-12);
+	}
+
+	.hall-of-fame__groups {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-parent-section-block);
+	}
+
+	.hall-of-fame__group-title {
+		margin: var(--space-page-reset) var(--space-page-reset)
+			var(--space-parent-6);
+		color: var(--color-brand-primary);
+		font-size: var(--font-size-parent-2xl);
+		font-weight: var(--font-weight-parent-bold);
+		line-height: var(--line-height-parent-tight);
+		text-align: center;
+	}
+
 	.hall-of-fame__row-shell {
 		position: relative;
 	}
 
 	.hall-of-fame__row-shell::after {
 		position: absolute;
-		inset-block: var(--space-page-reset);
+		inset-block-start: var(--space-parent-1);
+		inset-block-end: auto;
 		inset-inline-end: var(--space-page-reset);
 		z-index: var(--member-row-continuation-layer);
 		display: var(--parent-member-cue-display);
 		align-items: center;
 		justify-content: center;
 		width: var(--member-row-continuation-cue-width);
+		height: var(--parent-control-min-height);
 		color: var(--color-brand-primary);
 		font-size: var(--font-size-parent-2xl);
 		pointer-events: none;
@@ -141,6 +244,27 @@ const linkedinIcon = `${import.meta.env.BASE_URL}assets/images/builderclan/Linke
 		scroll-snap-align: var(--parent-member-card-snap-align);
 		scroll-snap-stop: var(--parent-member-card-snap-stop);
 		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.hall-of-fame--page .hall-of-fame__row {
+		display: grid;
+		grid-template-columns: var(--hall-page-grid-columns);
+		padding: var(--hall-page-row-padding);
+		overflow: var(--hall-page-row-overflow);
+		gap: var(--hall-page-grid-gap);
+		scroll-snap-type: var(--hall-page-row-snap-type);
+		touch-action: var(--hall-page-row-touch-action);
+	}
+
+	.hall-of-fame--page .hall-of-fame__row-shell::after {
+		display: none;
+	}
+
+	.hall-of-fame--page .hall-of-fame__card {
+		width: var(--hall-page-card-width);
+		height: var(--hall-page-card-height);
+		min-width: var(--space-page-reset);
+		flex: none;
 	}
 
 	.hall-of-fame__photo {

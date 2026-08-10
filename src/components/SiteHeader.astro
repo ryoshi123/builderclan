@@ -5,13 +5,18 @@ const logoSource =
 	import.meta.env.BASE_URL + 'assets/images/builderclan/LogoShort.svg';
 const joinLink = navigationLinks.find(({ label }) => label === 'Join');
 const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
+const isHomePage =
+	Astro.url.pathname === import.meta.env.BASE_URL ||
+	Astro.url.pathname === import.meta.env.BASE_URL + 'index.html';
+const navigationHref = (href: string) =>
+	href.startsWith('#') && !isHomePage ? import.meta.env.BASE_URL + href : href;
 ---
 
 <header class="site-header" data-site-header>
 	<div class="site-header__frame">
 		<div class="site-header__inner">
 			<a
-				href="#hero"
+				href={navigationHref('#hero')}
 				class="site-header__mark-link"
 				aria-label="Go to the BuilderClan AISAT opening section"
 			>
@@ -26,7 +31,7 @@ const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
 				{
 					primaryLinks.map(({ label, href, external }) => (
 						<a
-							href={href}
+							href={navigationHref(href)}
 							target={external ? '_blank' : undefined}
 							rel={external ? 'noopener noreferrer' : undefined}
 							data-navigation-link
@@ -39,7 +44,11 @@ const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
 
 			{
 				joinLink && (
-					<a class="site-header__join" href={joinLink.href} data-navigation-link>
+					<a
+						class="site-header__join"
+						href={navigationHref(joinLink.href)}
+						data-navigation-link
+					>
 						<span>{joinLink.label}</span>
 						<svg aria-hidden="true" viewBox="0 0 24 24">
 							<path d="M7 17 17 7M7 7h10v10" />
@@ -75,7 +84,7 @@ const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
 			{
 				primaryLinks.map(({ label, href, external }) => (
 					<a
-						href={href}
+						href={navigationHref(href)}
 						target={external ? '_blank' : undefined}
 						rel={external ? 'noopener noreferrer' : undefined}
 						data-navigation-link
@@ -87,7 +96,7 @@ const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
 			{
 				joinLink && (
 					<div class="site-header__overlay-join">
-						<a href={joinLink.href} data-navigation-link>
+						<a href={navigationHref(joinLink.href)} data-navigation-link>
 							<span>{joinLink.label}</span>
 							<svg aria-hidden="true" viewBox="0 0 24 24">
 								<path d="M7 17 17 7M7 7h10v10" />
