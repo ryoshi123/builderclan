@@ -356,6 +356,12 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 		height: var(--parent-icon-size);
 	}
 
+	@media (min-width: 769px) {
+		.hall-of-fame__heading-link svg {
+			top: var(--space-parent-2);
+		}
+	}
+
 	@media (hover: hover) and (pointer: fine) {
 		.hall-of-fame__heading-link:hover svg,
 		.hall-of-fame__heading-link:focus-visible svg {
