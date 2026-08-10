@@ -587,6 +587,8 @@
 	--parent-member-card-flex: 0 0 var(--parent-member-card-width);
 	--parent-member-card-snap-align: none;
 	--parent-member-card-snap-stop: normal;
+	--hall-heading-arrow-size: 0.6em;
+	--hall-heading-arrow-offset: 0.1em;
 	--parent-member-row-display: flex;
 	--parent-member-row-columns: none;
 	--parent-member-row-alignment: flex-start;

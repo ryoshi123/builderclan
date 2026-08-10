@@ -161,9 +161,9 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 
 	.hall-of-fame__heading-link svg {
 		position: relative;
-		width: var(--space-parent-6);
-		height: var(--space-parent-6);
-		top: var(--space-page-reset);
+		width: var(--hall-heading-arrow-size);
+		height: var(--hall-heading-arrow-size);
+		top: var(--hall-heading-arrow-offset);
 		fill: none;
 		stroke: currentColor;
 		stroke-width: var(--parent-focus-ring-width);
@@ -354,12 +354,6 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 	.hall-of-fame__social-icon {
 		width: var(--parent-icon-size);
 		height: var(--parent-icon-size);
-	}
-
-	@media (min-width: 769px) {
-		.hall-of-fame__heading-link svg {
-			top: var(--space-parent-1);
-		}
 	}
 
 	@media (hover: hover) and (pointer: fine) {
