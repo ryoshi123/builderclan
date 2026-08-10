@@ -25,14 +25,21 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 >
 	<div class="content-container">
 		<header class="hall-of-fame__header">
-			{page ? <h1>Hall of Fame</h1> : <h3>Hall of Fame</h3>}
-			{
-				compact && (
-					<a class="hall-of-fame__page-link" href={hallOfFameUrl}>
-						Hall of Fame
-					</a>
-				)
-			}
+			{page ? (
+				<h1>Hall of Fame</h1>
+			) : (
+				<a class="hall-of-fame__heading-link" href={hallOfFameUrl}>
+					<h3>
+						Hall of Fame <span aria-hidden="true">→</span>
+					</h3>
+				</a>
+			)}
+			{compact && (
+				<p class="section-copy hall-of-fame__description">
+					Every year a new group takes on Hell Week. The Hall of Fame keeps a
+					record of everyone who has made it through.
+				</p>
+			)}
 		</header>
 
 		{
@@ -129,29 +136,46 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--space-parent-4);
+		gap: var(--space-parent-heading-bottom);
 		margin-bottom: var(--space-page-reset);
 	}
 
-	.hall-of-fame__page-link,
+	.hall-of-fame__heading-link,
 	.hall-of-fame__back-link {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.hall-of-fame__heading-link h3 {
+		display: inline-flex;
+		align-items: baseline;
+		gap: var(--space-parent-2);
+	}
+
+	.hall-of-fame__heading-link span {
+		transition: transform var(--duration-parent-control) var(--easing-parent-out);
+	}
+
+	.hall-of-fame__description {
+		margin-inline: var(--space-centered);
+		text-align: center;
+	}
+
+	.hall-of-fame__back-link {
 		min-height: var(--parent-control-min-height);
 		padding: var(--space-parent-3-5) var(--space-parent-6);
 		color: var(--color-text-on-dark);
 		font-size: var(--font-size-parent-sm);
 		font-weight: var(--font-weight-parent-medium);
-		text-decoration: none;
 		background: var(--color-parent-card-surface);
 		border: var(--parent-border-width) solid var(--color-parent-border);
 		border-radius: var(--parent-radius-pill);
 		transition: all var(--duration-parent-standard) ease;
 	}
 
-	.hall-of-fame__page-link:hover,
-	.hall-of-fame__page-link:focus-visible,
 	.hall-of-fame__back-link:hover,
 	.hall-of-fame__back-link:focus-visible {
 		color: var(--color-text-on-dark);
@@ -320,6 +344,11 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		.hall-of-fame__heading-link:hover span,
+		.hall-of-fame__heading-link:focus-visible span {
+			transform: translateX(var(--parent-arrow-hover-x));
+		}
+
 		.hall-of-fame__card:hover {
 			border-color: var(--color-parent-brand-border-soft);
 			transform: translateY(var(--parent-card-hover-offset));
