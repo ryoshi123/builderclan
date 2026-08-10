@@ -1,5 +1,6 @@
 ---
 import { hallOfFameGroups } from '../data/members';
+import { diagonalArrowPath } from '../data/icons';
 
 interface Props {
 	compact?: boolean;
@@ -30,7 +31,10 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 			) : (
 				<a class="hall-of-fame__heading-link" href={hallOfFameUrl}>
 					<h3>
-						Hall of Fame <span aria-hidden="true">→</span>
+						Hall of Fame
+						<svg aria-hidden="true" viewBox="0 0 24 24">
+							<path d={diagonalArrowPath} />
+						</svg>
 					</h3>
 				</a>
 			)}
@@ -155,7 +159,14 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 		gap: var(--space-parent-2);
 	}
 
-	.hall-of-fame__heading-link span {
+	.hall-of-fame__heading-link svg {
+		width: var(--space-parent-4);
+		height: var(--space-parent-4);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: var(--parent-focus-ring-width);
+		stroke-linecap: round;
+		stroke-linejoin: round;
 		transition: transform var(--duration-parent-control) var(--easing-parent-out);
 	}
 
@@ -344,8 +355,8 @@ const sortedGroups = [...hallOfFameGroups].sort((first, second) => second.year -
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.hall-of-fame__heading-link:hover span,
-		.hall-of-fame__heading-link:focus-visible span {
+		.hall-of-fame__heading-link:hover svg,
+		.hall-of-fame__heading-link:focus-visible svg {
 			transform: translateX(var(--parent-arrow-hover-x));
 		}
 

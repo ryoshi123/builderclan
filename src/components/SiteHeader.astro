@@ -1,5 +1,6 @@
 ---
 import { navigationLinks } from '../data/navigation';
+import { diagonalArrowPath } from '../data/icons';
 
 const logoSource =
 	import.meta.env.BASE_URL + 'assets/images/builderclan/LogoShort.svg';
@@ -68,7 +69,7 @@ const navigationHref = (href: string) => {
 							>
 								<span>{label}</span>
 								<svg aria-hidden="true" viewBox="0 0 24 24">
-									<path d="M7 17 17 7M7 7h10v10" />
+									<path d={diagonalArrowPath} />
 								</svg>
 							</a>
 						) : (
@@ -82,7 +83,7 @@ const navigationHref = (href: string) => {
 							>
 								<span>{label}</span>
 								<svg aria-hidden="true" viewBox="0 0 24 24">
-									<path d="M7 17 17 7M7 7h10v10" />
+									<path d={diagonalArrowPath} />
 								</svg>
 							</a>
 						)
@@ -139,7 +140,7 @@ const navigationHref = (href: string) => {
 							>
 								<span>{label}</span>
 								<svg aria-hidden="true" viewBox="0 0 24 24">
-									<path d="M7 17 17 7M7 7h10v10" />
+										<path d={diagonalArrowPath} />
 								</svg>
 							</a>
 						</div>
@@ -154,7 +155,7 @@ const navigationHref = (href: string) => {
 						>
 							<span>{label}</span>
 							<svg aria-hidden="true" viewBox="0 0 24 24">
-								<path d="M7 17 17 7M7 7h10v10" />
+								<path d={diagonalArrowPath} />
 							</svg>
 						</a>
 					)
@@ -270,7 +271,7 @@ const navigationHref = (href: string) => {
 	.site-header__page-link {
 		display: inline-flex;
 		align-items: center;
-		gap: var(--space-parent-1-5);
+		gap: var(--space-parent-2);
 		padding: var(--space-parent-2) var(--space-page-reset);
 		color: var(--color-section-body-text);
 		font-size: var(--font-size-parent-sm);
@@ -280,8 +281,8 @@ const navigationHref = (href: string) => {
 	}
 
 	.site-header__page-link svg {
-		width: var(--space-parent-3-5);
-		height: var(--space-parent-3-5);
+		width: var(--space-parent-4);
+		height: var(--space-parent-4);
 		fill: none;
 		stroke: currentColor;
 		stroke-width: var(--parent-focus-ring-width);
@@ -326,8 +327,8 @@ const navigationHref = (href: string) => {
 	.site-header__join svg,
 	.site-header__overlay-join svg,
 	.site-header__overlay-page-link svg {
-		width: var(--space-parent-3-5);
-		height: var(--space-parent-3-5);
+		width: var(--space-parent-4);
+		height: var(--space-parent-4);
 		fill: none;
 		stroke: currentColor;
 		stroke-width: var(--parent-focus-ring-width);
@@ -458,6 +459,7 @@ const navigationHref = (href: string) => {
 
 	.site-header__overlay-page-link {
 		justify-content: space-between;
+		gap: var(--space-parent-2);
 	}
 
 	.site-header__overlay-page-link svg {
