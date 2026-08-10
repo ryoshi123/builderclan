@@ -4,12 +4,24 @@ import { navigationLinks } from '../data/navigation';
 const logoSource =
 	import.meta.env.BASE_URL + 'assets/images/builderclan/LogoShort.svg';
 const joinLink = navigationLinks.find(({ label }) => label === 'Join');
-const primaryLinks = navigationLinks.filter(({ label }) => label !== 'Join');
+const hallOfFameLink = navigationLinks.find(({ label }) => label === 'Hall of Fame');
+const primaryLinks = navigationLinks.filter(
+	({ label }) => label !== 'Join' && label !== 'Hall of Fame',
+);
+const pageLinks = [hallOfFameLink, joinLink].filter(
+	(link): link is (typeof navigationLinks)[number] => Boolean(link),
+);
 const isHomePage =
 	Astro.url.pathname === import.meta.env.BASE_URL ||
 	Astro.url.pathname === import.meta.env.BASE_URL + 'index.html';
-const navigationHref = (href: string) =>
-	href.startsWith('#') && !isHomePage ? import.meta.env.BASE_URL + href : href;
+const isHallOfFamePage =
+	Astro.url.pathname === import.meta.env.BASE_URL + 'hall-of-fame/' ||
+	Astro.url.pathname === import.meta.env.BASE_URL + 'hall-of-fame/index.html';
+const navigationHref = (href: string) => {
+	if (href.startsWith('#') && !isHomePage) return import.meta.env.BASE_URL + href;
+	if (href === '/hall-of-fame/') return import.meta.env.BASE_URL + 'hall-of-fame/';
+	return href;
+};
 ---
 
 <header class="site-header" data-site-header>
@@ -35,6 +47,7 @@ const navigationHref = (href: string) =>
 							target={external ? '_blank' : undefined}
 							rel={external ? 'noopener noreferrer' : undefined}
 							data-navigation-link
+							data-navigation-section-link
 						>
 							{label}
 						</a>
@@ -42,20 +55,40 @@ const navigationHref = (href: string) =>
 				}
 			</nav>
 
-			{
-				joinLink && (
-					<a
-						class="site-header__join"
-						href={navigationHref(joinLink.href)}
-						data-navigation-link
-					>
-						<span>{joinLink.label}</span>
-						<svg aria-hidden="true" viewBox="0 0 24 24">
-							<path d="M7 17 17 7M7 7h10v10" />
-						</svg>
-					</a>
-				)
-			}
+			<div class="site-header__page-links">
+				{
+					pageLinks.map(({ label, href, external }) =>
+						label === 'Join' ? (
+							<a
+								class="site-header__join"
+								href={navigationHref(href)}
+								target={external ? '_blank' : undefined}
+								rel={external ? 'noopener noreferrer' : undefined}
+								data-navigation-link
+							>
+								<span>{label}</span>
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M7 17 17 7M7 7h10v10" />
+								</svg>
+							</a>
+						) : (
+							<a
+								class="site-header__page-link"
+								href={navigationHref(href)}
+								target={external ? '_blank' : undefined}
+								rel={external ? 'noopener noreferrer' : undefined}
+								aria-current={isHallOfFamePage ? 'page' : undefined}
+								data-navigation-link
+							>
+								<span>{label}</span>
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M7 17 17 7M7 7h10v10" />
+								</svg>
+							</a>
+						)
+					)
+				}
+			</div>
 
 			<button
 				type="button"
@@ -88,21 +121,43 @@ const navigationHref = (href: string) =>
 						target={external ? '_blank' : undefined}
 						rel={external ? 'noopener noreferrer' : undefined}
 						data-navigation-link
+						data-navigation-section-link
 					>
 						{label}
 					</a>
 				))
 			}
 			{
-				joinLink && (
-					<div class="site-header__overlay-join">
-						<a href={navigationHref(joinLink.href)} data-navigation-link>
-							<span>{joinLink.label}</span>
+				pageLinks.map(({ label, href, external }) =>
+					label === 'Join' ? (
+						<div class="site-header__overlay-join">
+							<a
+								href={navigationHref(href)}
+								target={external ? '_blank' : undefined}
+								rel={external ? 'noopener noreferrer' : undefined}
+								data-navigation-link
+							>
+								<span>{label}</span>
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M7 17 17 7M7 7h10v10" />
+								</svg>
+							</a>
+						</div>
+					) : (
+						<a
+							class="site-header__overlay-page-link"
+							href={navigationHref(href)}
+							target={external ? '_blank' : undefined}
+							rel={external ? 'noopener noreferrer' : undefined}
+							aria-current={isHallOfFamePage ? 'page' : undefined}
+							data-navigation-link
+						>
+							<span>{label}</span>
 							<svg aria-hidden="true" viewBox="0 0 24 24">
 								<path d="M7 17 17 7M7 7h10v10" />
 							</svg>
 						</a>
-					</div>
+					)
 				)
 			}
 		</nav>
@@ -185,7 +240,14 @@ const navigationHref = (href: string) =>
 		border-radius: var(--parent-radius-pill);
 	}
 
+	.site-header__page-links {
+		display: var(--parent-header-join-display);
+		align-items: center;
+		gap: var(--space-parent-4);
+	}
+
 	.site-header__links a,
+	.site-header__page-link,
 	.site-header__join,
 	.site-header__overlay a {
 		text-decoration: none;
@@ -203,6 +265,40 @@ const navigationHref = (href: string) =>
 	.site-header__links a:hover {
 		color: var(--color-text-on-dark);
 		background: var(--color-parent-card-hover);
+	}
+
+	.site-header__page-link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-parent-1-5);
+		padding: var(--space-parent-2) var(--space-page-reset);
+		color: var(--color-section-body-text);
+		font-size: var(--font-size-parent-sm);
+		font-weight: var(--font-weight-parent-medium);
+		border-radius: var(--parent-radius-pill);
+		transition: all var(--duration-parent-standard) ease;
+	}
+
+	.site-header__page-link svg {
+		width: var(--space-parent-3-5);
+		height: var(--space-parent-3-5);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: var(--parent-focus-ring-width);
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		transition: transform var(--duration-parent-control) var(--easing-parent-out);
+	}
+
+	.site-header__page-link:hover,
+	.site-header__page-link:focus-visible,
+	.site-header__page-link[aria-current='page'] {
+		color: var(--color-brand-primary);
+	}
+
+	.site-header__page-link:hover svg,
+	.site-header__page-link:focus-visible svg {
+		transform: translateX(var(--parent-arrow-hover-x));
 	}
 
 	.site-header__links a[data-active='true'] {
@@ -228,7 +324,8 @@ const navigationHref = (href: string) =>
 	}
 
 	.site-header__join svg,
-	.site-header__overlay-join svg {
+	.site-header__overlay-join svg,
+	.site-header__overlay-page-link svg {
 		width: var(--space-parent-3-5);
 		height: var(--space-parent-3-5);
 		fill: none;
@@ -357,6 +454,24 @@ const navigationHref = (href: string) =>
 		color: var(--color-parent-card-surface);
 		font-weight: var(--font-weight-parent-semibold);
 		background: var(--color-brand-primary);
+	}
+
+	.site-header__overlay-page-link {
+		justify-content: space-between;
+	}
+
+	.site-header__overlay-page-link svg {
+		transition: transform var(--duration-parent-control) var(--easing-parent-out);
+	}
+
+	.site-header__overlay-page-link:hover svg,
+	.site-header__overlay-page-link:focus-visible svg {
+		transform: translateX(var(--parent-arrow-hover-x));
+	}
+
+	.site-header__overlay-page-link[aria-current='page'] {
+		color: var(--color-brand-primary);
+		font-weight: var(--font-weight-parent-semibold);
 	}
 
 	.site-header__overlay-join {

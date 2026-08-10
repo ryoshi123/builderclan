@@ -20,6 +20,11 @@ export const navigationLinks = [
 		external: false,
 	},
 	{
+		label: 'Hall of Fame',
+		href: '/hall-of-fame/',
+		external: false,
+	},
+	{
 		label: 'Join',
 		href: '#join',
 		external: false,

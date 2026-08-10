@@ -170,9 +170,9 @@ if (siteHeader) {
 }
 
 if (navigationLinks.length > 0) {
-	const internalLinks = [...navigationLinks].filter((link) =>
-		link.getAttribute('href')?.startsWith('#'),
-	);
+	const internalLinks = [...document.querySelectorAll<HTMLAnchorElement>(
+		'[data-navigation-section-link]',
+	)];
 	const targetIds = [...new Set(
 		internalLinks
 			.map((link) => link.getAttribute('href')?.slice(1))
