@@ -1,7 +1,7 @@
 export const hallOfFameGroups = [
 	{
 		title: 'Hell Week 14B1',
-		year: 'unknown',
+		year: 2025,
 		members: [
 			{
 				name: 'Naveen William',
